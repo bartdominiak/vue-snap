@@ -35,7 +35,7 @@
 
 <script>
 import BaseButton from './Button.vue'
-import ArrowIcon from '/@assets/icons/arrow.svg?component'
+import ArrowIcon from '/@assets/icons/arrow.vue'
 
 export default {
   components: {

@@ -40,7 +40,6 @@ export default {
     min-height: 48px;
     padding: 0;
     background: $white;
-    border: 0;
     cursor: pointer;
     outline: none;
   }
