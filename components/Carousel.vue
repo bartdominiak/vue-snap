@@ -58,6 +58,8 @@ export default {
     width: 100%;
 
     &__wrapper {
+      width: 100%;
+      height: 230px;
       display: flex;
       overflow-y: scroll;
       scroll-snap-type: x mandatory;

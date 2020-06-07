@@ -18,14 +18,29 @@ export default {
     intersected: false
   }),
   mounted() {
+    const options = {
+      root: document.querySelector('.carousel__wrapper'),
+      threshold: 0.5
+    }
+
+    if (
+      !('IntersectionObserver' in window)
+      || !('IntersectionObserverEntry' in window)
+      || !('intersectionRatio' in window.IntersectionObserverEntry.prototype))
+    {
+      console.log('interesection not supported')
+    }
+
     this.observer = new IntersectionObserver(entries => {
       const image = entries[0]
 
       if (image.isIntersecting) {
+        console.log('image loaded:', image.target)
+
         this.intersected = true
         this.observer.disconnect()
       }
-    })
+    }, options)
 
     this.observer.observe(this.$el)
   },
@@ -38,7 +53,7 @@ export default {
 <style lang="scss">
  .image {
     display: block;
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 100%;
  }
 </style>
