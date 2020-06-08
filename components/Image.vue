@@ -1,6 +1,6 @@
 <template>
   <img
-    :src="isIntersected ? src : false"
+    :src="isIntersected ? src : null"
     class="image"
   />
 </template>

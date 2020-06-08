@@ -69,7 +69,7 @@ export default {
       width: 100%;
       height: 230px;
       display: flex;
-      overflow-y: scroll;
+      overflow-x: scroll;
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
       margin: 0;
