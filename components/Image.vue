@@ -1,51 +1,43 @@
 <template>
   <img
+    :src="isIntersected ? src : false"
     class="image"
-    :src="intersected ? src : null"
   />
 </template>
 
 <script>
+import observer from '../modules/observer'
+
 export default {
   props: {
+    id: {
+      type: String,
+      required: false
+    },
     src: {
-      required: true,
-      type: String
+      type: String,
+      required: true
     }
   },
   data: () => ({
-    observer: null,
-    intersected: false
+    observer,
+    isIntersected: false
   }),
   mounted() {
-    const options = {
-      root: document.querySelector('.carousel__wrapper'),
-      threshold: 0.5
+    const config = {
+      root: document.querySelector(`${this.id} .carousel__wrapper`)
     }
 
-    if (
-      !('IntersectionObserver' in window)
-      || !('IntersectionObserverEntry' in window)
-      || !('intersectionRatio' in window.IntersectionObserverEntry.prototype))
-    {
-      console.log('interesection not supported')
+    const instersectingFunc = () => {
+      this.isIntersected = true
+      this.observerImage.disconnect()
     }
 
-    this.observer = new IntersectionObserver(entries => {
-      const image = entries[0]
-
-      if (image.isIntersecting) {
-        console.log('image loaded:', image.target)
-
-        this.intersected = true
-        this.observer.disconnect()
-      }
-    }, options)
-
-    this.observer.observe(this.$el)
+    this.observerImage = observer(config, instersectingFunc)
+    this.observerImage.observe(this.$el)
   },
   destroyed() {
-    this.observer.disconnect()
+    this.observerImage.disconnect()
   }
 }
 </script>

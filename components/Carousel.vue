@@ -35,16 +35,24 @@
 
 <script>
 import BaseButton from './Button.vue'
-import ArrowIcon from '/@assets/icons/arrow.vue'
+import ArrowIcon from '../assets/icons/arrow.vue'
 
 export default {
+  props: {
+    step: {
+      type: Number,
+      required: false,
+      default: ''
+    }
+  },
   components: {
     BaseButton,
     ArrowIcon
   },
   methods: {
     slide(direction) {
-      this.$refs.carousel.scrollBy(direction, 0)
+      const step = this.step === 1 ? this.$el.querySelector('.carousel__slide').offsetWidth : this.$refs.carousel.offsetWidth
+      this.$refs.carousel.scrollBy(step * direction, 0)
     }
   }
 }

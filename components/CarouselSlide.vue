@@ -1,5 +1,8 @@
 <template>
-  <li class="carousel__slide">
+  <li
+    ref="slide"
+    class="carousel__slide"
+  >
     <slot />
   </li>
 </template>

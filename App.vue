@@ -2,14 +2,33 @@
   <base-container>
     <ul class="preview">
       <li class="preview__item">
-        <h1>#1 Carousel</h1>
-        <carousel>
+        <h1>#1 Carousel (Step: Slide)</h1>
+        <carousel id="example-01" :step="1">
           <carousel-slide
             v-for="slide in carouselMock"
             :key="slide.id"
             tabIndex="0"
           >
-            <base-image :src="slide.image" />
+            <base-image
+              id="example-01"
+              :src="slide.image"
+            />
+          </carousel-slide>
+        </carousel>
+      </li>
+
+      <li class="preview__item">
+        <h1>#2 Carousel (Step: Wrapper)</h1>
+        <carousel id="example-02">
+          <carousel-slide
+            v-for="slide in carouselMock"
+            :key="slide.id"
+            tabIndex="0"
+          >
+            <base-image
+              id="example-02"
+              :src="slide.image"
+            />
           </carousel-slide>
         </carousel>
       </li>
