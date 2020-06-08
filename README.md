@@ -5,9 +5,7 @@ This is PoC Carousel (Slider) based on Scroll Snap and Observer API. I'm current
 
 ## Bugs
 - Scroll Snap not supported in IE,
-- Sometimes after first load, Carousel starts in the middle of list,
 - `scrollBy(1, 0)` and `scrollBy(-1, 0)` methods doesn't scroll by slide in Firefox, and Safari.
-- Images are not loading after changed slide (Opera, Intersection API)
 
 ## Development
 
