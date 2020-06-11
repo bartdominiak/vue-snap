@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "webpack --config ./config/webpack/webpack.dev.js --watch",
     "build": "webpack --config ./config/webpack/webpack.prod.js",
-    "storybook": "start-storybook -c ./config/storybook"
+    "storybook": "start-storybook -c ./config/storybook",
+    "analyse": "webpack --config ./config/webpack/webpack.prod.js --profile --json > ./dist/stats.json && webpack-bundle-analyzer ./dist/stats.json -m static -r ./dist/report.html"
   },
   "dependencies": {
     "vue": "^2.6.11"
@@ -19,6 +20,7 @@
     "vue-loader": "^15.9.2",
     "vue-template-compiler": "^2.6.11",
     "webpack": "^4.43.0",
+    "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "^3.3.11",
     "webpack-merge": "^4.2.2"
   }
