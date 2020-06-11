@@ -3,13 +3,15 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "webpack --config ./config/webpack/webpack.dev.js --watch",
-    "build": "webpack --config ./config/webpack/webpack.prod.js"
+    "build": "webpack --config ./config/webpack/webpack.prod.js",
+    "storybook": "start-storybook -c ./config/storybook"
   },
   "dependencies": {
     "vue": "^2.6.11"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
+    "@storybook/vue": "^6.0.0-beta.25",
     "babel-loader": "^8.1.0",
     "css-loader": "^3.5.3",
     "node-sass": "^4.14.1",

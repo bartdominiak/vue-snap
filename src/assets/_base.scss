@@ -1,0 +1,36 @@
+.vs-carousel {
+    position: relative;
+
+    &--vertical {
+        .vs-carousel__wrapper {
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            flex-direction: column;
+        }
+    }
+
+    &__wrapper {
+        display: flex;
+        height: 200px;
+
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+
+        // Hide scrollbar in Firefox, IE, Chrome, Safari
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    &__slide {
+        flex: 0 0 100%;
+        scroll-snap-align: start;
+    }
+}

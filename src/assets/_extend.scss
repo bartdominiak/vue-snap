@@ -1,31 +1,39 @@
 .vs-carousel {
-    position: relative;
+    &[data-id="fixed"] {
+        .vs-carousel__slide {
+            flex: 0 0 100%;
 
-    &--vertical {
-        .vs-carousel__wrapper {
-            overflow-y: scroll;
-            scroll-snap-type: y mandatory;
-            flex-direction: column;
+            @media (min-width: 500px) {
+                flex: 0 0 50%;
+            }
+
+            @media (min-width: 768px) {
+                flex: 0 0 33.33%;
+            }
+
+            @media (min-width: 1024px) {
+                flex: 0 0 25%;
+            }
+
+            @media (min-width: 1280px) and (max-width: 1440px) {
+                flex: 0 0 20%;
+            }
         }
     }
 
-    &__wrapper {
+    &__slide {
         display: flex;
-        height: 200px;
+        justify-content: center;
+        align-items: center;
+        font-size: 40px;
+        color: white;
 
-        overflow-x: scroll;
-        scroll-snap-type: x mandatory;
-        scroll-behavior: smooth;
+        &:nth-child(n+1) {
+            background: #2e5c8a;
+        }
 
-        -webkit-overflow-scrolling: touch;
-        -ms-overflow-style: -ms-autohiding-scrollbar;
-
-        // Hide scrollbar in Firefox, IE, Chrome, Safari
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-
-        &::-webkit-scrollbar {
-            display: none;
+        &:nth-child(2n+1) {
+            background: #336699;
         }
     }
 
