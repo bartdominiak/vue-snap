@@ -4,8 +4,8 @@ module.exports = {
   themeConfig: {
     nav: [
       { text: 'Guide', link: '/guide/' },
-      { text: 'Examples', link: '/examples/' },
-      { text: 'API', link: '/api/' }
+      // { text: 'Examples', link: '/examples/' },
+      // { text: 'API', link: '/api/' }
     ],
     repo: 'bartdominiak/vue-snap',
     editLinks: true,
