@@ -55,21 +55,21 @@ export default {
       ]
     }
   },
+  mounted() {
+    this.scroll() // Dirty hack to force rerender CSS Scroll Snap position
+  },
   methods: {
     changeSlide(direction) {
       if (this.vertical) {
-        this.slide(0, direction * this.$children[0].$el.offsetHeight)
+        this.scroll(0, direction * this.$children[0].$el.offsetHeight)
         return
       }
 
-      this.slide(direction * this.$children[0].$el.offsetWidth, 0)
+      this.scroll(direction * this.$children[0].$el.offsetWidth, 0)
     },
-    slide(x = 0, y = 0) {
+    scroll(x = 0, y = 0) {
       this.$refs.vsWrapper.scrollBy(x, y)
     }
-  },
-  mounted() {
-    this.slide() // Dirty hack to force rerender CSS Scroll Snap position
   }
 }
 </script>

@@ -3,6 +3,9 @@
   "version": "0.1.0-alpha.1",
   "description": "Lightweight Carousel based on CSS Scroll Snap and Vue",
   "main": "dist/vue-snap.min.js",
+  "engines": {
+    "node": ">=12.13.0 <13.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/bartdominiak/vue-snap.git"
@@ -27,7 +30,8 @@
     "build": "webpack --config ./config/webpack/webpack.prod.js",
     "storybook": "start-storybook -c ./config/storybook",
     "components": "build-storybook -c ./config/storybook",
-    "analyse": "webpack --config ./config/webpack/webpack.prod.js --profile --json > ./dist/stats.json && webpack-bundle-analyzer ./dist/stats.json -m static -r ./dist/report.html"
+    "analyse": "webpack --config ./config/webpack/webpack.prod.js --profile --json > ./dist/stats.json && webpack-bundle-analyzer ./dist/stats.json -m static -r ./dist/report.html",
+    "lint": "eslint src/**/*.{js,vue}"
   },
   "dependencies": {
     "vue": "^2.6.11"
@@ -37,6 +41,9 @@
     "@storybook/vue": "^6.0.0-beta.25",
     "babel-loader": "^8.1.0",
     "css-loader": "^3.5.3",
+    "eslint": "^7.2.0",
+    "eslint-plugin-vue": "^6.2.2",
+    "husky": "^4.2.5",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
     "vue-loader": "^15.9.2",
@@ -45,5 +52,11 @@
     "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "^3.3.11",
     "webpack-merge": "^4.2.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint",
+      "pre-push": "yarn lint"
+    }
   }
 }
