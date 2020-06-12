@@ -12,7 +12,10 @@
     </div>
 
     <!-- @slot Slot for Actions -->
-    <slot name="actions">
+    <slot
+      v-if="navigation"
+      name="actions"
+    >
       <button
         ref="vsNavigationLeft"
         aria-label="Slide left"
