@@ -12,7 +12,9 @@
     "carousel",
     "slider",
     "responsive",
-    "scroll-snap"
+    "scroll",
+    "snap",
+    "CSS"
   ],
   "author": "smugers@gmail.com",
   "license": "MIT",

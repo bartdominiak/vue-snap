@@ -16,7 +16,9 @@ Please note that this lib is on very early stage. The idea behind this plugin is
 - Missing CSS recalculation for dynamicly added Slides
 
 ## Usage
-### Globaly
+There are two ways to run it.
+
+### Globally
 
 ```js
 import Vue from 'vue'
@@ -25,7 +27,7 @@ import VueSnap from 'vue-snap'
 Vue.use(VueSnap)
 ```
 
-### Localy
+### Locally
 
 ```js
 import { Carousel, Slide } from 'vue-snap'
