@@ -1,3 +1,9 @@
+[![npm version](https://badge.fury.io/js/vue-snap.svg)](https://badge.fury.io/js/vue-snap)
+
+<div align="center">
+  <img width="256" heigth="256" src="/static/snap.jpg" alt="vue-snap logo">
+</div>
+
 # vue-snap
 > Lightweight Slider/Carousel based on CSS Scroll Snap and Vue
 
