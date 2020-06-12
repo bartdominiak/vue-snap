@@ -9,10 +9,12 @@
   "scripts": {
     "dev": "webpack --config ./config/webpack/webpack.dev.js --watch",
     "build": "webpack --config ./config/webpack/webpack.prod.js",
-    "storybook": "start-storybook -s ./static -c ./config/storybook",
-    "components": "build-storybook -s ./static -c ./config/storybook",
+    "storybook:dev": "start-storybook -s ./static -c ./config/storybook",
+    "storybook:build": "build-storybook -s ./static -c ./config/storybook",
     "analyse": "webpack --config ./config/webpack/webpack.prod.js --profile --json > ./dist/stats.json && webpack-bundle-analyzer ./dist/stats.json -m static -r ./dist/report.html",
-    "lint": "eslint src/**/*.{js,vue}"
+    "lint": "eslint src/**/*.{js,vue}",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "repository": {
     "type": "git",
@@ -52,6 +54,7 @@
     "sass-loader": "^8.0.2",
     "vue-loader": "^15.9.2",
     "vue-template-compiler": "^2.6.11",
+    "vuepress": "^1.5.1",
     "webpack": "^4.43.0",
     "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "^3.3.11",
