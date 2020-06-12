@@ -15,6 +15,29 @@ Please note that this lib is on very early stage. The idea behind this plugin is
 - Carousel not working properly with unknown Slides width
 - Missing CSS recalculation for dynamicly added Slides
 
+## Usage
+### Globaly
+
+```js
+import Vue from 'vue'
+import VueSnap from 'vue-snap'
+
+Vue.use(VueSnap)
+```
+
+### Localy
+
+```js
+import { Carousel, Slide } from 'vue-snap'
+
+export default {
+  components: {
+    Carousel,
+    Slide
+  }
+}
+```
+
 ## Development
 
 Install necessary depandancies with yarn or npm
