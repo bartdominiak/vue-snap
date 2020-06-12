@@ -9,8 +9,8 @@
   "scripts": {
     "dev": "webpack --config ./config/webpack/webpack.dev.js --watch",
     "build": "webpack --config ./config/webpack/webpack.prod.js",
-    "storybook": "start-storybook -c ./config/storybook",
-    "components": "build-storybook -c ./config/storybook",
+    "storybook": "start-storybook -s ./static -c ./config/storybook",
+    "components": "build-storybook -s ./static -c ./config/storybook",
     "analyse": "webpack --config ./config/webpack/webpack.prod.js --profile --json > ./dist/stats.json && webpack-bundle-analyzer ./dist/stats.json -m static -r ./dist/report.html",
     "lint": "eslint src/**/*.{js,vue}"
   },

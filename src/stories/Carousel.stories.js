@@ -1,8 +1,8 @@
+import { boolean } from '@storybook/addon-knobs'
+
 import Carousel from '../components/Carousel.vue'
 import Slide from '../components/Slide.vue'
 import carouselMock from '../mocks/carousel.js'
-
-import { boolean } from '@storybook/addon-knobs'
 
 import '../assets/_examples.scss'
 
