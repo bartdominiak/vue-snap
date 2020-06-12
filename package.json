@@ -19,13 +19,11 @@
     "url": "git+ssh://git@github.com/bartdominiak/vue-snap.git"
   },
   "keywords": [
-    "Vue",
+    "vue",
+    "vue-snap",
     "carousel",
     "slider",
-    "responsive",
-    "scroll",
-    "snap",
-    "CSS"
+    "scroll-snap"
   ],
   "author": "smugers@gmail.com",
   "license": "MIT",

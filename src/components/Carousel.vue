@@ -16,6 +16,7 @@
     >
       <button
         ref="vsNavigationLeft"
+        aria-label="Slide left"
         class="
           vs-carousel__navigation
           vs-carousel__navigation--left
@@ -25,6 +26,7 @@
 
       <button
         ref="vsNavigationRight"
+        aria-label="Slide right"
         class="
           vs-carousel__navigation
           vs-carousel__navigation--right
