@@ -7,13 +7,12 @@
       ref="vsWrapper"
       class="vs-carousel__wrapper"
     >
+      <!-- @slot Slot for Slides -->
       <slot />
     </div>
 
-    <slot
-      v-if="navigation"
-      name="navigation"
-    >
+    <!-- @slot Slot for Actions -->
+    <slot name="actions">
       <button
         ref="vsNavigationLeft"
         aria-label="Slide left"
@@ -40,11 +39,24 @@
 <script>
 export default {
   props: {
+    /**
+     * Direction (by default Horizontal)
+     */
     vertical: {
       type: Boolean,
       default: false
     },
+    /**
+     * Navigation Arrows
+     */
     navigation: {
+      type: Boolean,
+      default: true
+    },
+    /**
+     * Scroll per page, not per item
+     */
+    scrollPage: {
       type: Boolean,
       default: false
     }
@@ -62,12 +74,14 @@ export default {
   },
   methods: {
     changeSlide(direction) {
+      const { offsetWidth, offsetHeight } = this.scrollPage ? this.$refs.vsWrapper : this.$children[0].$el
+
       if (this.vertical) {
-        this.scroll(0, direction * this.$children[0].$el.offsetHeight)
+        this.scroll(0, direction * offsetHeight)
         return
       }
 
-      this.scroll(direction * this.$children[0].$el.offsetWidth, 0)
+      this.scroll(direction * offsetWidth, 0)
     },
     scroll(x = 0, y = 0) {
       this.$refs.vsWrapper.scrollBy(x, y)

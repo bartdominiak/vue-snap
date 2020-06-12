@@ -32,6 +32,9 @@
     &__slide {
         flex: 0 0 100%;
         scroll-snap-align: start;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         outline: none;
     }
 
