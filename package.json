@@ -1,18 +1,49 @@
 {
   "name": "vue-snap",
-  "version": "0.1.0",
+  "version": "0.1.0-alpha.1",
+  "description": "Lightweight Carousel based on CSS Scroll Snap and Vue",
+  "main": "dist/vue-snap.min.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/bartdominiak/vue-snap.git"
+  },
+  "keywords": [
+    "Vue",
+    "carousel",
+    "slider",
+    "responsive",
+    "scroll",
+    "snap",
+    "CSS"
+  ],
+  "author": "smugers@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bartdominiak/vue-snap/issues"
+  },
+  "homepage": "https://github.com/bartdominiak/vue-snap#README",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build"
+    "dev": "webpack --config ./config/webpack/webpack.dev.js --watch",
+    "build": "webpack --config ./config/webpack/webpack.prod.js",
+    "storybook": "start-storybook -c ./config/storybook",
+    "components": "build-storybook -c ./config/storybook",
+    "analyse": "webpack --config ./config/webpack/webpack.prod.js --profile --json > ./dist/stats.json && webpack-bundle-analyzer ./dist/stats.json -m static -r ./dist/report.html"
   },
   "dependencies": {
-    "vue": "^3.0.0-beta.14"
+    "vue": "^2.6.11"
   },
   "devDependencies": {
-    "@vue/compiler-dom": "^3.0.0-beta.14",
-    "@vue/compiler-sfc": "^3.0.0-beta.14",
-    "sass": "^1.26.8",
-    "vite": "^0.20.5",
-    "vite-plugin-svg": "^0.3.1"
+    "@babel/core": "^7.10.2",
+    "@storybook/vue": "^6.0.0-beta.25",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^3.5.3",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2",
+    "vue-loader": "^15.9.2",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.43.0",
+    "webpack-bundle-analyzer": "^3.8.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-merge": "^4.2.2"
   }
 }
