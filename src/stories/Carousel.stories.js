@@ -1,18 +1,39 @@
+import { boolean } from '@storybook/addon-knobs'
+
 import Carousel from '../components/Carousel.vue'
 import Slide from '../components/Slide.vue'
 import carouselMock from '../mocks/carousel.js'
 
-import '../assets/_extend.scss'
+import '../assets/_examples.scss'
 
 export default {
   title: 'Carousel'
 }
 
-export const Single = () => ({
+// Needs to be a function, is not working with simple object between stories
+const commonProps = () => ({
+  isNavigationKnob: {
+    default: boolean('Navigation', true)
+  },
+  isVerticalKnob: {
+    default: boolean('Vertical', false)
+  },
+  isScrollPageKnob: {
+    default: boolean('Scroll per page', false)
+  }
+})
+
+export const Default = () => ({
   data: () => ({ carouselMock }),
   components: { Carousel, Slide },
+  props: commonProps(),
   template: `
-    <carousel navigation>
+    <carousel
+      class="example-default"
+      :navigation="isNavigationKnob"
+      :vertical="isVerticalKnob"
+      :scroll-page="isScrollPageKnob"
+    >
       <slide
         v-for="{ id, content } in carouselMock"
         :key="id"
@@ -26,16 +47,44 @@ export const Single = () => ({
 export const Multiple = () => ({
   data: () => ({ carouselMock }),
   components: { Carousel, Slide },
+  props: commonProps(),
   template: `
     <carousel
-      data-id="fixed"
-      navigation
+      class="example-multiple example-default"
+      :navigation="isNavigationKnob"
+      :vertical="isVerticalKnob"
+      :scroll-page="isScrollPageKnob"
     >
       <slide
         v-for="{ id, content } in carouselMock"
         :key="id"
       >
         {{ content }}
+      </slide>
+    </carousel>
+  `
+})
+
+export const Images = () => ({
+  data: () => ({ carouselMock }),
+  components: { Carousel, Slide },
+  props: commonProps(),
+  template: `
+    <carousel
+      class="example-images example-multiple"
+      :navigation="isNavigationKnob"
+      :vertical="isVerticalKnob"
+      :scroll-page="isScrollPageKnob"
+    >
+      <slide
+        v-for="{ id, content, image, name } in carouselMock"
+        :key="id"
+      >
+        <img
+          class="example-images__image"
+          :src="image"
+          :alt="name"
+        />
       </slide>
     </carousel>
   `

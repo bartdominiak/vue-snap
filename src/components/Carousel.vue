@@ -7,15 +7,18 @@
       ref="vsWrapper"
       class="vs-carousel__wrapper"
     >
+      <!-- @slot Slot for Slides -->
       <slot />
     </div>
 
+    <!-- @slot Slot for Actions -->
     <slot
       v-if="navigation"
-      name="navigation"
+      name="actions"
     >
       <button
         ref="vsNavigationLeft"
+        aria-label="Slide left"
         class="
           vs-carousel__navigation
           vs-carousel__navigation--left
@@ -25,6 +28,7 @@
 
       <button
         ref="vsNavigationRight"
+        aria-label="Slide right"
         class="
           vs-carousel__navigation
           vs-carousel__navigation--right
@@ -38,11 +42,24 @@
 <script>
 export default {
   props: {
+    /**
+     * Direction (by default Horizontal)
+     */
     vertical: {
       type: Boolean,
       default: false
     },
+    /**
+     * Navigation Arrows
+     */
     navigation: {
+      type: Boolean,
+      default: true
+    },
+    /**
+     * Scroll per page, not per item
+     */
+    scrollPage: {
       type: Boolean,
       default: false
     }
@@ -55,21 +72,23 @@ export default {
       ]
     }
   },
+  mounted() {
+    this.scroll() // Dirty hack to force rerender CSS Scroll Snap position
+  },
   methods: {
     changeSlide(direction) {
+      const { offsetWidth, offsetHeight } = this.scrollPage ? this.$refs.vsWrapper : this.$children[0].$el
+
       if (this.vertical) {
-        this.slide(0, direction * this.$children[0].$el.offsetHeight)
+        this.scroll(0, direction * offsetHeight)
         return
       }
 
-      this.slide(direction * this.$children[0].$el.offsetWidth, 0)
+      this.scroll(direction * offsetWidth, 0)
     },
-    slide(x = 0, y = 0) {
+    scroll(x = 0, y = 0) {
       this.$refs.vsWrapper.scrollBy(x, y)
     }
-  },
-  mounted() {
-    this.slide() // Dirty hack to force rerender CSS Scroll Snap position
   }
 }
 </script>

@@ -1,0 +1,48 @@
+.example-default {
+    .vs-carousel__slide {
+        font-size: 40px;
+        color: white;
+
+        &:nth-child(n+1) {
+            background: #2e5c8a;
+        }
+
+        &:nth-child(2n+1) {
+            background: #336699;
+        }
+    }
+}
+
+.example-multiple {
+    .vs-carousel__slide {
+        flex: 0 0 100%;
+
+        @media (min-width: 500px) {
+            flex: 0 0 50%;
+        }
+
+        @media (min-width: 768px) {
+            flex: 0 0 33.33%;
+        }
+
+        @media (min-width: 1024px) {
+            flex: 0 0 25%;
+        }
+
+        @media (min-width: 1280px) and (max-width: 1440px) {
+            flex: 0 0 20%;
+        }
+    }
+}
+
+.example-images {
+    &__image {
+        height: 100%;
+        width: auto;
+    }
+
+    .vs-carousel__navigation {
+        border: 2px solid #000;
+        border-radius: 4px;
+    }
+}
