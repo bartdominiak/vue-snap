@@ -13,6 +13,10 @@
 ## About
 Please note that this lib is on very early stage. The idea behind this plugin is that to create fully responsive and well optimised Carousel. I created this as PoC for one of my biggest client, who wants to speed up his website, with other than existing solutions like VueCarousel.
 
+## Storybook & Docs
+- 📺 [Storybook](https://vue-snap.vercel.app)
+- 📖 [Docs](https://bartdominiak.github.io/vue-snap)
+
 ## Benefits:
 - Lightweight and Fully responsive
 - You can set how many slides you want to display per current breakpoint

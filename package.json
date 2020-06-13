@@ -1,6 +1,6 @@
 {
   "name": "vue-snap",
-  "version": "0.1.0-alpha.2",
+  "version": "0.1.0-alpha.3",
   "description": "Lightweight Carousel based on CSS Scroll Snap",
   "main": "dist/vue-snap.min.js",
   "engines": {
@@ -14,7 +14,8 @@
     "analyse": "webpack --config ./config/webpack/webpack.prod.js --profile --json > ./dist/stats.json && webpack-bundle-analyzer ./dist/stats.json -m static -r ./dist/report.html",
     "lint": "eslint src/**/*.{js,vue}",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "test": "test --passWithNoTests"
   },
   "repository": {
     "type": "git",
