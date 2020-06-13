@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0-alpha.4] - 2020-06-13
+### Added
+- Examples to docs
+- Babel presets
+
 ## [0.1.0-alpha.3] - 2020-06-13
 ### Added
 - docs & storybook deployment
