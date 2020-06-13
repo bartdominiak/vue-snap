@@ -14,7 +14,8 @@
     "analyse": "webpack --config ./config/webpack/webpack.prod.js --profile --json > ./dist/stats.json && webpack-bundle-analyzer ./dist/stats.json -m static -r ./dist/report.html",
     "lint": "eslint src/**/*.{js,vue}",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "test": "test --passWithNoTests"
   },
   "repository": {
     "type": "git",

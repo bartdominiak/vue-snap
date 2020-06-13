@@ -1,6 +1,7 @@
 module.exports = {
   title: 'VueSnap',
   description: 'Lightweight Slider/Carousel based on CSS Scroll Snap',
+  base: '/vue-snap/',
   themeConfig: {
     nav: [
       { text: 'Guide', link: '/guide/' },
