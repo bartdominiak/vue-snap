@@ -2,12 +2,12 @@
 
 ## Installation
 
+With yarn
 ```
 yarn
 ```
 
 or if you preffer npm
-
 ```
 npm
 ```

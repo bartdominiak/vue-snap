@@ -7,7 +7,7 @@
     "node": ">=12.13.0 <13.0.0"
   },
   "scripts": {
-    "dev": "webpack --config ./config/webpack/webpack.dev.js --watch",
+    "dev": "webpack --config ./config/webpack/webpack.dev.js",
     "build": "webpack --config ./config/webpack/webpack.prod.js",
     "storybook:dev": "start-storybook -s ./static -c ./config/storybook",
     "storybook:build": "build-storybook -s ./static -c ./config/storybook",
@@ -35,10 +35,12 @@
   },
   "homepage": "https://github.com/bartdominiak/vue-snap#README",
   "dependencies": {
+    "core-js": "^3.6.5",
     "vue": "^2.6.11"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
     "@storybook/addon-a11y": "6.0.0-beta.25",
     "@storybook/addon-actions": "^6.0.0-beta.25",
     "@storybook/addon-docs": "^6.0.0-beta.25",
@@ -53,6 +55,7 @@
     "husky": "^4.2.5",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
+    "terser-webpack-plugin": "^3.0.3",
     "vue-loader": "^15.9.2",
     "vue-template-compiler": "^2.6.11",
     "vuepress": "^1.5.1",
@@ -66,5 +69,6 @@
       "pre-commit": "yarn lint",
       "pre-push": "yarn lint"
     }
-  }
+  },
+  "browserslist": "> 0.25%, not dead"
 }

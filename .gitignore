@@ -4,6 +4,7 @@ node_modules
 
 // Analyser
 dist/stats.json
+dist/report.html
 
 // Storybook
 storybook-static

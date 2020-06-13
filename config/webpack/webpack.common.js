@@ -3,7 +3,6 @@ const { VueLoaderPlugin } = require('vue-loader');
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: 'vue-snap.js',
     library: 'VueSnap',
     libraryTarget: 'umd'
   },
@@ -15,6 +14,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
+        exclude: /node_modules/,
         loader: 'babel-loader'
       },
       {
