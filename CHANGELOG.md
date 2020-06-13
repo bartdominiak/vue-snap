@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0-alpha.2] - 2020-06-13
+### Added
+- initialize eslint #8
+- initilize git hooks (husky) #8
+- initialize VuePress #6
+- Storybook Addons (docs, a11y, actions, knobs, viewport, storysource) #2
+- props/slots preview #2
+- initilize travis #7
+
 ## [0.1.0-alpha.1] - 2020-06-12
 ### Added
 - Project init
