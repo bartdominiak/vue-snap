@@ -1,6 +1,6 @@
 {
   "name": "vue-snap",
-  "version": "0.1.0-alpha.6",
+  "version": "0.1.0-alpha.7",
   "description": "Lightweight Carousel based on CSS Scroll Snap",
   "main": "dist/vue-snap.min.js",
   "engines": {
@@ -13,7 +13,7 @@
     "storybook:dev": "start-storybook -s ./static -c ./config/storybook",
     "storybook:build": "build-storybook -s ./static -c ./config/storybook",
     "analyse": "webpack --config ./config/webpack/webpack.prod.js --profile --json > ./dist/stats.json && webpack-bundle-analyzer ./dist/stats.json -m static -r ./dist/report.html",
-    "lint": "eslint src/**/*.{js,vue} config/**/*.js",
+    "lint": "eslint 'src/**/*.{js,vue}' 'docs/**/*.{js,vue}' 'config/**/*.js'",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
     "test": "test --passWithNoTests"
