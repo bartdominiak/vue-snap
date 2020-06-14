@@ -21,13 +21,13 @@ Please note that this lib is on very early stage. The idea behind this plugin is
 - Lightweight (5-10x times lighter than other libs)
 - There is no calculation or heavy logic inside (Performence)
 - Mostly all custamization via CSS!
-- You can set how many slides you want to display per current breakpoint (With css)
+- You can set how many slides you want to display per current breakpoint (via css)
 - Fully responsive
 
 ## Know issues / limitless
-- Partialy not supported in IE
-- Carousel not working properly with unknown Slides width
-- Touch and Drag is supported only on Mobiles and Tables.
+- Partially not supported in IE
+- Carousel not working properly with unknown slides width
+- Touch/Drag is supported only on Mobiles/Tablets.
 
 ## Usage
 There are two ways to use it.
