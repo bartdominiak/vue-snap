@@ -1,7 +1,7 @@
 .example-default {
     .vs-carousel__slide {
         font-size: 40px;
-        color: white;
+        color: #fff;
 
         &:nth-child(n+1) {
             background: #2e5c8a;
@@ -42,7 +42,22 @@
     }
 
     .vs-carousel__navigation {
-        border: 2px solid #000;
-        border-radius: 4px;
+        border: 1px solid #2F2F2F;
+
+        &:hover,
+        &:focus {
+            box-shadow: inset 0 0 0 1px #2F2F2F;
+        }
+    }
+}
+
+.example-lazy {
+    &__image {
+        transition: all 0.5s ease-in-out;
+        opacity: 0;
+
+        &.lazyloaded {
+            opacity: 1;
+        }
     }
 }

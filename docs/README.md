@@ -12,3 +12,7 @@ features:
   details: Reduce the overall load time of your site 💪
 footer: MIT Licensed | Copyright © 2020 Bartosz Dominiak
 ---
+
+## Preview
+<VCarousel />
+Check out more examples [here](/examples)
