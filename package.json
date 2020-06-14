@@ -13,7 +13,7 @@
     "storybook:dev": "start-storybook -s ./static -c ./config/storybook",
     "storybook:build": "build-storybook -s ./static -c ./config/storybook",
     "analyse": "webpack --config ./config/webpack/webpack.prod.js --profile --json > ./dist/stats.json && webpack-bundle-analyzer ./dist/stats.json -m static -r ./dist/report.html",
-    "lint": "eslint src/**/*.{js,vue}",
+    "lint": "eslint src/**/*.{js,vue} config/**/*.js",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
     "test": "test --passWithNoTests"

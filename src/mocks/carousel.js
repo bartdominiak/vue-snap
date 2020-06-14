@@ -1,4 +1,4 @@
-module.exports = [
+const mocks = [
   {
     id: 'example-slide-01',
     content: '1',
@@ -70,3 +70,5 @@ module.exports = [
     href: '#'
   }
 ]
+
+export default mocks
