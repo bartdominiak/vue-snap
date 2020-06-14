@@ -1,4 +1,5 @@
-const { VueLoaderPlugin } = require('vue-loader');
+/* eslint-env node */
+const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
   entry: './src/index.js',

@@ -83,7 +83,7 @@ export default {
       this.scroll(direction * offsetWidth, 0)
     },
     scroll(x = 0, y = 0) {
-      this.$refs.vsWrapper.scrollBy(x, y)
+      this.$refs.vsWrapper.scrollBy({ left: x, top: y, behavior: 'smooth' })
     }
   }
 }
