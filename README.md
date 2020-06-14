@@ -4,32 +4,33 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/bartdominiak/vue-snap/blob/master/LICENSE.md)
 
 <div align="center">
-  <img width="256" heigth="256" src="/static/snap.jpg" alt="vue-snap logo">
+  <img width="150" heigth="150" src="/static/snap.jpg" alt="vue-snap logo">
 </div>
 
 # vue-snap
-> Lightweight Slider/Carousel based on CSS Scroll Snap and Vue
+> Lightweight Slider/Carousel based on CSS Scroll Snap.
 
 ## About
-Please note that this lib is on very early stage. The idea behind this plugin is that to create fully responsive and well optimised Carousel. I created this as PoC for one of my biggest client, who wants to speed up his website, with other than existing solutions like VueCarousel.
+Please note that this lib is on very early stage. The idea behind this plugin is that to create fully responsive and well optimised Carousel. I created this as PoC for one of my biggest client, who wants to speed up his website.
 
 ## Storybook & Docs
-- 📺 [Storybook](https://vue-snap.vercel.app)
-- 📖 [Docs](https://bartdominiak.github.io/vue-snap)
+- 📺 [Storybook (Examples)](https://vue-snap.vercel.app)
+- 📖 [Docs (Guide)](https://bartdominiak.github.io/vue-snap)
 
 ## Benefits:
-- Lightweight and Fully responsive
-- You can set how many slides you want to display per current breakpoint
+- Lightweight (5-10x times lighter than other libs)
 - There is no calculation or heavy logic inside (Performence)
-- All custamization via CSS
+- Mostly all custamization via CSS!
+- You can set how many slides you want to display per current breakpoint (With css)
+- Fully responsive
 
 ## Know issues / limitless
-- Not supported in IE
+- Partialy not supported in IE
 - Carousel not working properly with unknown Slides width
-- Missing CSS recalculation for dynamicly added Slides
+- Touch and Drag is supported only on Mobiles and Tables.
 
 ## Usage
-There are two ways to run it.
+There are two ways to use it.
 
 ### Globally
 
@@ -56,7 +57,6 @@ export default {
 ## Development
 
 Install necessary depandancies with yarn or npm
-
 ```
   yarn
 ```
@@ -66,7 +66,15 @@ Run in Development mode
   yarn dev
 ```
 
-Run in Production build
+Run in Production mode
 ```
   yarn build
 ```
+
+Run Storybook for preview
+```
+  yarn storybook:dev
+```
+
+## Contribution
+Feel free to grab an issue from the list, just remember to squash your commits before merge.

@@ -13163,15 +13163,6 @@ vue-server-renderer@^2.6.10:
     serialize-javascript "^2.1.2"
     source-map "0.5.6"
 
-vue-snap@^0.1.0-alpha.5:
-  version "0.1.0-alpha.5"
-  resolved "https://registry.yarnpkg.com/vue-snap/-/vue-snap-0.1.0-alpha.5.tgz#448bb70f9197a6adc9b97876134fddc88e648589"
-  integrity sha512-+ETN+nLD2thYjNG7UB9R/D1NztMhOSp+XDIl3NcOxUrBC1uR/Zsa9YJ6Jgu3k150rMEDxSF5f5JRVHw/ROkoWQ==
-  dependencies:
-    core-js "^3.6.5"
-    intersection-observer "^0.10.0"
-    vue "^2.6.11"
-
 vue-style-loader@^4.1.0:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/vue-style-loader/-/vue-style-loader-4.1.2.tgz#dedf349806f25ceb4e64f3ad7c0a44fba735fcf8"

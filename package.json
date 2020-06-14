@@ -60,7 +60,6 @@
     "sass-loader": "^8.0.2",
     "terser-webpack-plugin": "^3.0.3",
     "vue-loader": "^15.9.2",
-    "vue-snap": "^0.1.0-alpha.5",
     "vue-template-compiler": "^2.6.11",
     "vuepress": "^1.5.1",
     "webpack": "^4.43.0",
