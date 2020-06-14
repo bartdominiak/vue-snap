@@ -1,0 +1,2 @@
+// Polyfills
+import 'intersection-observer'

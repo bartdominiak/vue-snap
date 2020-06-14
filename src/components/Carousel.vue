@@ -1,8 +1,5 @@
 <template>
-  <div
-    ref="vsCarousel"
-    :class="getClass"
-  >
+  <div :class="getClass">
     <div
       ref="vsWrapper"
       class="vs-carousel__wrapper"
@@ -11,31 +8,30 @@
       <slot />
     </div>
 
-    <!-- @slot Slot for Actions -->
-    <slot
-      v-if="navigation"
-      name="actions"
-    >
-      <button
-        ref="vsNavigationLeft"
-        aria-label="Slide left"
-        class="
-          vs-carousel__navigation
-          vs-carousel__navigation--left
-        "
-        @click="changeSlide(-1)"
-      />
+    <!-- @slot Slot for Navigation -->
+    <template v-if="navigation">
+      <slot name="navigation">
+        <button
+          ref="vsNavigationLeft"
+          aria-label="Slide left"
+          class="
+            vs-carousel__navigation
+            vs-carousel__navigation--left
+          "
+          @click="changeSlide(-1)"
+        />
 
-      <button
-        ref="vsNavigationRight"
-        aria-label="Slide right"
-        class="
-          vs-carousel__navigation
-          vs-carousel__navigation--right
-        "
-        @click="changeSlide(1)"
-      />
-    </slot>
+        <button
+          ref="vsNavigationRight"
+          aria-label="Slide right"
+          class="
+            vs-carousel__navigation
+            vs-carousel__navigation--right
+          "
+          @click="changeSlide(1)"
+        />
+      </slot>
+    </template>
   </div>
 </template>
 
