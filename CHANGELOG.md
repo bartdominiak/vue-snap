@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0-alpha.7] - 2020-06-14
+### Added
+- Docs: Intersection-observer polyfill
+
+### Fixed
+- Docs: taking VueSnap from dist folder (compiled version)
+
 ## [0.1.0-alpha.6] - 2020-06-14
 ### Added
 - Scroll Smooth polyfill (#11)
