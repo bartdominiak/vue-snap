@@ -6,7 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.1.0-alpha.4] - 2020-06-14
+## [0.1.0-alpha.6] - 2020-06-14
+### Added
+- Scroll Smooth polyfill (#11)
+
+## [0.1.0-alpha.5] - 2020-06-14
 ### Added
 - Lazyload support
 - Lazyload examples to docs and storybook
