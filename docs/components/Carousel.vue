@@ -1,28 +1,35 @@
 <template>
   <carousel
-    scrollPage
+    scroll-page
     class="example-multiple"
   >
-    <slide v-for="item in 25" :key="item">
+    <slide
+      v-for="item in 25"
+      :key="item"
+    >
       <img
+        v-lazy="$withBase('/girl.jpg')"
         class="image"
         src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-        v-lazy="$withBase('/girl.jpg')"
       >
     </slide>
   </carousel>
 </template>
 
 <script>
-  import Carousel from '../../src/components/Carousel.vue'
-  import Slide from '../../src/components/Slide.vue'
+  import { Carousel, Slide } from '../../dist/vue-snap.min'
 
   // Custom directive
   import lazy from '../../src/directives/lazy'
 
   export default {
-    directives: { lazy },
-    components: { Carousel, Slide }
+    directives: {
+      lazy
+    },
+    components: {
+      Carousel,
+      Slide
+    }
   }
 </script>
 
