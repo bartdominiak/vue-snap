@@ -35,10 +35,12 @@
     "url": "https://github.com/bartdominiak/vue-snap/issues"
   },
   "homepage": "https://github.com/bartdominiak/vue-snap#README",
+  "peerDependencies": {
+    "vue": "^2.6.11"
+  },
   "dependencies": {
     "core-js": "^3.6.5",
-    "smoothscroll-polyfill": "^0.4.4",
-    "vue": "^2.6.11"
+    "seamless-scroll-polyfill": "^1.0.10"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
