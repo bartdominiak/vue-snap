@@ -89,4 +89,4 @@ export default {
 }
 </script>
 
-<style src="../assets/_base.css" />
+<style src="../assets/base.css" />

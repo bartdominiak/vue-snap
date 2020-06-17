@@ -12,8 +12,12 @@ module.exports = merge(common, {
   },
   optimization: {
     minimize: true,
-    minimizer: [new TerserPlugin({
-      sourceMap: false
-    })]
+    minimizer: [
+      new TerserPlugin({
+        sourceMap: false,
+        terserOptions: { output: { comments: false } },
+        extractComments: false
+      })
+    ]
   }
 })

@@ -15,4 +15,4 @@ footer: MIT Licensed | Copyright © 2020 Bartosz Dominiak
 
 ## Preview
 <VCarousel />
-Check out more examples [here](/examples)
+Check out more examples [here](/examples/)
