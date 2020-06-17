@@ -6,6 +6,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0-beta.1] - 2020-06-17
+### Fixed
+- Docs: example relative url
+
+### Added
+- seamless-scroll-polyfill package
+
+### Deleted
+- Docs: removed example url
+- scss-loader and reduce final bundle size
+- comments in final bundle
+
+### Moved
+- Vue as peerDependency
+
 ## [0.1.0-alpha.8] - 2020-06-14
 ### Fixed
 - Docs: Workaround for non-supported SSR plugin
