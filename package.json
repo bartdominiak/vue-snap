@@ -1,6 +1,6 @@
 {
   "name": "vue-snap",
-  "version": "0.1.0-alpha.8",
+  "version": "0.1.0-beta.1",
   "description": "Lightweight Carousel based on CSS Scroll Snap",
   "main": "dist/vue-snap.min.js",
   "engines": {
@@ -35,10 +35,12 @@
     "url": "https://github.com/bartdominiak/vue-snap/issues"
   },
   "homepage": "https://github.com/bartdominiak/vue-snap#README",
+  "peerDependencies": {
+    "vue": "^2.6.11"
+  },
   "dependencies": {
     "core-js": "^3.6.5",
-    "smoothscroll-polyfill": "^0.4.4",
-    "vue": "^2.6.11"
+    "seamless-scroll-polyfill": "^1.0.10"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
@@ -51,17 +53,18 @@
     "@storybook/addon-viewport": "^6.0.0-beta.25",
     "@storybook/vue": "^6.0.0-beta.25",
     "babel-loader": "^8.1.0",
-    "css-loader": "^3.5.3",
+    "css-loader": "^3.6.0",
     "eslint": "^7.2.0",
     "eslint-plugin-vue": "^6.2.2",
     "husky": "^4.2.5",
     "intersection-observer": "^0.10.0",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
-    "terser-webpack-plugin": "^3.0.3",
+    "terser-webpack-plugin": "^3.0.5",
     "vue-loader": "^15.9.2",
+    "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.11",
-    "vuepress": "^1.5.1",
+    "vuepress": "^1.5.2",
     "webpack": "^4.43.0",
     "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "^3.3.11",

@@ -1,6 +1,9 @@
 // Polyfill: SmoothScroll
-import smoothscroll from 'smoothscroll-polyfill'
-smoothscroll.polyfill()
+import { polyfill } from 'seamless-scroll-polyfill/dist/esm/Element.scrollBy'
+
+if (!('scrollBehavior' in document.documentElement.style)) {
+  polyfill()
+}
 
 import Carousel from './components/Carousel.vue'
 import Slide from './components/Slide.vue'

@@ -6,13 +6,18 @@ const TerserPlugin = require('terser-webpack-plugin')
 
 module.exports = merge(common, {
   mode: 'production',
+  devtool: 'source-map',
   output: {
     filename: 'vue-snap.min.js'
   },
   optimization: {
     minimize: true,
-    minimizer: [new TerserPlugin({
-      sourceMap: false
-    })]
+    minimizer: [
+      new TerserPlugin({
+        sourceMap: false,
+        terserOptions: { output: { comments: false } },
+        extractComments: false
+      })
+    ]
   }
 })
