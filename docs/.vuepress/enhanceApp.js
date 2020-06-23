@@ -1,10 +1,12 @@
-// Polyfill: Intersection observer (This is not a part vue-snap)
 import 'intersection-observer'
 
-import Carousel from '../components/Carousel.vue'
+import VueSnap from '../../dist/vue-snap.min'
+import lazy from '../../src/directives/lazy'
 
-// Dirty Hack for non-working automatically registering components
-// Issue: https://github.com/vuejs/vuepress/issues/1173#issuecomment-576155795
+import VCarousel from '../components/Carousel.vue'
+
 export default ({ Vue }) => {
-  Vue.component('VCarousel', Carousel);
+  Vue.use(VueSnap)
+  Vue.component('VCarousel', VCarousel)
+  Vue.directive('lazy', lazy)
 }

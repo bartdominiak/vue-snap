@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0-beta.2] - 2020-06-24
+### Added
+- Rollup init
+
+### Deleted
+- Webpack configs
+
 ## [0.1.0-beta.1] - 2020-06-17
 ### Fixed
 - Docs: example relative url
