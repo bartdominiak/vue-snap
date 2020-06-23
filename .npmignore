@@ -1,0 +1,8 @@
+docs
+scripts
+static
+config
+.travis.yml
+.eslintrc
+.editorconfig
+.gitignore

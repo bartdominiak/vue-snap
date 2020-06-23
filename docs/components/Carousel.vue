@@ -1,43 +1,29 @@
 <template>
-  <component
-    v-if="Carousel"
-    :is="Carousel"
-    scroll-page
-    class="example-multiple"
-  >
-    <component
-      v-if="Slide"
-      :is="Slide"
-      v-for="item in 25"
-      :key="item"
+  <ClientOnly>
+    <carousel
+      scroll-page
+      class="example-multiple"
     >
-      <img
-        v-lazy="$withBase('/girl.jpg')"
-        class="image"
-        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      <slide
+        v-for="item in 25"
+        :key="item"
       >
-    </component>
-  </component>
+        <img
+          v-lazy="$withBase('/girl.jpg')"
+          class="image"
+          src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+        >
+      </slide>
+    </carousel>
+  </ClientOnly>
 </template>
 
 <script>
-  // TODO: Fix this ugly loading after adding SSR Support to VueSnap
-  // Custom directive
   import lazy from '../../src/directives/lazy'
 
   export default {
     directives: {
       lazy
-    },
-    data: () => ({
-      Carousel: false,
-      Slide: false
-    }),
-    mounted () {
-      import('../../dist/vue-snap.min').then(module => {
-        this.Carousel = module.Carousel
-        this.Slide = module.Slide
-      })
     }
   }
 </script>
