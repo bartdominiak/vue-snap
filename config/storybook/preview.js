@@ -3,6 +3,6 @@ import 'intersection-observer'
 
 // Common
 import Vue from 'vue'
-import VueSnap from '../../dist/vue-snap.umd.min'
+import VueSnap from '../../dist/vue-snap.min'
 
 Vue.use(VueSnap)

@@ -368,7 +368,7 @@
 
   // Polyfill: SmoothScroll
 
-  if (!('scrollBehavior' in document.documentElement.style)) {
+  if (typeof window !== 'undefined' && typeof document !== 'undefined' && !('scrollBehavior' in document.documentElement.style)) {
     Element_scrollBy.polyfill();
   }
 
