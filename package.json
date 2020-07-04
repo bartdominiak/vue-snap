@@ -9,7 +9,7 @@
     "node": ">=12.13.0 <13.0.0"
   },
   "scripts": {
-    "release": "yarn build:browser && yarn build:es && yarn build:umd",
+    "build": "yarn build:browser && yarn build:es && yarn build:umd",
     "build:browser": "rollup --config ./build/rollup.config.browser.js",
     "build:es": "rollup --config ./build/rollup.config.es.js",
     "build:umd": "rollup --config ./build/rollup.config.umd.js",
