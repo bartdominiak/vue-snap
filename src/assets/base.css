@@ -38,27 +38,18 @@
 
 .vs-carousel__navigation {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 48px;
-    min-height: 48px;
-    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14 3L6 10L14 17' stroke='%232F2F2F' stroke-width='1'/%3E%3C/svg%3E%0A");
-    background-repeat: no-repeat;
-    background-size: 20px 20px;
-    background-position: center;
-    background-color: rgba(255, 255, 255, 0.8);
-    border: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 48px;
+    height: 48px;
     padding: 0;
-    outline: none;
     cursor: pointer;
 }
 
 .vs-carousel__navigation:hover,
 .vs-carousel__navigation:focus {
-    background-color: white;
+    border: none;
 }
 
 .vs-carousel__navigation--left {
@@ -67,5 +58,4 @@
 
 .vs-carousel__navigation--right {
     right: 0;
-    transform: rotate(180deg) translateY(50%);
 }

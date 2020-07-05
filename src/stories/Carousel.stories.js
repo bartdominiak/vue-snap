@@ -1,5 +1,9 @@
 import { boolean } from '@storybook/addon-knobs'
 
+// Components
+import Carousel from '../components/Carousel.vue'
+import Slide from '../components/Slide.vue'
+
 // Mocks
 import carouselMock from '../mocks/carousel.js'
 
@@ -7,10 +11,14 @@ import carouselMock from '../mocks/carousel.js'
 import lazy from '../directives/lazy'
 
 // Custom Demo CSS
+import '../assets/base.css'
 import '../assets/_examples.scss'
 
 export default {
-  title: 'Carousel'
+  title: 'Carousel',
+	parameters: {
+		layout: 'fullscreen'
+	}
 }
 
 // Needs to be a function, its not working with simple object between stories
@@ -28,6 +36,7 @@ const commonProps = () => ({
 
 export const Default = () => ({
   data: () => ({ carouselMock }),
+  components: { Carousel, Slide },
   props: commonProps(),
   template: `
     <carousel
@@ -48,6 +57,7 @@ export const Default = () => ({
 
 export const Multiple = () => ({
   data: () => ({ carouselMock }),
+  components: { Carousel, Slide },
   props: commonProps(),
   template: `
     <carousel
@@ -68,6 +78,7 @@ export const Multiple = () => ({
 
 export const Images = () => ({
   data: () => ({ carouselMock }),
+  components: { Carousel, Slide },
   props: commonProps(),
   template: `
     <carousel
@@ -94,6 +105,7 @@ export const Lazy = () => ({
   data: () => ({
     carouselMock
   }),
+  components: { Carousel, Slide },
   directives: { lazy },
   props: commonProps(),
   template: `

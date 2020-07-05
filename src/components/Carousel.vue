@@ -1,5 +1,5 @@
 <template>
-  <div :class="getClass">
+  <div class="vs-carousel">
     <div
       ref="vsWrapper"
       class="vs-carousel__wrapper"
@@ -9,84 +9,126 @@
     </div>
 
     <!-- @slot Slot for Navigation -->
-    <template v-if="navigation">
-      <slot name="navigation">
-        <button
-          ref="vsNavigationLeft"
-          aria-label="Slide left"
-          class="
-            vs-carousel__navigation
-            vs-carousel__navigation--left
-          "
-          @click="changeSlide(-1)"
-        />
+    <slot name="navigation">
+      <button
+        v-show="!boundLeft"
+        aria-label="Slide left"
+        class="
+          vs-carousel__navigation
+          vs-carousel__navigation--left
+        "
+        @click="changeSlide(-1)"
+      >
+        ←
+      </button>
 
-        <button
-          ref="vsNavigationRight"
-          aria-label="Slide right"
-          class="
-            vs-carousel__navigation
-            vs-carousel__navigation--right
-          "
-          @click="changeSlide(1)"
-        />
-      </slot>
-    </template>
+      <button
+        v-show="!boundRight"
+        aria-label="Slide right"
+        class="
+          vs-carousel__navigation
+          vs-carousel__navigation--right
+        "
+        @click="changeSlide(1)"
+      >
+        →
+      </button>
+    </slot>
   </div>
 </template>
 
 <script>
+import debounce from 'lodash/debounce'
+import { approximatelyEqual } from '../utils'
+
+const SCROLL_DEBOUNCE = 100
+const RESIZE_DEBOUNCE = 410
+
 export default {
-  props: {
-    /**
-     * Direction (by default Horizontal)
-     */
-    vertical: {
-      type: Boolean,
-      default: false
-    },
-    /**
-     * Navigation Arrows
-     */
-    navigation: {
-      type: Boolean,
-      default: true
-    },
-    /**
-     * Scroll per page, not per item
-     */
-    scrollPage: {
-      type: Boolean,
-      default: false
-    }
-  },
-  computed: {
-    getClass() {
-      return [
-        'vs-carousel',
-        { 'vs-carousel--vertical': this.vertical }
-      ]
-    }
-  },
+  data: () => ({
+    boundLeft: true,
+    boundRight: false,
+    slidesWidth: [],
+    slidesCount: 0,
+    wrapperScrollWidth: 0,
+    wrapperVisibleWidth: 0,
+    currentPage: 0,
+    currentPos: 0,
+    step: 1
+  }),
   mounted() {
-    this.scroll() // Dirty hack to force rerender CSS Scroll Snap position
+    this.calcWrapperWidth()
+    this.calcSlidesWidth()
+    this.calcSlidesCount()
+
+    this.$refs.vsWrapper.addEventListener('scroll', debounce(this.eventScroll, SCROLL_DEBOUNCE))
+    window.addEventListener('resize', debounce(this.eventResize, RESIZE_DEBOUNCE), false)
+  },
+  beforeDestroy() {
+    this.$refs.vsWrapper.removeEventListener('scroll', debounce(this.eventScroll, SCROLL_DEBOUNCE))
+    window.removeEventListener('resize', debounce(this.eventResize, RESIZE_DEBOUNCE), false)
   },
   methods: {
-    changeSlide(direction) {
-      const { offsetWidth, offsetHeight } = this.scrollPage ? this.$refs.vsWrapper : this.$children[0].$el
+    calcBounds() {
+      this.boundLeft = this.currentPos === 0
+      this.boundRight = this.wrapperScrollWidth - this.wrapperVisibleWidth === this.currentPos
+    },
+    calcWrapperWidth() {
+      this.wrapperScrollWidth = this.$refs.vsWrapper.scrollWidth
+      this.wrapperVisibleWidth = this.$refs.vsWrapper.offsetWidth
+    },
+    calcSlidesCount() {
+      this.slidesCount = this.$refs.vsWrapper.childNodes.length
+    },
+    calcSlidesWidth() {
+      console.log(this.$refs.vsWrapper.childNodes)
+      const childNodes = [...this.$refs.vsWrapper.childNodes]
 
-      if (this.vertical) {
-        this.scroll(0, direction * offsetHeight)
+      this.slidesWidth = childNodes.map(node => ({
+        offsetLeft: node.offsetLeft,
+        width: node.offsetWidth
+      }))
+    },
+    calcCurrentPosition() {
+      this.currentPos = this.$refs.vsWrapper.scrollLeft
+      this.currentPage = this.slidesWidth.findIndex(({ offsetLeft }) => {
+        // Checking if  offsetLeft === this.currentPos
+        // with approximately helper for 1px offsetLeft bug for even slides
+        // return offsetLeft === this.currentPos
+        return approximatelyEqual(offsetLeft, this.currentPos, 1)
+      })
+    },
+    calcNextSlide(direction) {
+      const nextSlideIndex = this.currentPage + direction
+      const { width } = this.slidesWidth[nextSlideIndex]
+
+      return width * direction
+    },
+    eventScroll() {
+      this.calcCurrentPosition()
+      this.calcBounds()
+    },
+    eventResize() {
+      this.calcWrapperWidth()
+      this.calcSlidesWidth()
+      this.calcCurrentPosition()
+      this.calcBounds()
+    },
+    changeSlide(direction) {
+      const leftBoundLimit = direction === -1 && this.boundLeft
+      const rightBoundLimit = direction === 1 && this.boundRight
+
+      if (leftBoundLimit || rightBoundLimit) {
         return
       }
 
-      this.scroll(direction * offsetWidth, 0)
+      const nextSlideWidth = this.calcNextSlide(direction)
+
+      this.scroll(nextSlideWidth)
     },
-    scroll(x = 0, y = 0) {
-      this.$refs.vsWrapper.scrollBy({ left: x, top: y, behavior: 'smooth' })
+    scroll(x = 0) {
+      this.$refs.vsWrapper.scrollBy({ left: x, behavior: 'smooth' })
     }
   }
 }
 </script>
-
-<style src="../assets/base.css" />
