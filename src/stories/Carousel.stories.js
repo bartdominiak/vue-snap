@@ -76,6 +76,23 @@ export const Multiple = () => ({
   `
 })
 
+export const NonRegular = () => ({
+  data: () => ({ carouselMock }),
+  components: { Carousel, Slide },
+  props: commonProps(),
+  template: `
+    <carousel class="example-default">
+      <slide
+        v-for="{ id, content, width } in carouselMock"
+        :key="id"
+        :style="{ flexBasis: width + 'px' }"
+      >
+        {{ content }}
+      </slide>
+    </carousel>
+  `
+})
+
 export const Images = () => ({
   data: () => ({ carouselMock }),
   components: { Carousel, Slide },

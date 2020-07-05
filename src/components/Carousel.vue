@@ -90,6 +90,7 @@ export default {
     },
     calcCurrentPosition() {
       this.currentPos = this.$refs.vsWrapper.scrollLeft
+
       this.currentPage = this.slidesWidth.findIndex(({ offsetLeft }) => {
         // Checking if  offsetLeft === this.currentPos
         // with approximately helper for 1px offsetLeft bug for even slides
