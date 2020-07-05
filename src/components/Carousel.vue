@@ -81,7 +81,6 @@ export default {
       this.slidesCount = this.$refs.vsWrapper.childNodes.length
     },
     calcSlidesWidth() {
-      console.log(this.$refs.vsWrapper.childNodes)
       const childNodes = [...this.$refs.vsWrapper.childNodes]
 
       this.slidesWidth = childNodes.map(node => ({
