@@ -11,7 +11,7 @@ import carouselMock from '../mocks/carousel.js'
 import lazy from '../directives/lazy'
 
 // Custom Demo CSS
-import '../assets/base.css'
+import '../../dist/vue-snap.css'
 import '../assets/_examples.scss'
 
 export default {

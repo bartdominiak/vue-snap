@@ -99,7 +99,7 @@ export default {
       })
     },
     calcNextSlide(direction) {
-      const nextSlideIndex = this.currentPage + direction
+      const nextSlideIndex = direction > 0 ? this.currentPage : this.currentPage + direction
       const { width } = this.slidesWidth[nextSlideIndex]
 
       return width * direction
