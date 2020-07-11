@@ -61,7 +61,7 @@ const mocks = [
     name: 'Example slide description',
     image: '/cactus.jpg',
     href: '#',
-    width: '81'
+    width: '99'
   },
   {
     id: 'example-slide-09',
@@ -141,7 +141,7 @@ const mocks = [
     name: 'Example slide description',
     image: '/cactus.jpg',
     href: '#',
-    width: '81'
+    width: '102'
   },
   {
     id: 'example-slide-19',

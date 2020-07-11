@@ -54,12 +54,14 @@ export default {
     wrapperVisibleWidth: 0,
     currentPage: 0,
     currentPos: 0,
+    maxPages: 0,
     step: 1
   }),
   mounted() {
     this.calcWrapperWidth()
     this.calcSlidesWidth()
     this.calcSlidesCount()
+    this.calcMaxPages()
 
     this.$refs.vsWrapper.addEventListener('scroll', debounce(this.eventScroll, SCROLL_DEBOUNCE))
     window.addEventListener('resize', debounce(this.eventResize, RESIZE_DEBOUNCE), false)
@@ -97,9 +99,21 @@ export default {
         // return offsetLeft === this.currentPos
         return approximatelyEqual(offsetLeft, this.currentPos, 1)
       })
+
+      // If currentPage is out of wrapper scope
+      // then set currentPage as a last maxPages number
+      if (this.currentPage === -1) {
+        this.currentPage = this.maxPages
+      }
     },
-    calcNextSlide(direction) {
+    calcMaxPages() {
+      const maxPos = this.wrapperScrollWidth - this.wrapperVisibleWidth
+
+      this.maxPages = this.slidesWidth.findIndex(({ offsetLeft }) => offsetLeft > maxPos) - 1
+    },
+    calcNextWidth(direction) {
       const nextSlideIndex = direction > 0 ? this.currentPage : this.currentPage + direction
+
       const { width } = this.slidesWidth[nextSlideIndex]
 
       return width * direction
@@ -113,6 +127,7 @@ export default {
       this.calcSlidesWidth()
       this.calcCurrentPosition()
       this.calcBounds()
+      this.calcMaxPages()
     },
     changeSlide(direction) {
       const leftBoundLimit = direction === -1 && this.boundLeft
@@ -122,7 +137,7 @@ export default {
         return
       }
 
-      const nextSlideWidth = this.calcNextSlide(direction)
+      const nextSlideWidth = this.calcNextWidth(direction)
 
       this.scroll(nextSlideWidth)
     },
