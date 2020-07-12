@@ -2,6 +2,7 @@ docs
 scripts
 static
 config
+.storybook-static
 .travis.yml
 .eslintrc
 .editorconfig
