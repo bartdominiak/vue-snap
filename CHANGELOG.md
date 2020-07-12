@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+
+## [0.1.0-beta.6] - 2020-07-12
+### Fixed
+- storybook typo
+
 ## [0.1.0-beta.5] - 2020-07-12
 ### Added
 - storybook-static folder to .npmignore
