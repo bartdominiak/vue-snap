@@ -24,11 +24,6 @@ Please note that this lib is on very early stage. The idea behind this plugin is
 - You can set how many slides you want to display per current breakpoint (via css)
 - Fully responsive
 
-## Know issues / limitless
-- Partially not supported in IE
-- Carousel not working properly with unknown slides width
-- Touch/Drag is supported only on Mobiles/Tablets.
-
 ## Usage
 There are two ways to use it.
 
@@ -37,6 +32,7 @@ There are two ways to use it.
 ```js
 import Vue from 'vue'
 import VueSnap from 'vue-snap'
+import 'vue-snap/dist/vue-snap.css'
 
 Vue.use(VueSnap)
 ```
@@ -45,6 +41,7 @@ Vue.use(VueSnap)
 
 ```js
 import { Carousel, Slide } from 'vue-snap'
+import 'vue-snap/dist/vue-snap.css'
 
 export default {
   components: {

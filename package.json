@@ -2,12 +2,17 @@
   "name": "vue-snap",
   "version": "0.1.0-beta.2",
   "description": "Lightweight Carousel based on CSS Scroll Snap",
-  "main": "dist/vue-snap.min.js",
+  "main": "dist/vue-snap.umd.js",
+  "module": "dist/vue-snap.esm.js",
+  "unpkg": "dist/vue-snap.js",
   "engines": {
     "node": ">=12.13.0 <13.0.0"
   },
   "scripts": {
-    "build": "rollup -c",
+    "build": "yarn build:browser && yarn build:es && yarn build:umd",
+    "build:browser": "rollup --config ./build/rollup.config.browser.js",
+    "build:es": "rollup --config ./build/rollup.config.es.js",
+    "build:umd": "rollup --config ./build/rollup.config.umd.js",
     "storybook:dev": "start-storybook -s ./static -c ./config/storybook",
     "storybook:build": "build-storybook -s ./static -c ./config/storybook",
     "lint": "eslint 'src/**/*.{js,vue}' 'config/**/*.js'",
@@ -37,12 +42,15 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "lodash.debounce": "^4.0.8",
     "seamless-scroll-polyfill": "^1.0.10"
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",
     "@babel/preset-env": "^7.10.3",
     "@rollup/plugin-babel": "^5.0.4",
+    "@rollup/plugin-commonjs": "^13.0.0",
+    "@rollup/plugin-node-resolve": "^8.1.0",
     "@storybook/addon-a11y": "6.0.0-beta.32",
     "@storybook/addon-actions": "6.0.0-beta.32",
     "@storybook/addon-docs": "6.0.0-beta.32",
@@ -59,6 +67,7 @@
     "react": "*",
     "react-dom": "*",
     "rollup": "^2.18.0",
+    "rollup-plugin-analyzer": "^3.2.3",
     "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-vue": "^5.1.9",
     "sass-loader": "^8.0.2",
