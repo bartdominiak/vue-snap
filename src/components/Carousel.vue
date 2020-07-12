@@ -91,7 +91,7 @@ export default {
       this.wrapperVisibleWidth = this.$refs.vsWrapper.offsetWidth
     },
     calcSlidesWidth() {
-      const childNodes = [...this.$refs.vsWrapper.childNodes]
+      const childNodes = Array.from(this.$refs.vsWrapper.childNodes)
 
       this.slidesWidth = childNodes.map(node => ({
         offsetLeft: node.offsetLeft,
