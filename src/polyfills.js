@@ -1,9 +1,6 @@
 import { polyfill } from 'seamless-scroll-polyfill/dist/esm/Element.scrollBy'
+import { isSSR } from './utils'
 
-if (
-  typeof window !== 'undefined' &&
-  typeof document !== 'undefined' &&
-  !('scrollBehavior' in document.documentElement.style)
-) {
+if (!isSSR && !('scrollBehavior' in document.documentElement.style)) {
   polyfill()
 }

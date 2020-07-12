@@ -25,12 +25,6 @@ export default {
 const commonProps = () => ({
   isNavigationKnob: {
     default: boolean('Navigation', true)
-  },
-  isVerticalKnob: {
-    default: boolean('Vertical', false)
-  },
-  isScrollPageKnob: {
-    default: boolean('Scroll per page', false)
   }
 })
 
@@ -41,9 +35,7 @@ export const Default = () => ({
   template: `
     <carousel
       class="example-default"
-      :navigation="isNavigationKnob"
-      :vertical="isVerticalKnob"
-      :scroll-page="isScrollPageKnob"
+      :navigation-arrows="isNavigationKnob"
     >
       <slide
         v-for="{ id, content } in carouselMock"
@@ -62,9 +54,7 @@ export const Multiple = () => ({
   template: `
     <carousel
       class="example-multiple example-default"
-      :navigation="isNavigationKnob"
-      :vertical="isVerticalKnob"
-      :scroll-page="isScrollPageKnob"
+      :navigation-arrows="isNavigationKnob"
     >
       <slide
         v-for="{ id, content } in carouselMock"
@@ -81,7 +71,10 @@ export const NonRegular = () => ({
   components: { Carousel, Slide },
   props: commonProps(),
   template: `
-    <carousel class="example-default">
+    <carousel
+      class="example-default"
+      :navigation-arrows="isNavigationKnob"
+    >
       <slide
         v-for="{ id, content, width } in carouselMock"
         :key="id"
@@ -100,9 +93,7 @@ export const Images = () => ({
   template: `
     <carousel
       class="example-images example-multiple"
-      :navigation="isNavigationKnob"
-      :vertical="isVerticalKnob"
-      :scroll-page="isScrollPageKnob"
+      :navigation-arrows="isNavigationKnob"
     >
       <slide
         v-for="{ id, content, image, name } in carouselMock"
@@ -128,9 +119,7 @@ export const Lazy = () => ({
   template: `
     <carousel
       class="example-lazy example-images example-multiple"
-      :navigation="isNavigationKnob"
-      :vertical="isVerticalKnob"
-      :scroll-page="isScrollPageKnob"
+      :navigation-arrows="isNavigationKnob"
     >
       <slide
         v-for="{ id, content, image, name } in carouselMock"

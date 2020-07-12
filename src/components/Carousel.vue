@@ -9,7 +9,10 @@
     </div>
 
     <!-- @slot Slot for Navigation -->
-    <slot name="navigation">
+    <slot
+      v-if="navigationArrows"
+      name="navigation"
+    >
       <button
         v-show="!boundLeft"
         aria-label="Slide left"
@@ -38,18 +41,23 @@
 </template>
 
 <script>
-import debounce from 'lodash/debounce'
-import { approximatelyEqual } from '../utils'
+import debounce from 'lodash.debounce'
+import { approximatelyEqual, isClient } from '../utils'
 
 const SCROLL_DEBOUNCE = 100
 const RESIZE_DEBOUNCE = 410
 
 export default {
+  props: {
+    navigationArrows: {
+      type: Boolean,
+      default: true
+    }
+  },
   data: () => ({
     boundLeft: true,
     boundRight: false,
     slidesWidth: [],
-    slidesCount: 0,
     wrapperScrollWidth: 0,
     wrapperVisibleWidth: 0,
     currentPage: 0,
@@ -60,15 +68,18 @@ export default {
   mounted() {
     this.calcWrapperWidth()
     this.calcSlidesWidth()
-    this.calcSlidesCount()
     this.calcMaxPages()
 
-    this.$refs.vsWrapper.addEventListener('scroll', debounce(this.eventScroll, SCROLL_DEBOUNCE))
-    window.addEventListener('resize', debounce(this.eventResize, RESIZE_DEBOUNCE), false)
+    if (isClient) {
+      this.$refs.vsWrapper.addEventListener('scroll', debounce(this.eventScroll, SCROLL_DEBOUNCE))
+      window.addEventListener('resize', debounce(this.eventResize, RESIZE_DEBOUNCE), false)
+    }
   },
   beforeDestroy() {
-    this.$refs.vsWrapper.removeEventListener('scroll', debounce(this.eventScroll, SCROLL_DEBOUNCE))
-    window.removeEventListener('resize', debounce(this.eventResize, RESIZE_DEBOUNCE), false)
+    if (isClient) {
+      this.$refs.vsWrapper.removeEventListener('scroll', debounce(this.eventScroll, SCROLL_DEBOUNCE))
+      window.removeEventListener('resize', debounce(this.eventResize, RESIZE_DEBOUNCE), false)
+    }
   },
   methods: {
     calcBounds() {
@@ -78,9 +89,6 @@ export default {
     calcWrapperWidth() {
       this.wrapperScrollWidth = this.$refs.vsWrapper.scrollWidth
       this.wrapperVisibleWidth = this.$refs.vsWrapper.offsetWidth
-    },
-    calcSlidesCount() {
-      this.slidesCount = this.$refs.vsWrapper.childNodes.length
     },
     calcSlidesWidth() {
       const childNodes = [...this.$refs.vsWrapper.childNodes]
@@ -108,12 +116,10 @@ export default {
     },
     calcMaxPages() {
       const maxPos = this.wrapperScrollWidth - this.wrapperVisibleWidth
-
       this.maxPages = this.slidesWidth.findIndex(({ offsetLeft }) => offsetLeft > maxPos) - 1
     },
     calcNextWidth(direction) {
       const nextSlideIndex = direction > 0 ? this.currentPage : this.currentPage + direction
-
       const { width } = this.slidesWidth[nextSlideIndex]
 
       return width * direction

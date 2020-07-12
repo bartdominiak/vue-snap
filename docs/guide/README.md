@@ -14,6 +14,7 @@ Using only in specific component
 
 ```js
 import { Carousel, Slide } from 'vue-snap'
+import 'vue-snap/dist/vue-snap.css'
 
 export default {
   components: {
@@ -30,6 +31,7 @@ Using `<carousel />` and `<slide />` components globally across your Vue Applica
 ```js
 import Vue from 'vue'
 import VueSnap from 'vue-snap'
+import 'vue-snap/dist/vue-snap.css'
 
 Vue.use(VueSnap)
 ```

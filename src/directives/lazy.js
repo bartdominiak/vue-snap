@@ -10,7 +10,7 @@ export default {
     const { value } = binding
 
     const config = {
-      threshold: 0.5
+      threshold: [0, 1]
     }
 
     const observer = new IntersectionObserver(([entry]) => {

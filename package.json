@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "lodash": "^4.17.15",
+    "lodash.debounce": "^4.0.8",
     "seamless-scroll-polyfill": "^1.0.10"
   },
   "devDependencies": {
