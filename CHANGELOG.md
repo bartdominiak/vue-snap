@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0-beta.7] - 2020-07-12
+### Updated
+- changed spread to Array.from (reduce bundle size)
 
 ## [0.1.0-beta.6] - 2020-07-12
 ### Fixed
