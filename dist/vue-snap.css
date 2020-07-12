@@ -16,9 +16,8 @@
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
     scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;
 }
 
