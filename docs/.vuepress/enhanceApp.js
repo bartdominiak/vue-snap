@@ -1,12 +1,14 @@
+// Polyfills for v-lazy
 import 'intersection-observer'
 
-import VueSnap from '../../dist/vue-snap.min'
-import lazy from '../../src/directives/lazy'
+// VueSnap Lib
+import '../../dist/vue-snap.css'
+import VueSnap from '../../dist/vue-snap.umd'
 
+// Global Carousel
 import VCarousel from '../components/Carousel.vue'
 
 export default ({ Vue }) => {
   Vue.use(VueSnap)
   Vue.component('VCarousel', VCarousel)
-  Vue.directive('lazy', lazy)
 }
