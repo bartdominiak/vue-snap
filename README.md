@@ -51,6 +51,58 @@ export default {
 }
 ```
 
+### Using with Nuxt.js
+
+When using Vue-Snap on the server side with Nuxt.js, it may prompt `Unexpected token import` because Nuxt.js has configured an `external` option by default, which prevent files under `node_modules` from being bundled into the server bundle with only a few exceptions. We need to whitelist `vue-snap` in `nuxt.config.js` as follows:
+
+#### For Nuxt.js 2:
+
+```js
+
+module.exports = {
+  // ...
+  build: {
+    transpile: [/^vue-snap/]
+  }
+}
+```
+
+#### For Nuxt.js 1:
+
+```js
+// Don't forget to
+// npm i --save-dev webpack-node-externals
+const nodeExternals = require('webpack-node-externals')
+
+module.exports = {
+  // ...
+  build: {
+    extend (config, { isServer }) {
+      // ...
+      if (isServer) {
+        config.externals = [
+          nodeExternals({
+            // default value for `whitelist` is
+            // [/es6-promise|\.(?!(?:js|json)$).{1,5}$/i]
+            whitelist: [/es6-promise|\.(?!(?:js|json)$).{1,5}$/i, /^vue-snap/]
+          })
+        ]
+      }
+    }
+  }
+}
+```
+
+#### Unit Testing with Jest
+
+Make sure to whitelist `vue-snap` from the `transformIgnorePattern`. Add following configuation in `test/unit/jest.conf.js`:
+
+```diff
+transformIgnorePatterns: [
+  '/node_modules(?![\\\\/]vue-snap[\\\\/])/'
+],
+```
+
 ## Development
 
 Install necessary depandancies with yarn or npm
