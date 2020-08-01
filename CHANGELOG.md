@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0-beta.8] - 2020-07-12
+### Deleted
+- develop branch
+
+### Updated
+- trigger deployment only on tag release
+
 ## [0.1.0-beta.7] - 2020-07-12
 ### Updated
 - changed spread to Array.from (reduce bundle size)
