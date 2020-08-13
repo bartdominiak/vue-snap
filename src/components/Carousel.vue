@@ -15,6 +15,7 @@
     >
       <button
         v-show="!boundLeft"
+        type="button"
         aria-label="Slide left"
         class="
           vs-carousel__navigation
@@ -27,6 +28,7 @@
 
       <button
         v-show="!boundRight"
+        type="button"
         aria-label="Slide right"
         class="
           vs-carousel__navigation
