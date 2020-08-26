@@ -2,16 +2,8 @@
     position: relative;
 }
 
-.vs-carousel--vertical .vs-carousel__wrapper {
-    overflow-x: hidden;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-    flex-direction: column;
-}
-
 .vs-carousel__wrapper {
     display: flex;
-    height: 200px;
     overflow-x: scroll;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
