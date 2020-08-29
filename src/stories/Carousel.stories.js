@@ -1,17 +1,9 @@
 import { boolean } from '@storybook/addon-knobs'
 
-// Components
-import Carousel from '../components/Carousel.vue'
-import Slide from '../components/Slide.vue'
-
 // Mocks
 import carouselMock from '../mocks/carousel.js'
 
-// Custom directive
-import lazy from '../directives/lazy'
-
-// Custom Demo CSS
-import '../../dist/vue-snap.css'
+// Demo styles
 import '../assets/_examples.scss'
 
 export default {
@@ -30,7 +22,6 @@ const commonProps = () => ({
 
 export const Default = () => ({
   data: () => ({ carouselMock }),
-  components: { Carousel, Slide },
   props: commonProps(),
   template: `
     <carousel
@@ -49,7 +40,6 @@ export const Default = () => ({
 
 export const Multiple = () => ({
   data: () => ({ carouselMock }),
-  components: { Carousel, Slide },
   props: commonProps(),
   template: `
     <carousel
@@ -68,7 +58,6 @@ export const Multiple = () => ({
 
 export const NonRegular = () => ({
   data: () => ({ carouselMock }),
-  components: { Carousel, Slide },
   props: commonProps(),
   template: `
     <carousel
@@ -88,7 +77,6 @@ export const NonRegular = () => ({
 
 export const Images = () => ({
   data: () => ({ carouselMock }),
-  components: { Carousel, Slide },
   props: commonProps(),
   template: `
     <carousel
@@ -113,8 +101,6 @@ export const Lazy = () => ({
   data: () => ({
     carouselMock
   }),
-  components: { Carousel, Slide },
-  directives: { lazy },
   props: commonProps(),
   template: `
     <carousel
@@ -125,11 +111,12 @@ export const Lazy = () => ({
         v-for="{ id, content, image, name } in carouselMock"
         :key="id"
       >
-        <img
-          v-lazy="image"
+        <lazy-image
           class="example-images__image example-lazy__image"
-          src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+          :src="image"
           :alt="name"
+          width="200"
+          height="200"
         />
       </slide>
     </carousel>

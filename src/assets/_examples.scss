@@ -44,28 +44,12 @@ body {
 }
 
 .example-images {
-    &__image {
-        height: 200px;
-        width: auto;
-    }
-
     .vs-carousel__navigation {
         border: 1px solid #2F2F2F;
 
         &:hover,
         &:focus {
             box-shadow: inset 0 0 0 1px #2F2F2F;
-        }
-    }
-}
-
-.example-lazy {
-    &__image {
-        transition: all 0.5s ease-in-out;
-        opacity: 0;
-
-        &.lazyloaded {
-            opacity: 1;
         }
     }
 }
