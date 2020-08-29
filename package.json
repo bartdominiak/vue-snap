@@ -13,7 +13,7 @@
     "build:browser": "rollup --config ./build/rollup.config.browser.js",
     "build:es": "rollup --config ./build/rollup.config.es.js",
     "build:umd": "rollup --config ./build/rollup.config.umd.js",
-    "storybook:dev": "start-storybook -s ./static -c ./config/storybook",
+    "storybook:dev": "start-storybook -s ./static -c ./config/storybook -p 4000",
     "storybook:build": "build-storybook -s ./static -c ./config/storybook",
     "lint": "eslint 'src/**/*.{js,vue}' 'config/**/*.js'",
     "docs:dev": "vuepress dev docs",
