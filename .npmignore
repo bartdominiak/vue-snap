@@ -3,6 +3,7 @@ scripts
 static
 config
 storybook-static
+examples
 .travis.yml
 .eslintrc
 .editorconfig
