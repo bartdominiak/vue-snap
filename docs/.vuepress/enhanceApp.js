@@ -7,7 +7,7 @@ import '../../dist/vue-snap.css'
 
 // VueSnap Lib
 import VueLazy from 'vue-lazy'
-import 'vue-lazy/dist/vue-Lazy.css'
+import 'vue-lazy/dist/vue-lazy.css'
 
 // Global Carousel
 import VCarousel from '../components/Carousel.vue'

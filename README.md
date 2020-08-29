@@ -14,7 +14,8 @@
 Please note that this lib is on very early stage. The idea behind this plugin is that to create fully responsive and well optimised Carousel. I created this as PoC for one of my biggest client, who wants to speed up his website.
 
 ## Storybook & Docs
-- 📺 [Storybook (Examples)](https://vue-snap.vercel.app)
+- 📕 [Stories](https://vue-snap.vercel.app)
+- 📺 [Props/Event](https://vue-snap.vercel.app/?path=/story/carousel-docs--page)
 - 📖 [Docs (Guide)](https://bartdominiak.github.io/vue-snap)
 
 ## Benefits:
