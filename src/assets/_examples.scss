@@ -44,6 +44,11 @@ body {
 }
 
 .example-images {
+    &__image {
+        height: 200px;
+        width: auto;
+    }
+
     .vs-carousel__navigation {
         border: 1px solid #2F2F2F;
 
