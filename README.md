@@ -53,7 +53,7 @@ export default {
 ```
 
 ### Examples
-We provided Nuxt.js and vue-cli with example usage. Check out [examples](https://github.com/bartdominiak/vue-snap/tree/master/examples) folder for more details.
+Check out [examples](https://github.com/bartdominiak/vue-snap/tree/master/examples) folder for more details.
 
 ### Unit Testing with Jest
 
