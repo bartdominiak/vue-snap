@@ -69,36 +69,32 @@ export default {
     observer: null
   }),
   mounted() {
-    this.calcCarousel()
+    this.calcOnInit()
 
     if (isClient) {
       this.attachMutationObserver()
-      this.$refs.vsWrapper.addEventListener('scroll', debounce(this.eventScroll, SCROLL_DEBOUNCE))
-      window.addEventListener('resize', debounce(this.eventResize, RESIZE_DEBOUNCE), false)
+      this.$refs.vsWrapper.addEventListener('scroll', debounce(this.calcOnScroll, SCROLL_DEBOUNCE))
+      window.addEventListener('resize', debounce(this.calcOnInit, RESIZE_DEBOUNCE), false)
     }
   },
   beforeDestroy() {
     if (isClient) {
       this.observer.disconnect()
-      this.$refs.vsWrapper.removeEventListener('scroll', debounce(this.eventScroll, SCROLL_DEBOUNCE))
-      window.removeEventListener('resize', debounce(this.eventResize, RESIZE_DEBOUNCE), false)
+      this.$refs.vsWrapper.removeEventListener('scroll', debounce(this.calcOnScroll, SCROLL_DEBOUNCE))
+      window.removeEventListener('resize', debounce(this.calcOnInit, RESIZE_DEBOUNCE), false)
     }
   },
   methods: {
-    attachMutationObserver() {
-      this.observer = new MutationObserver(() => {
-        this.calcCarousel()
-      })
-
-      this.observer.observe(
-        this.$el,
-        { attributes: true, childList: true, characterData: true, subtree: true }
-      )
-    },
-    calcCarousel() {
+    calcOnInit() {
       this.calcWrapperWidth()
       this.calcSlidesWidth()
+      this.calcCurrentPosition()
+      this.calcBounds()
       this.calcMaxPages()
+    },
+    calcOnScroll() {
+      this.calcCurrentPosition()
+      this.calcBounds()
     },
     calcBounds() {
       this.boundLeft = this.currentPos === 0
@@ -118,11 +114,10 @@ export default {
       }))
     },
     calcCurrentPosition() {
-      this.currentPos = this.$refs.vsWrapper.scrollLeft
-
-      this.currentPage = this.slidesWidth.findIndex(({ offsetLeft }) => {
+      this.currentPos = this.$refs.vsWrapper.scrollLeft || 0
+      this.currentPage = this.slidesWidth.findIndex(slide => {
         // Find the closest point, with 5px approximate.
-        return approximatelyEqual(offsetLeft, this.currentPos, 5)
+        return approximatelyEqual(slide.offsetLeft, this.currentPos, 5)
       })
 
       if (this.currentPage === -1) {
@@ -135,7 +130,7 @@ export default {
     },
     calcNextWidth(direction) {
       const nextSlideIndex = direction > 0 ? this.currentPage : this.currentPage + direction
-      // Use width assign instead ES6 destructing - reduce bundle size
+      // Don't use ES6 destructing - reduce bundle size
       const width = this.slidesWidth[nextSlideIndex].width || 0
 
       if (!width) {
@@ -144,16 +139,15 @@ export default {
 
       return width * direction
     },
-    eventScroll() {
-      this.calcCurrentPosition()
-      this.calcBounds()
-    },
-    eventResize() {
-      this.calcWrapperWidth()
-      this.calcSlidesWidth()
-      this.calcCurrentPosition()
-      this.calcBounds()
-      this.calcMaxPages()
+    attachMutationObserver() {
+      this.observer = new MutationObserver(() => {
+        this.calcOnInit()
+      })
+
+      this.observer.observe(
+        this.$el,
+        { attributes: true, childList: true, characterData: true, subtree: true }
+      )
     },
     changeSlide(direction) {
       const leftBoundLimit = direction === -1 && this.boundLeft
@@ -165,9 +159,13 @@ export default {
 
       const nextSlideWidth = this.calcNextWidth(direction)
 
-      this.scroll(nextSlideWidth)
+      if (!nextSlideWidth) {
+        return
+      }
+
+      this.scrollTo(nextSlideWidth)
     },
-    scroll(x = 0) {
+    scrollTo(x = 0) {
       this.$refs.vsWrapper.scrollBy({ left: x, behavior: 'smooth' })
     }
   }
