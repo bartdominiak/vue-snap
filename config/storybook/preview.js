@@ -1,10 +1,10 @@
 import Vue from 'vue'
 
 // VueSnap Lib
-import VueSnap from '../../dist/vue-snap.umd'
+import VueSnap from '../../src/entry'
 import '../../dist/vue-snap.css'
 
-// VueSnap Lib
+// VueLazy Lib
 import VueLazy from 'vue-lazy'
 import 'vue-lazy/dist/vue-lazy.css'
 
