@@ -97,6 +97,67 @@ export const Images = () => ({
   `
 })
 
+export const ImagesDynamic = () => ({
+  data: () => ({
+    carouselMock: [
+      {
+        id: 'example-slide-0',
+        content: 'Slide 1',
+        name: 'Example slide description',
+        image: '/cactus.jpg',
+        href: '#',
+        width: '280'
+      }
+    ]
+  }),
+  props: commonProps(),
+  methods: {
+    addSlide() {
+      const index = this.carouselMock.length + 1
+
+      const item = {
+        id: `example-slide-${index}`,
+        content: 'Slide 1',
+        name: 'Example slide description',
+        image: 'https://via.placeholder.com/200',
+        href: '#'
+      }
+
+      this.carouselMock.push(item)
+    },
+    removeSlide() {
+      this.carouselMock.pop()
+    }
+  },
+  template: `
+    <div>
+      <carousel
+        class="example-images example-multiple"
+        :navigation-arrows="isNavigationKnob"
+      >
+        <slide
+          v-for="{ id, content, image, name } in carouselMock"
+          :key="id"
+        >
+          <img
+            class="example-images__image"
+            :src="image"
+            :alt="name"
+          />
+        </slide>
+      </carousel>
+
+      <button @click="addSlide">
+        Add Slide
+      </button>
+
+      <button @click="removeSlide">
+        Remove Slide
+      </button>
+    </div>
+  `
+})
+
 export const Lazy = () => ({
   data: () => ({
     carouselMock
