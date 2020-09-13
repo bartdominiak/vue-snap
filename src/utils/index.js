@@ -2,6 +2,5 @@ export const approximatelyEqual = (v1, v2, epsilon) => {
   return Math.abs(v1 - v2) <= epsilon
 }
 
-export const isSSR = (typeof document === 'undefined' || typeof window === 'undefined')
-
+export const isSSR = typeof window === 'undefined'
 export const isClient = !isSSR
