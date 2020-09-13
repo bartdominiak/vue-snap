@@ -13,7 +13,7 @@ jobs:
       if: tag IS present
     - stage: deploy
       script: yarn storybook:build && yarn docs:build
-      if: tag
+      if: tag IS present
       deploy:
         - provider: surge
           project: storybook-static
