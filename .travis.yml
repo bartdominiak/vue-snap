@@ -13,15 +13,14 @@ jobs:
       if: tag IS present
     - stage: deploy
       script: yarn storybook:build && yarn docs:build
-      if: tag IS present
+      if: tag
       deploy:
         - provider: surge
           project: storybook-static
           domain: vue-snap.surge.sh
-          skip_cleanup: true
+          cleanup: true
         - provider: pages
-          skip_cleanup: true
           local_dir: docs/.vuepress/dist
           github_token: $GITHUB_TOKEN
           keep_history: true
-          skip_cleanup: true
+          cleanup: true
