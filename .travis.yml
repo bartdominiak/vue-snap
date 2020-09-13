@@ -4,15 +4,24 @@ node_js:
 
 jobs:
   include:
-    - stage: linters
+    - stage: lint
       script: yarn lint
-    - stage: docs
-      script: yarn docs:build
+    - stage: test
+      script: yarn test
+    - stage: build
+      script: yarn release
+      if: tag IS present
+    - stage: deploy
+      script: yarn storybook:build && yarn docs:build
+      if: tag IS present
       deploy:
-        provider: pages
-        skip_cleanup: true
-        local_dir: docs/.vuepress/dist
-        github_token: $GITHUB_TOKEN
-        keep_history: true
-        on:
-          tags: true
+        - provider: surge
+          project: storybook-static
+          domain: vue-snap.surge.sh
+          skip_cleanup: true
+        - provider: pages
+          skip_cleanup: true
+          local_dir: docs/.vuepress/dist
+          github_token: $GITHUB_TOKEN
+          keep_history: true
+          skip_cleanup: true
