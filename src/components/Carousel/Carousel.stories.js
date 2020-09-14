@@ -1,10 +1,10 @@
 import { boolean } from '@storybook/addon-knobs'
 
 // Mocks
-import carouselMock from '../mocks/carousel.js'
+import carouselMock from './Carousel.mocks.js'
 
 // Demo styles
-import '../assets/_examples.scss'
+import './_carousel.scss'
 
 export default {
   title: 'Carousel',

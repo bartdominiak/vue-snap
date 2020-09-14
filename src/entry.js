@@ -1,7 +1,7 @@
 import './polyfills'
 
-import Carousel from './components/Carousel.vue'
-import Slide from './components/Slide.vue'
+import Carousel from './components/Carousel/Carousel.vue'
+import Slide from './components/Slide/Slide.vue'
 
 const install = Vue => {
   Vue.component('carousel', Carousel)

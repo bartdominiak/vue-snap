@@ -44,7 +44,7 @@
 
 <script>
 import debounce from 'lodash.debounce'
-import { approximatelyEqual, isClient } from '../utils'
+import { approximatelyEqual, isClient } from '../../utils'
 
 const SCROLL_DEBOUNCE = 100
 const RESIZE_DEBOUNCE = 410
