@@ -1,6 +1,9 @@
 language: node_js
 node_js:
   - 12
+cache:
+  directories:
+    - node_modules
 
 jobs:
   include:
@@ -9,18 +12,10 @@ jobs:
     - stage: test
       script: yarn test
     - stage: build
+      if: tag IS present
       script: yarn release
-      if: tag IS present
     - stage: deploy
-      script: yarn storybook:build && yarn docs:build
       if: tag IS present
-      deploy:
-        - provider: surge
-          project: storybook-static
-          domain: vue-snap.surge.sh
-          cleanup: true
-        - provider: pages
-          local_dir: docs/.vuepress/dist
-          github_token: $GITHUB_TOKEN
-          keep_history: true
-          cleanup: true
+      script:
+        - bash scripts/deploy-surge.sh
+        - bash scripts/deploy-pages.sh
