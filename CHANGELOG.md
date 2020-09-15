@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.4] - 2020-09-15
+### Fixed
+- seamless-scroll-polyfill(^1.1.0 => 1.1.0)
+
 ## [0.3.3] - 2020-09-15
 ### Fixed
 - TravisCI Config with proper ENV variables
