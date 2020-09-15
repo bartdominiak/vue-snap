@@ -33,7 +33,7 @@ jobs:
             tags: true
         - provider: npm
           cleanup: false
-          email: "$NPM_ADDRESS"
+          email: "$NPM_LOGIN"
           api_key: "$NPM_TOKEN"
           on:
             tags: true
