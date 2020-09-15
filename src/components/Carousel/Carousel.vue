@@ -66,26 +66,42 @@ export default {
     currentPos: 0,
     maxPages: 0,
     step: 1,
-    observer: null
+    observer: null,
+    onResizeFn: null,
+    onScrollFn: null
   }),
   mounted() {
     this.calcOnInit()
 
     if (isClient) {
+      // Assign to new variable and keep reference for removeEventListener (Avoid Memory Leaks)
+      this.onResizeFn = debounce(this.calcOnInit, RESIZE_DEBOUNCE)
+      this.onScrollFn = debounce(this.calcOnScroll, SCROLL_DEBOUNCE)
+
+      // MutationObserver
       this.attachMutationObserver()
-      this.$refs.vsWrapper.addEventListener('scroll', debounce(this.calcOnScroll, SCROLL_DEBOUNCE))
-      window.addEventListener('resize', debounce(this.calcOnInit, RESIZE_DEBOUNCE), false)
+
+      // Events
+      this.$refs.vsWrapper.addEventListener('scroll', this.onScrollFn)
+      window.addEventListener('resize', this.onResizeFn, false)
     }
   },
   beforeDestroy() {
     if (isClient) {
+      // MutationObserver
       this.observer.disconnect()
-      this.$refs.vsWrapper.removeEventListener('scroll', debounce(this.calcOnScroll, SCROLL_DEBOUNCE))
-      window.removeEventListener('resize', debounce(this.calcOnInit, RESIZE_DEBOUNCE), false)
+
+      // Events
+      this.$refs.vsWrapper.removeEventListener('scroll', this.onScrollFn)
+      window.removeEventListener('resize', this.onResizeFn, false)
     }
   },
   methods: {
     calcOnInit() {
+      if (!this.$refs.vsWrapper) {
+        return
+      }
+
       this.calcWrapperWidth()
       this.calcSlidesWidth()
       this.calcCurrentPosition()
@@ -93,12 +109,20 @@ export default {
       this.calcMaxPages()
     },
     calcOnScroll() {
+      if (!this.$refs.vsWrapper) {
+        return
+      }
+
       this.calcCurrentPosition()
       this.calcBounds()
     },
     calcBounds() {
-      this.boundLeft = this.currentPos === 0
-      this.boundRight = this.wrapperScrollWidth - this.wrapperVisibleWidth === this.currentPos
+      this.boundLeft = approximatelyEqual(this.currentPos, 0, 5)
+      this.boundRight = approximatelyEqual(
+        this.wrapperScrollWidth - this.wrapperVisibleWidth,
+        this.currentPos,
+        5
+      )
     },
     calcWrapperWidth() {
       this.wrapperScrollWidth = this.$refs.vsWrapper.scrollWidth
@@ -145,7 +169,7 @@ export default {
       })
 
       this.observer.observe(
-        this.$el,
+        this.$refs.vsWrapper,
         { attributes: true, childList: true, characterData: true, subtree: true }
       )
     },
