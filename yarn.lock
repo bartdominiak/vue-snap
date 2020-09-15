@@ -11247,7 +11247,7 @@ schema-utils@^2.6.5, schema-utils@^2.6.6, schema-utils@^2.7.0, schema-utils@^2.7
     ajv "^6.12.4"
     ajv-keywords "^3.5.2"
 
-seamless-scroll-polyfill@^1.1.0:
+seamless-scroll-polyfill@1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/seamless-scroll-polyfill/-/seamless-scroll-polyfill-1.1.0.tgz#739a3ac344e6356999715fe57c9b1c917ec64ed9"
   integrity sha512-tHjjoKiDjEvdSzds06RP15DfYGkXJ2jsCvm4z+JC9GQkT8n0/zv8K/C2Q6PU33uvnli4vS+esfwYcCJOIMib+g==
