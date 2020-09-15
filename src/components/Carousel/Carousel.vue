@@ -60,10 +60,6 @@ export default {
     hideArrowsOnBound: {
       type: Boolean,
       default: false
-    },
-    hideNavigation: {
-      type: Boolean,
-      default: false
     }
   },
   data: () => ({
