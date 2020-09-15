@@ -15,8 +15,11 @@ export default {
 
 // Needs to be a function, its not working with simple object between stories
 const commonProps = () => ({
-  isNavigationKnob: {
-    default: boolean('Navigation', true)
+  hideArrowsKnob: {
+    default: boolean('Hide Arrows', false)
+  },
+  hideArrowsOnBoundKnob: {
+    default: boolean('Hide Arrows on Bound', false)
   }
 })
 
@@ -26,7 +29,8 @@ export const Default = () => ({
   template: `
     <carousel
       class="example-default"
-      :navigation-arrows="isNavigationKnob"
+      :hide-arrows="hideArrowsKnob"
+      :hide-arrows-on-bound="hideArrowsOnBoundKnob"
     >
       <slide
         v-for="{ id, content } in carouselMock"
@@ -44,7 +48,8 @@ export const Multiple = () => ({
   template: `
     <carousel
       class="example-multiple example-default"
-      :navigation-arrows="isNavigationKnob"
+      :hide-arrows="hideArrowsKnob"
+      :hide-arrows-on-bound="hideArrowsOnBoundKnob"
     >
       <slide
         v-for="{ id, content } in carouselMock"
@@ -62,7 +67,8 @@ export const NonRegular = () => ({
   template: `
     <carousel
       class="example-default"
-      :navigation-arrows="isNavigationKnob"
+      :hide-arrows="hideArrowsKnob"
+      :hide-arrows-on-bound="hideArrowsOnBoundKnob"
     >
       <slide
         v-for="{ id, content, width } in carouselMock"
@@ -81,7 +87,8 @@ export const Images = () => ({
   template: `
     <carousel
       class="example-images example-multiple"
-      :navigation-arrows="isNavigationKnob"
+      :hide-arrows="hideArrowsKnob"
+      :hide-arrows-on-bound="hideArrowsOnBoundKnob"
     >
       <slide
         v-for="{ id, content, image, name } in carouselMock"
@@ -133,7 +140,8 @@ export const ImagesDynamic = () => ({
     <div>
       <carousel
         class="example-images example-multiple"
-        :navigation-arrows="isNavigationKnob"
+        :hide-arrows="hideArrowsKnob"
+        :hide-arrows-on-bound="hideArrowsOnBoundKnob"
       >
         <slide
           v-for="{ id, content, image, name } in carouselMock"
@@ -166,7 +174,8 @@ export const Lazy = () => ({
   template: `
     <carousel
       class="example-lazy example-images example-multiple"
-      :navigation-arrows="isNavigationKnob"
+      :hide-arrows="hideArrowsKnob"
+      :hide-arrows-on-bound="hideArrowsOnBoundKnob"
     >
       <slide
         v-for="{ id, content, image, name } in carouselMock"
