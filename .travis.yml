@@ -25,7 +25,7 @@ jobs:
             tags: true
         - provider: surge
           cleanup: false
-          project: ./storybook-static/
+          project: storybook-static/
           domain: vue-snap.surge.sh
           login: "$SURGE_LOGIN"
           token: "$SURGE_TOKEN"
