@@ -99,6 +99,7 @@ export const Images = () => ({
 
 export const ImagesDynamic = () => ({
   data: () => ({
+    isActive: true,
     carouselMock: [
       {
         id: 'example-slide-0',
@@ -127,11 +128,15 @@ export const ImagesDynamic = () => ({
     },
     removeSlide() {
       this.carouselMock.pop()
+    },
+    toggleButton() {
+      this.isActive = !this.isActive
     }
   },
   template: `
     <div>
       <carousel
+        v-if="isActive"
         class="example-images example-multiple"
         :navigation-arrows="isNavigationKnob"
       >
@@ -153,6 +158,10 @@ export const ImagesDynamic = () => ({
 
       <button @click="removeSlide">
         Remove Slide
+      </button>
+
+      <button @click="toggleButton">
+        Toggle Carousel (test Memory Leaks)
       </button>
     </div>
   `
