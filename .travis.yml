@@ -16,6 +16,22 @@ jobs:
       script: yarn release
     - stage: deploy
       if: tag IS present
-      script:
-        - bash scripts/deploy-surge.sh
-        - bash scripts/deploy-pages.sh
+      script: yarn docs:build && yarn storybook:build
+      deploy:
+        - provider: pages
+          cleanup: false
+          local_dir: docs/.vuepress/dist
+          token: $GITHUB_TOKEN
+          keep_history: true
+          edge: true
+          on:
+            tags: true
+        - provider: surge
+          cleanup: false
+          project: ./storybook-static/
+          domain: vue-snap.surge.sh
+          login: $SURGE_LOGIN
+          token: $SURGE_TOKEN
+          on:
+            tags: true
+

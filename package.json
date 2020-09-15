@@ -17,7 +17,7 @@
     "storybook:build": "build-storybook -s ./static -c ./config/storybook --quiet",
     "lint": "eslint 'src/**/*.{js,vue}' 'config/**/*.js'",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
+    "docs:build": "vuepress build docs --silent",
     "test": "test --passWithNoTests"
   },
   "repository": {
