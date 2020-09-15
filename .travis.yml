@@ -21,7 +21,7 @@ jobs:
         - provider: pages
           cleanup: false
           local_dir: docs/.vuepress/dist
-          token: $GITHUB_TOKEN
+          token: "$GITHUB_TOKEN"
           keep_history: true
           edge: true
           on:
@@ -30,8 +30,14 @@ jobs:
           cleanup: false
           project: ./storybook-static/
           domain: vue-snap.surge.sh
-          login: $SURGE_LOGIN
-          token: $SURGE_TOKEN
+          login: "$SURGE_LOGIN"
+          token: "$SURGE_TOKEN"
+          on:
+            tags: true
+        - provider: npm
+          cleanup: false
+          email: "$NPM_ADDRESS"
+          api_key: "$NPM_TOKEN"
           on:
             tags: true
 
