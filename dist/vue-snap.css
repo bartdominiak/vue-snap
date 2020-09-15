@@ -27,7 +27,7 @@
     outline: none;
 }
 
-.vs-carousel__navigation {
+.vs-carousel__arrows {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -38,15 +38,14 @@
     cursor: pointer;
 }
 
-.vs-carousel__navigation:hover,
-.vs-carousel__navigation:focus {
-    border: none;
+.vs-carousel__arrows:disabled {
+    cursor: not-allowed;
 }
 
-.vs-carousel__navigation--left {
+.vs-carousel__arrows--left {
     left: 0;
 }
 
-.vs-carousel__navigation--right {
+.vs-carousel__arrows--right {
     right: 0;
 }

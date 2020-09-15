@@ -8,18 +8,19 @@
       <slot />
     </div>
 
-    <!-- @slot Slot for Navigation -->
+    <!-- @slot Slot for Arrows -->
     <slot
-      v-if="navigationArrows"
-      name="navigation"
+      v-if="!hideArrows"
+      name="arrows"
     >
       <button
-        v-show="!boundLeft"
+        v-show="hideArrowsOnBound ? !boundLeft : true"
         type="button"
         aria-label="Slide left"
+        :disabled="boundLeft"
         class="
-          vs-carousel__navigation
-          vs-carousel__navigation--left
+          vs-carousel__arrows
+          vs-carousel__arrows--left
         "
         @click="changeSlide(-1)"
       >
@@ -27,12 +28,13 @@
       </button>
 
       <button
-        v-show="!boundRight"
+        v-show="hideArrowsOnBound ? !boundRight : true"
         type="button"
         aria-label="Slide right"
+        :disabled="boundRight"
         class="
-          vs-carousel__navigation
-          vs-carousel__navigation--right
+          vs-carousel__arrows
+          vs-carousel__arrows--right
         "
         @click="changeSlide(1)"
       >
@@ -51,9 +53,13 @@ const RESIZE_DEBOUNCE = 410
 
 export default {
   props: {
-    navigationArrows: {
+    hideArrows: {
       type: Boolean,
-      default: true
+      default: false
+    },
+    hideArrowsOnBound: {
+      type: Boolean,
+      default: false
     }
   },
   data: () => ({
@@ -129,8 +135,7 @@ export default {
       this.wrapperVisibleWidth = this.$refs.vsWrapper.offsetWidth
     },
     calcSlidesWidth() {
-      // Use Array.from instead ES6 Spread operator - reduce bundle size
-      const childNodes = Array.from(this.$refs.vsWrapper.childNodes)
+      const childNodes = [ ...this.$refs.vsWrapper.childNodes]
 
       this.slidesWidth = childNodes.map(node => ({
         offsetLeft: node.offsetLeft,
@@ -191,6 +196,7 @@ export default {
     },
     scrollTo(x = 0) {
       this.$refs.vsWrapper.scrollBy({ left: x, behavior: 'smooth' })
+      this.$emit('slide', true)
     }
   }
 }
