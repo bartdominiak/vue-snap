@@ -11,9 +11,6 @@ jobs:
       script: yarn lint
     - stage: test
       script: yarn test
-    - stage: build
-      if: tag IS present
-      script: yarn release
     - stage: deploy
       if: tag IS present
       script: yarn docs:build && yarn storybook:build
