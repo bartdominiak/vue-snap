@@ -69,22 +69,17 @@ transformIgnorePatterns: [
 
 Install necessary depandancies with yarn or npm
 ```
-  yarn
+  yarn or npm
 ```
 
-Run in Development mode
-```
-  yarn dev
-```
-
-Run in Production mode
-```
-  yarn build
-```
-
-Run Storybook for preview
+Run Storybook for development mode
 ```
   yarn storybook:dev
+```
+
+Release
+```
+  yarn release
 ```
 
 ## Contribution
