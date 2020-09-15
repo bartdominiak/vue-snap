@@ -6,6 +6,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2020-09-15
+### Added
+- Ability to disable arrows and arrowsOnBound (#30)
+
+### Fixed
+- Created onResizefn/onScrollFn variables to avoid memory leaks (#28)
+- Improve bound calculation precision (#28)
+- Avoiding undefined ref (#28)
+- Decrease MutationObserver scope only to vsWrapper
+
+### Updated
+- Renamed Navigation slot to Arrows (#30)
+
 ## [0.3.4] - 2020-09-15
 ### Fixed
 - seamless-scroll-polyfill(^1.1.0 => 1.1.0)
