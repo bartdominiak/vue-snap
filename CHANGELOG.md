@@ -9,9 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.5.0] - 2020-09-17
 ### Added
 - Emit page and bound events (#35)
+- Slot/Props/Event descriptions
 
 ### Updated
-- seamless-scroll-polyfill(1.1.0 => 1.2.1)
+- seamless-scroll-polyfill (1.1.0 => 1.2.1)
+- Stories markups
 
 ## [0.4.0] - 2020-09-15
 ### Added
