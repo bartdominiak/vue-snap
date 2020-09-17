@@ -11125,10 +11125,10 @@ rollup-pluginutils@^2.8.2:
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@^2.26.11:
-  version "2.26.11"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.26.11.tgz#4fc31de9c7b83d50916fc8395f8c3d24730cdaae"
-  integrity sha512-xyfxxhsE6hW57xhfL1I+ixH8l2bdoIMaAecdQiWF3N7IgJEMu99JG+daBiSZQjnBpzFxa0/xZm+3pbCdAQehHw==
+rollup@^2.27.1:
+  version "2.27.1"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.27.1.tgz#372744e1d36eba0fd942d997600c2fc2ca266305"
+  integrity sha512-GiWHQvnmMgBktSpY/1+nrGpwPsTw4b9P28og2uedfeq4JZ16rzAmnQ5Pm/E0/BEmDNia1ZbY7+qu3nBgNa19Hg==
   optionalDependencies:
     fsevents "~2.1.2"
 
@@ -11247,10 +11247,10 @@ schema-utils@^2.6.5, schema-utils@^2.6.6, schema-utils@^2.7.0, schema-utils@^2.7
     ajv "^6.12.4"
     ajv-keywords "^3.5.2"
 
-seamless-scroll-polyfill@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/seamless-scroll-polyfill/-/seamless-scroll-polyfill-1.1.0.tgz#739a3ac344e6356999715fe57c9b1c917ec64ed9"
-  integrity sha512-tHjjoKiDjEvdSzds06RP15DfYGkXJ2jsCvm4z+JC9GQkT8n0/zv8K/C2Q6PU33uvnli4vS+esfwYcCJOIMib+g==
+seamless-scroll-polyfill@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/seamless-scroll-polyfill/-/seamless-scroll-polyfill-1.2.1.tgz#5ab9bb7ad511f008b0b6f8c3b10efaaec77fa160"
+  integrity sha512-NtHiRs7m0b9GdRBsWONVvDfVEsvzgvlhlvC0576PCA4+i78CsjhpmLz7/YQxZifnlLFI6bMElel87lNE9JfywA==
 
 section-matter@^1.0.0:
   version "1.0.0"
