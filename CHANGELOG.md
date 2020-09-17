@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] - 2020-09-17
+### Added
+- Emit page and bound events (#35)
+
+### Updated
+- seamless-scroll-polyfill(1.1.0 => 1.2.1)
+
 ## [0.4.0] - 2020-09-15
 ### Added
 - Ability to disable arrows and arrowsOnBound (#30)
