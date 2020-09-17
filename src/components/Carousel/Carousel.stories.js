@@ -1,50 +1,27 @@
-import { boolean } from '@storybook/addon-knobs'
-import { action } from '@storybook/addon-actions'
-
-// Mocks
+import { actions } from '@storybook/addon-actions'
+import Carousel from './Carousel.vue'
+import Slide from '../Slide/Slide.vue'
 import carouselMock from './Carousel.mocks.js'
-
-// Demo styles
 import './_carousel.scss'
 
 export default {
   title: 'Carousel',
-	parameters: {
-		layout: 'fullscreen'
-	}
-}
+  component: Carousel
+};
 
-const commonProps = () => ({
-  hideArrowsKnob: {
-    default: boolean('Hide Arrows', false)
-  },
-  hideArrowsOnBoundKnob: {
-    default: boolean('Hide Arrows on Bound', false)
-  }
-})
-
-export const Default = () => ({
+export const Default = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
   data: () => ({ carouselMock }),
-  props: commonProps(),
-  methods: {
-    pageChanged(newState) {
-      action('page')(newState)
-    },
-    boundLeft(newState) {
-      action('bound-left')(newState)
-    },
-    boundRight(newState) {
-      action('bound-right')(newState)
-    }
-  },
+  components: { Carousel, Slide },
+  methods: actions('pageClick', 'boundLeftClick', 'boundRightClick'),
   template: `
     <carousel
-      class="example-default"
-      :hide-arrows="hideArrowsKnob"
-      :hide-arrows-on-bound="hideArrowsOnBoundKnob"
-      @page="pageChanged"
-      @bound-left="boundLeft"
-      @bound-right="boundRight"
+      class="story-carousel story-carousel--colors"
+      :hide-arrows="hideArrows"
+      :hide-arrows-on-bound="hideArrowsOnBound"
+      @page="pageClick"
+      @bound-left="boundLeftClick"
+      @bound-right="boundRightClick"
     >
       <slide
         v-for="{ id, content } in carouselMock"
@@ -56,14 +33,19 @@ export const Default = () => ({
   `
 })
 
-export const Multiple = () => ({
+export const Multiple = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
   data: () => ({ carouselMock }),
-  props: commonProps(),
+  components: { Carousel, Slide },
+  methods: actions('pageClick', 'boundLeftClick', 'boundRightClick'),
   template: `
     <carousel
-      class="example-multiple example-default"
-      :hide-arrows="hideArrowsKnob"
-      :hide-arrows-on-bound="hideArrowsOnBoundKnob"
+      class="story-carousel story-carousel--colors story-carousel--multiple"
+      :hide-arrows="hideArrows"
+      :hide-arrows-on-bound="hideArrowsOnBound"
+      @page="pageClick"
+      @bound-left="boundLeftClick"
+      @bound-right="boundRightClick"
     >
       <slide
         v-for="{ id, content } in carouselMock"
@@ -75,14 +57,19 @@ export const Multiple = () => ({
   `
 })
 
-export const NonRegular = () => ({
+export const NonRegular = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
   data: () => ({ carouselMock }),
-  props: commonProps(),
+  components: { Carousel, Slide },
+  methods: actions('pageClick', 'boundLeftClick', 'boundRightClick'),
   template: `
     <carousel
-      class="example-default"
-      :hide-arrows="hideArrowsKnob"
-      :hide-arrows-on-bound="hideArrowsOnBoundKnob"
+      class="story-carousel story-carousel--colors story-carousel--non-regular"
+      :hide-arrows="hideArrows"
+      :hide-arrows-on-bound="hideArrowsOnBound"
+      @page="pageClick"
+      @bound-left="boundLeftClick"
+      @bound-right="boundRightClick"
     >
       <slide
         v-for="{ id, content, width } in carouselMock"
@@ -95,21 +82,25 @@ export const NonRegular = () => ({
   `
 })
 
-export const Images = () => ({
+export const Images = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
   data: () => ({ carouselMock }),
-  props: commonProps(),
+  components: { Carousel, Slide },
+  methods: actions('pageClick', 'boundLeftClick', 'boundRightClick'),
   template: `
     <carousel
-      class="example-images example-multiple"
-      :hide-arrows="hideArrowsKnob"
-      :hide-arrows-on-bound="hideArrowsOnBoundKnob"
+      class="story-carousel story-carousel--multiple story-carousel--images"
+      :hide-arrows="hideArrows"
+      :hide-arrows-on-bound="hideArrowsOnBound"
+      @page="pageClick"
+      @bound-left="boundLeftClick"
+      @bound-right="boundRightClick"
     >
       <slide
         v-for="{ id, content, image, name } in carouselMock"
         :key="id"
       >
         <img
-          class="example-images__image"
           :src="image"
           :alt="name"
         />
@@ -118,94 +109,25 @@ export const Images = () => ({
   `
 })
 
-export const ImagesDynamic = () => ({
-  data: () => ({
-    isActive: true,
-    carouselMock: [
-      {
-        id: 'example-slide-0',
-        content: 'Slide 1',
-        name: 'Example slide description',
-        image: '/cactus.jpg',
-        href: '#',
-        width: '280'
-      }
-    ]
-  }),
-  props: commonProps(),
-  methods: {
-    addSlide() {
-      const index = this.carouselMock.length + 1
-
-      const item = {
-        id: `example-slide-${index}`,
-        content: 'Slide 1',
-        name: 'Example slide description',
-        image: 'https://via.placeholder.com/200',
-        href: '#'
-      }
-
-      this.carouselMock.push(item)
-    },
-    removeSlide() {
-      this.carouselMock.pop()
-    },
-    toggleButton() {
-      this.isActive = !this.isActive
-    }
-  },
-  template: `
-    <div>
-      <carousel
-        v-if="isActive"
-        class="example-images example-multiple"
-        :hide-arrows="hideArrowsKnob"
-        :hide-arrows-on-bound="hideArrowsOnBoundKnob"
-      >
-        <slide
-          v-for="{ id, content, image, name } in carouselMock"
-          :key="id"
-        >
-          <img
-            class="example-images__image"
-            :src="image"
-            :alt="name"
-          />
-        </slide>
-      </carousel>
-
-      <button @click="addSlide">
-        Add Slide
-      </button>
-
-      <button @click="removeSlide">
-        Remove Slide
-      </button>
-
-      <button @click="toggleButton">
-        Toggle Carousel (test Memory Leaks)
-      </button>
-    </div>
-  `
-})
-
-export const Lazy = () => ({
-  data: () => ({
-    carouselMock
-  }),
-  props: commonProps(),
+export const ImagesLazy = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  data: () => ({ carouselMock }),
+  components: { Carousel, Slide },
+  methods: actions('pageClick', 'boundLeftClick', 'boundRightClick'),
   template: `
     <carousel
-      class="example-lazy example-images example-multiple"
-      :hide-arrows="hideArrowsKnob"
-      :hide-arrows-on-bound="hideArrowsOnBoundKnob"
+      class="story-carousel story-carousel--multiple story-carousel--images"
+      :hide-arrows="hideArrows"
+      :hide-arrows-on-bound="hideArrowsOnBound"
+      @page="pageClick"
+      @bound-left="boundLeftClick"
+      @bound-right="boundRightClick"
     >
       <slide
         v-for="{ id, content, image, name } in carouselMock"
         :key="id"
       >
         <lazy-image
-          class="example-images__image example-lazy__image"
           :src="image"
           :alt="name"
           width="200"
