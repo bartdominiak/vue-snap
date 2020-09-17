@@ -80,8 +80,10 @@ export default {
     currentPage(current, previous) {
       if (current !== previous) {
         /**
-        Current page changes (return: { current: 2, previous: 1 })
-        */
+         * Emitted when page change
+         * @event page
+         * @type {Event}
+         */
         this.$emit('page', { current, previous })
       }
     }
@@ -145,8 +147,10 @@ export default {
 
       if (isBoundLeft) {
         /**
-        Touches the last item on left side (return: true)
-        */
+         * Emitted when Carousel reach first item
+         * @event bound-left
+         * @type {Event}
+         */
         this.$emit('bound-left', true)
         this.boundLeft = true
       } else {
@@ -155,8 +159,10 @@ export default {
 
       if (isBoundRight) {
         /**
-        Touches the last item on right side (return: true)
-        */
+         * Emitted when Carousel reach last item
+         * @event bound-right
+         * @type {Event}
+         */
         this.$emit('bound-right', true)
         this.boundRight = true
       } else {
