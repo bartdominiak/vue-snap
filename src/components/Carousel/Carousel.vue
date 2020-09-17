@@ -76,6 +76,16 @@ export default {
     onResizeFn: null,
     onScrollFn: null
   }),
+  watch: {
+    currentPage(current, previous) {
+      if (current !== previous) {
+        /**
+        Current page changes (return: { current: 2, previous: 1 })
+        */
+        this.$emit('page', { current, previous })
+      }
+    }
+  },
   mounted() {
     this.calcOnInit()
 
@@ -111,6 +121,7 @@ export default {
       this.calcWrapperWidth()
       this.calcSlidesWidth()
       this.calcCurrentPosition()
+      this.calcCurrentPage()
       this.calcBounds()
       this.calcMaxPages()
     },
@@ -120,38 +131,63 @@ export default {
       }
 
       this.calcCurrentPosition()
+      this.calcCurrentPage()
       this.calcBounds()
     },
     calcBounds() {
-      this.boundLeft = approximatelyEqual(this.currentPos, 0, 5)
-      this.boundRight = approximatelyEqual(
+      // Find the closest point, with 5px approximate.
+      const isBoundLeft = approximatelyEqual(this.currentPos, 0, 5)
+      const isBoundRight = approximatelyEqual(
         this.wrapperScrollWidth - this.wrapperVisibleWidth,
         this.currentPos,
         5
       )
+
+      if (isBoundLeft) {
+        /**
+        Touches the last item on left side (return: true)
+        */
+        this.$emit('bound-left', true)
+        this.boundLeft = true
+      } else {
+        this.boundLeft = false
+      }
+
+      if (isBoundRight) {
+        /**
+        Touches the last item on right side (return: true)
+        */
+        this.$emit('bound-right', true)
+        this.boundRight = true
+      } else {
+        this.boundRight = false
+      }
     },
     calcWrapperWidth() {
       this.wrapperScrollWidth = this.$refs.vsWrapper.scrollWidth
       this.wrapperVisibleWidth = this.$refs.vsWrapper.offsetWidth
     },
     calcSlidesWidth() {
-      const childNodes = [ ...this.$refs.vsWrapper.childNodes]
+      const childNodes = [ ...this.$refs.vsWrapper.childNodes ]
 
       this.slidesWidth = childNodes.map(node => ({
         offsetLeft: node.offsetLeft,
         width: node.offsetWidth
       }))
     },
-    calcCurrentPosition() {
-      this.currentPos = this.$refs.vsWrapper.scrollLeft || 0
-      this.currentPage = this.slidesWidth.findIndex(slide => {
+    calcCurrentPage() {
+      const getCurrentPage = this.slidesWidth.findIndex(slide => {
         // Find the closest point, with 5px approximate.
         return approximatelyEqual(slide.offsetLeft, this.currentPos, 5)
       })
 
-      if (this.currentPage === -1) {
-        this.currentPage = this.maxPages
+
+      if (getCurrentPage !== -1 && getCurrentPage !== -2) {
+        this.currentPage = getCurrentPage || 0
       }
+    },
+    calcCurrentPosition() {
+      this.currentPos = this.$refs.vsWrapper.scrollLeft || 0
     },
     calcMaxPages() {
       const maxPos = this.wrapperScrollWidth - this.wrapperVisibleWidth
@@ -196,7 +232,6 @@ export default {
     },
     scrollTo(x = 0) {
       this.$refs.vsWrapper.scrollBy({ left: x, behavior: 'smooth' })
-      this.$emit('slide', true)
     }
   }
 }
