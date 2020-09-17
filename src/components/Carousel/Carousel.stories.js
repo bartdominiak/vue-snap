@@ -1,4 +1,5 @@
 import { boolean } from '@storybook/addon-knobs'
+import { action } from '@storybook/addon-actions'
 
 // Mocks
 import carouselMock from './Carousel.mocks.js'
@@ -13,7 +14,6 @@ export default {
 	}
 }
 
-// Needs to be a function, its not working with simple object between stories
 const commonProps = () => ({
   hideArrowsKnob: {
     default: boolean('Hide Arrows', false)
@@ -26,11 +26,25 @@ const commonProps = () => ({
 export const Default = () => ({
   data: () => ({ carouselMock }),
   props: commonProps(),
+  methods: {
+    pageChanged(newState) {
+      action('page')(newState)
+    },
+    boundLeft(newState) {
+      action('bound-left')(newState)
+    },
+    boundRight(newState) {
+      action('bound-right')(newState)
+    }
+  },
   template: `
     <carousel
       class="example-default"
       :hide-arrows="hideArrowsKnob"
       :hide-arrows-on-bound="hideArrowsOnBoundKnob"
+      @page="pageChanged"
+      @bound-left="boundLeft"
+      @bound-right="boundRight"
     >
       <slide
         v-for="{ id, content } in carouselMock"
