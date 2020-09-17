@@ -15,7 +15,7 @@ Please note that this lib is on very early stage. The idea behind this plugin is
 
 ## Storybook & Docs
 - 📕 [Stories](https://vue-snap.surge.sh)
-- 📺 [Props/Event](https://vue-snap.surge.sh/?path=/story/carousel-docs--page)
+- 📺 [Props/Event](https://vue-snap.surge.sh/?path=/docs/carousel--default)
 - 📖 [Docs (Guide)](https://bartdominiak.github.io/vue-snap)
 
 ## Benefits:
