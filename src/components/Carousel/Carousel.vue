@@ -53,10 +53,16 @@ const RESIZE_DEBOUNCE = 410
 
 export default {
   props: {
+    /**
+     * Disable arrows
+     */
     hideArrows: {
       type: Boolean,
       default: false
     },
+    /**
+     * Disable arrows on bound
+     */
     hideArrowsOnBound: {
       type: Boolean,
       default: false
@@ -80,7 +86,7 @@ export default {
     currentPage(current, previous) {
       if (current !== previous) {
         /**
-         * Emitted when page change
+         * Page changed
          * @event page
          * @type {Event}
          */
@@ -147,7 +153,7 @@ export default {
 
       if (isBoundLeft) {
         /**
-         * Emitted when Carousel reach first item
+         * Reach first item
          * @event bound-left
          * @type {Event}
          */
@@ -159,7 +165,7 @@ export default {
 
       if (isBoundRight) {
         /**
-         * Emitted when Carousel reach last item
+         * Reach last item
          * @event bound-right
          * @type {Event}
          */
