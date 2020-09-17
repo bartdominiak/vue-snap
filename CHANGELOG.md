@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.1] - 2020-09-17
+### Updated
+- Docs
+
 ## [0.5.0] - 2020-09-17
 ### Added
 - Emit page and bound events (#35)
