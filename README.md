@@ -3,8 +3,8 @@
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/vue-snap)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/bartdominiak/vue-snap/blob/master/LICENSE.md)
 
-<div align="center">
-  <img width="150" heigth="150" src="/static/snap.jpg" alt="vue-snap logo">
+<div align="left">
+  <img width="750" heigth="250" src="/static/logo-snap.jpg" alt="vue-snap logo">
 </div>
 
 # vue-snap
