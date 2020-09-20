@@ -29,7 +29,7 @@ Idea behind this plugin is that to create fully responsive and well optimised Ca
 - 📖 [Docs (Guide)](https://bartdominiak.github.io/vue-snap)
 
 ## Benefits:
-- We're supporting `vue@3.0` 🎉 🎉 🎉 Read more [here](#if-youre-using-vue30)
+- We're supporting `vue@3.0` 🎉 🎉 🎉 (Read more [here](#if-youre-using-vue30))
 - Lightweight (5-10x times lighter than other libs)
 - There is no calculation or heavy logic inside (Performence)
 - Mostly all custamization via CSS!
