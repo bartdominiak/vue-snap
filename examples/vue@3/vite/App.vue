@@ -1,22 +1,28 @@
 <template>
   <carousel class="example-default">
     <slide class="carousel-slide">
-      1
+      Slide 1
     </slide>
     <slide class="carousel-slide">
-      2
+      Slide 2
     </slide>
     <slide class="carousel-slide">
-      3
+      Slide 3
     </slide>
     <slide class="carousel-slide">
-      4
+      Slide 4
     </slide>
     <slide class="carousel-slide">
-      5
+      Slide 5
     </slide>
   </carousel>
 </template>
+
+<script>
+export default {
+  name: 'HelloWorld'
+}
+</script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
