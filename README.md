@@ -10,25 +10,77 @@
 # vue-snap
 > Lightweight Slider/Carousel based on CSS Scroll Snap.
 
-## About
-Please note that this lib is on very early stage. The idea behind this plugin is that to create fully responsive and well optimised Carousel. I created this as PoC for one of my biggest client, who wants to speed up his website.
+## Table of Contents
+- [About](#about)
+- [Storybook & Docs](#stories--docs)
+- [Instalation & Usage](#installation--usage)
+  - [for Vue@2.0](#if-youre-using-vue20)
+  - [for Vue@3.0](#if-youre-using-vue30)
+- [Examples](#examples))
+- [Contribution](#contribution)
+- [License](#license)
 
-## Storybook & Docs
+## About
+Idea behind this plugin is that to create fully responsive and well optimised Carousel.
+
+## Stories & Docs
 - 📕 [Stories](https://vue-snap.surge.sh)
-- 📺 [Props/Event](https://vue-snap.surge.sh/?path=/docs/carousel--default)
+- 📺 [Props/Events](https://vue-snap.surge.sh/?path=/docs/carousel--default)
 - 📖 [Docs (Guide)](https://bartdominiak.github.io/vue-snap)
 
 ## Benefits:
+- We're supporting `vue@3.0` 🎉 🎉 🎉 Read more [here](#if-youre-using-vue30)
 - Lightweight (5-10x times lighter than other libs)
 - There is no calculation or heavy logic inside (Performence)
 - Mostly all custamization via CSS!
 - You can set how many slides you want to display per current breakpoint (via css)
 - Fully responsive
 
-## Usage
-There are two ways to use it.
+## Installation & Usage
+### If You're using `Vue@3.0`
+#### Instalation
 
-### Globally
+```js
+  yarn add vue-snap@next
+```
+
+#### Usage - Globally
+
+```js
+import { createApp } from 'vue'
+import App from './App.vue'
+
+import VueSnap from 'vue-snap'
+import 'vue-snap/dist/vue-snap.css'
+
+const myApp = createApp(App)
+
+myApp.use(VueSnap)
+myApp.mount('#app')
+```
+
+#### Usage - Locally
+
+```js
+import { Carousel, Slide } from 'vue-snap'
+import 'vue-snap/dist/vue-snap.css'
+
+export default {
+  components: {
+    Carousel,
+    Slide
+  }
+}
+```
+
+### If You're using `Vue@2.0`
+#### Instalation
+
+```js
+  yarn add vue-snap
+```
+
+#### Usage - Globally
 
 ```js
 import Vue from 'vue'
@@ -38,7 +90,7 @@ import 'vue-snap/dist/vue-snap.css'
 Vue.use(VueSnap)
 ```
 
-### Locally
+#### Usage - Locally
 
 ```js
 import { Carousel, Slide } from 'vue-snap'
@@ -54,16 +106,6 @@ export default {
 
 ### Examples
 Check out [examples](https://github.com/bartdominiak/vue-snap/tree/master/examples) folder for more details.
-
-### Unit Testing with Jest
-
-Make sure to whitelist `vue-snap` from the `transformIgnorePattern`. Add following configuation in `test/unit/jest.conf.js`:
-
-```diff
-transformIgnorePatterns: [
-  '/node_modules(?![\\\\/]vue-snap[\\\\/])/'
-],
-```
 
 ## Development
 
@@ -84,3 +126,6 @@ Release
 
 ## Contribution
 Feel free to grab an issue from the list, just remember to squash your commits before merge.
+
+## License
+MIT
