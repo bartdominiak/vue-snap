@@ -12,7 +12,9 @@ jobs:
     - stage: test
       script: yarn test
     - stage: deploy
-      if: tag IS present
+      if: |
+       tag IS present AND \
+       tag =~ /([0-9].[0-9]*+(?:\.[0-9]*))/
       script: yarn docs:build && yarn storybook:build
       deploy:
         - provider: pages
