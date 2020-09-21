@@ -7,12 +7,13 @@ const config = Object.assign({}, base, {
     file: 'dist/vue-snap.esm.js',
     format: 'esm',
     globals: {
-      'seamless-scroll-polyfill/dist/esm/Element.scrollBy': 'Element_scrollBy'
+      'vue': 'vue',
+      'seamless-scroll-polyfill/dist/esm/Element.scrollBy': 'Element_scrollBy',
+      'lodash/debounce': '_.debounce'
     }
   },
   external: [
-    'vue',
-    'seamless-scroll-polyfill'
+    'vue'
   ]
 })
 

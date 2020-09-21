@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import debounce from 'lodash.debounce'
+import debounce from 'lodash/debounce'
 import { approximatelyEqual, isClient } from '../../utils'
 
 const SCROLL_DEBOUNCE = 100
