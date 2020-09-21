@@ -6,14 +6,14 @@ body {
 }
 
 .story-carousel {
-    .vs-carousel__slide {
+    &__slide {
         height: 200px;
         font-size: 18px;
         color: #fff;
     }
 
     &--colors {
-        .vs-carousel__slide {
+        .story-carousel__slide {
             &:nth-child(n+1) {
                 background: #2e5c8a;
             }
@@ -25,7 +25,7 @@ body {
     }
 
     &--multiple {
-        .vs-carousel__slide {
+        .story-carousel__slide {
             flex: 0 0 100%;
 
             @media (min-width: 500px) {
@@ -47,7 +47,7 @@ body {
     }
 
     &--images {
-        .vs-carousel__slide {
+        .story-carousel__slide {
             img {
                 height: 200px;
                 width: auto;
