@@ -1,32 +1,26 @@
 <template>
-  <carousel class="example-default">
-    <slide class="carousel-slide">
-      1
+  <carousel class="story-carousel story-carousel--colors">
+    <slide class="story-carousel__slide">
+      Slide 1
     </slide>
-    <slide class="carousel-slide">
-      2
+    <slide class="story-carousel__slide">
+      Slide 2
     </slide>
-    <slide class="carousel-slide">
-      3
+    <slide class="story-carousel__slide">
+      Slide 3
     </slide>
-    <slide class="carousel-slide">
-      4
+    <slide class="story-carousel__slide">
+      Slide 4
     </slide>
-    <slide class="carousel-slide">
-      5
+    <slide class="story-carousel__slide">
+      Slide 5
     </slide>
   </carousel>
 </template>
 
 <script>
-import { Carousel, Slide } from 'vue-snap'
-import 'vue-snap/dist/vue-snap.css'
-
 export default {
-  components: {
-    Carousel,
-    Slide
-  }
+  name: 'HelloWorld'
 }
 </script>
 
@@ -38,17 +32,17 @@ body {
     font-weight: 300;
 }
 
-.example-default .carousel-slide {
+.story-carousel .story-carousel__slide {
   height: 200px;
   font-size: 18px;
   color: #fff;
 }
 
-.example-default .carousel-slide:nth-child(n+1) {
+.story-carousel--colors .story-carousel__slide:nth-child(n+1) {
   background: #2e5c8a;
 }
 
-.example-default .carousel-slide:nth-child(2n+1) {
+.story-carousel--colors .story-carousel__slide:nth-child(2n+1) {
   background: #336699;
 }
 </style>
