@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.2] - 2020-09-21
+### Updated
+- Rollup configs
+- Vue@2 and Vue@3 examples
+- Docs
+- Dependencies
+- TravisCI Config (Auto-deploy only Vue@2 version)
+
 ## [0.5.1] - 2020-09-17
 ### Updated
 - Docs
