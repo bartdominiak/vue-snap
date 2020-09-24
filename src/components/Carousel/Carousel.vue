@@ -17,7 +17,7 @@
       <button
         v-show="hideArrowsOnBound ? !boundLeft : true"
         type="button"
-        aria-label="Slide left"
+        :aria-label="i18n.slideLeft"
         :disabled="boundLeft"
         class="
           vs-carousel__arrows
@@ -31,7 +31,7 @@
       <button
         v-show="hideArrowsOnBound ? !boundRight : true"
         type="button"
-        aria-label="Slide right"
+        :aria-label="i18n.slideRight"
         :disabled="boundRight"
         class="
           vs-carousel__arrows
@@ -74,6 +74,20 @@ export default {
     tag: {
       type: String,
       default: 'ul'
+    },
+    /**
+     * Translations
+     */
+    i18n: {
+      type: Object,
+      default: () => ({
+        slideLeft: 'Slide left',
+        slideRight: 'Slide right'
+      }),
+      validator: config => {
+        const translations = ['slideLeft', 'slideRight']
+        return translations.every(key => key in config)
+      }
     }
   },
   data: () => ({
