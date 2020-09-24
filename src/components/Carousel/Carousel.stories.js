@@ -24,6 +24,7 @@ export const Default = (_, { argTypes }) => ({
       @bound-right="boundRightClick"
     >
       <slide
+        class="story-carousel__slide"
         v-for="{ id, content } in carouselMock"
         :key="id"
       >
@@ -48,6 +49,7 @@ export const Multiple = (_, { argTypes }) => ({
       @bound-right="boundRightClick"
     >
       <slide
+        class="story-carousel__slide"
         v-for="{ id, content } in carouselMock"
         :key="id"
       >
@@ -72,6 +74,7 @@ export const NonRegular = (_, { argTypes }) => ({
       @bound-right="boundRightClick"
     >
       <slide
+        class="story-carousel__slide"
         v-for="{ id, content, width } in carouselMock"
         :key="id"
         :style="{ flexBasis: width + 'px' }"
@@ -97,6 +100,7 @@ export const Images = (_, { argTypes }) => ({
       @bound-right="boundRightClick"
     >
       <slide
+        class="story-carousel__slide"
         v-for="{ id, content, image, name } in carouselMock"
         :key="id"
       >
@@ -124,6 +128,7 @@ export const ImagesLazy = (_, { argTypes }) => ({
       @bound-right="boundRightClick"
     >
       <slide
+        class="story-carousel__slide"
         v-for="{ id, content, image, name } in carouselMock"
         :key="id"
       >

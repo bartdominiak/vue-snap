@@ -8,27 +8,81 @@
 </div>
 
 # vue-snap
-> Lightweight Slider/Carousel based on CSS Scroll Snap.
+> Lightweight Carousel based on CSS Scroll Snap.
+
+## Table of Contents
+- [About](#about)
+- [Storybook & Docs](#stories--docs)
+- [Installation & Usage](#installation--usage)
+  - [for Vue@2](#for-vue2-version)
+  - [for Vue@3](#for-vue3-version)
+- [Examples](#examples))
+- [Contribution](#contribution)
+- [License](#license)
 
 ## About
-Please note that this lib is on very early stage. The idea behind this plugin is that to create fully responsive and well optimised Carousel. I created this as PoC for one of my biggest client, who wants to speed up his website.
+Idea behind this plugin is that to create fully responsive and well optimised Carousel.
+We used new CSS properties [Scroll Snapping](https://developers.google.com/web/updates/2018/07/css-scroll-snap), which allows us to lock the Carousel Wrapper to certain Slides or locations after a user has finished scrolling. This helps us to minimize library size, with only critical part, and avoid any heavy JS calculations or any CSS Hacks inside.
 
-## Storybook & Docs
+## Stories & Docs
 - 📕 [Stories](https://vue-snap.surge.sh)
-- 📺 [Props/Event](https://vue-snap.surge.sh/?path=/docs/carousel--default)
+- 📺 [Props/Events](https://vue-snap.surge.sh/?path=/docs/carousel--default)
 - 📖 [Docs (Guide)](https://bartdominiak.github.io/vue-snap)
 
 ## Benefits:
 - Lightweight (5-10x times lighter than other libs)
-- There is no calculation or heavy logic inside (Performence)
-- Mostly all custamization via CSS!
-- You can set how many slides you want to display per current breakpoint (via css)
-- Fully responsive
+- There is no calculation or heavy logic inside (Performence aspect)
+- Fully responsive and mostly all customization via CSS - like how many Slides do you want to display
+- ESM Bundle with Dead Code Elimination (Tree Shaking)
+- SSR Support like Nuxt.js 🎉  (Check [examples folder](https://github.com/bartdominiak/vue-snap/tree/master/examples))
+- `Vue@3` and `Vue@2` Support 🎉  (Check [installation process](#installation--usage))
+- Support all modern/common browsers (Check [here](https://caniuse.com/css-snappoints))
 
-## Usage
-There are two ways to use it.
+## Installation & Usage
+### For `Vue@3` version
+#### Installation
 
-### Globally
+```terminal
+  yarn add vue-snap@next // or npm install vue-snap@next
+```
+
+#### Usage - Globally
+
+```js
+import { createApp } from 'vue'
+import App from './App.vue'
+
+import VueSnap from 'vue-snap'
+import 'vue-snap/dist/vue-snap.css'
+
+const myApp = createApp(App)
+
+myApp.use(VueSnap)
+myApp.mount('#app')
+```
+
+#### Usage - Locally
+
+```js
+import { Carousel, Slide } from 'vue-snap'
+import 'vue-snap/dist/vue-snap.css'
+
+export default {
+  components: {
+    Carousel,
+    Slide
+  }
+}
+```
+
+### For `Vue@2` version
+#### Installation
+
+```terminal
+  yarn add vue-snap // or npm install vue-snap
+```
+
+#### Usage - Globally
 
 ```js
 import Vue from 'vue'
@@ -38,7 +92,7 @@ import 'vue-snap/dist/vue-snap.css'
 Vue.use(VueSnap)
 ```
 
-### Locally
+#### Usage - Locally
 
 ```js
 import { Carousel, Slide } from 'vue-snap'
@@ -55,21 +109,11 @@ export default {
 ### Examples
 Check out [examples](https://github.com/bartdominiak/vue-snap/tree/master/examples) folder for more details.
 
-### Unit Testing with Jest
-
-Make sure to whitelist `vue-snap` from the `transformIgnorePattern`. Add following configuation in `test/unit/jest.conf.js`:
-
-```diff
-transformIgnorePatterns: [
-  '/node_modules(?![\\\\/]vue-snap[\\\\/])/'
-],
-```
-
 ## Development
 
 Install necessary depandancies with yarn or npm
 ```
-  yarn or npm
+  yarn // or npm install
 ```
 
 Run Storybook for development mode
@@ -83,4 +127,7 @@ Release
 ```
 
 ## Contribution
-Feel free to grab an issue from the list, just remember to squash your commits before merge.
+If you have a feature request then feel free to start a new issue, or just grab existing one.
+
+## License
+MIT
