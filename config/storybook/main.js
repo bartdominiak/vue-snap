@@ -5,10 +5,10 @@ module.exports = {
   addons: [
     '@storybook/addon-a11y',
     '@storybook/addon-actions',
-    '@storybook/addon-knobs',
     '@storybook/addon-viewport',
     '@storybook/addon-storysource',
-    '@storybook/addon-docs'
+    '@storybook/addon-docs',
+    '@storybook/addon-controls'
   ],
   webpackFinal: async (config) => {
     config.module.rules.push({

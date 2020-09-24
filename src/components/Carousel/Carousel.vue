@@ -80,10 +80,7 @@ export default {
      */
     i18n: {
       type: Object,
-      default: () => ({
-        slideLeft: 'Slide left',
-        slideRight: 'Slide right'
-      }),
+      default: () => ({ slideLeft: 'Slide left', slideRight: 'Slide right' }),
       validator: config => {
         const translations = ['slideLeft', 'slideRight']
         return translations.every(key => key in config)
