@@ -6,7 +6,7 @@
   "module": "dist/vue-snap.esm.js",
   "unpkg": "dist/vue-snap.js",
   "engines": {
-    "node": ">=12.13.0 <13.0.0"
+    "node": ">=12.13.0"
   },
   "scripts": {
     "release": "yarn release:browser && yarn release:es && yarn release:umd",
