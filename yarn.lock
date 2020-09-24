@@ -11220,10 +11220,10 @@ schema-utils@^2.6.5, schema-utils@^2.6.6, schema-utils@^2.7.0, schema-utils@^2.7
     ajv "^6.12.4"
     ajv-keywords "^3.5.2"
 
-seamless-scroll-polyfill@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/seamless-scroll-polyfill/-/seamless-scroll-polyfill-1.2.1.tgz#5ab9bb7ad511f008b0b6f8c3b10efaaec77fa160"
-  integrity sha512-NtHiRs7m0b9GdRBsWONVvDfVEsvzgvlhlvC0576PCA4+i78CsjhpmLz7/YQxZifnlLFI6bMElel87lNE9JfywA==
+seamless-scroll-polyfill@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/seamless-scroll-polyfill/-/seamless-scroll-polyfill-1.2.2.tgz#16a5c7fd3f1682ddaf1ba967e36d4001ee2baf70"
+  integrity sha512-FW+rj6PKDYHGP7c7M26+/ZE8baebU6ai4S861dU3WTp9tDnxc7pEqDCjGe45WClRQP3g4SMFUaPECz0vwLeyWw==
 
 section-matter@^1.0.0:
   version "1.0.0"
