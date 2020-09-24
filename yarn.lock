@@ -12422,10 +12422,10 @@ vue-inbrowser-compiler-utils@^4.32.1:
   dependencies:
     camelcase "^5.3.1"
 
-vue-lazy@^0.2.4:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/vue-lazy/-/vue-lazy-0.2.4.tgz#25afb770633893d58b4a24a1a1366e3d428f2086"
-  integrity sha512-SDFQj49UQa9rK51Vkz8dSDAoGIxu+rCUX3cRhdZ6acjZEVtzK09rUtbhWWDHdIC+U7UDWsMKUOhyEZjrt+qCzA==
+vue-lazy@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/vue-lazy/-/vue-lazy-0.3.0.tgz#5bf3ff470c49cecce77656c1b66e1d11798fe303"
+  integrity sha512-z/MbyTRbhJK1jWWnhc5Faw1keQG5Ca6iNL5bfYn+ELEuV8+8DgyXEx1vQ9W8Hy+29djwzpzBb6maZjbzmXRwnw==
   dependencies:
     core-js "^3.6.5"
     intersection-observer "^0.11.0"
