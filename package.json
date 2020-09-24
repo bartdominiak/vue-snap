@@ -1,6 +1,6 @@
 {
   "name": "vue-snap",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "Lightweight Carousel based on CSS Scroll Snap",
   "main": "dist/vue-snap.umd.js",
   "module": "dist/vue-snap.esm.js",
@@ -43,7 +43,7 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "lodash": "^4.17.20",
-    "seamless-scroll-polyfill": "^1.2.1"
+    "seamless-scroll-polyfill": "^1.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",

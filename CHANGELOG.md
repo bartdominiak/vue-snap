@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2020-09-24
+### Removed
+- Removed maximum node version range (#41)
+- Node version max range (#41)
+
+### Added
+- Added dynamic tag support (#41)
+- Added i18n support with proper validation (#41)
+- Reset list-style CSS (#41)
+
 ## [0.5.2] - 2020-09-21
 ### Updated
 - Rollup configs
