@@ -12,11 +12,12 @@
 
 ## Table of Contents
 - [About](#about)
-- [Storybook & Docs](#stories--docs)
+- [Examples/Stories](#examplesstories)
+- [Benefits](#benefits)
 - [Installation & Usage](#installation--usage)
-  - [for Vue@2](#for-vue2-version)
-  - [for Vue@3](#for-vue3-version)
-- [Examples](#examples))
+  - [Vue@2 version](#vue2-version)
+  - [Vue@3 version](#vue3-version)
+- [Examples Usage](#examples))
 - [Contribution](#contribution)
 - [License](#license)
 
@@ -24,22 +25,21 @@
 Idea behind this plugin is that to create fully responsive and well optimised Carousel.
 We used new CSS properties [Scroll Snapping](https://developers.google.com/web/updates/2018/07/css-scroll-snap), which allows us to lock the Carousel Wrapper to certain Slides or locations after a user has finished scrolling. This helps us to minimize library size, with only critical part, and avoid any heavy JS calculations or any CSS Hacks inside.
 
-## Stories & Docs
-- 📕 [Stories](https://vue-snap.surge.sh)
-- 📺 [Props/Events](https://vue-snap.surge.sh/?path=/docs/carousel--default)
-- 📖 [Docs (Guide)](https://bartdominiak.github.io/vue-snap)
+## Examples/Stories
+- 📕 [Example](https://vue-snap.surge.sh)
+- 📺 [Props/Events/Slots](https://vue-snap.surge.sh/?path=/docs/carousel--default)
 
 ## Benefits:
 - Lightweight (5-10x times lighter than other libs)
 - There is no calculation or heavy logic inside (Performence aspect)
 - Fully responsive and mostly all customization via CSS - like how many Slides do you want to display
 - ESM Bundle with Dead Code Elimination (Tree Shaking)
-- SSR Support like Nuxt.js 🎉  (Check [examples folder](https://github.com/bartdominiak/vue-snap/tree/master/examples))
-- `Vue@3` and `Vue@2` Support 🎉  (Check [installation process](#installation--usage))
-- Support all modern/common browsers (Check [here](https://caniuse.com/css-snappoints))
+- SSR Support like Nuxt.js 🎉  (More [here](https://github.com/bartdominiak/vue-snap/tree/master/examples))
+- `Vue@3` and `Vue@2` Support 🎉  (More [here](#installation--usage))
+- Support all modern/common browsers (More [here](https://caniuse.com/css-snappoints))
 
 ## Installation & Usage
-### For `Vue@3` version
+### `Vue@3` version
 #### Installation
 
 ```terminal
@@ -75,7 +75,7 @@ export default {
 }
 ```
 
-### For `Vue@2` version
+### `Vue@2` version
 #### Installation
 
 ```terminal
@@ -106,7 +106,7 @@ export default {
 }
 ```
 
-### Examples
+### Example usage
 Check out [examples](https://github.com/bartdominiak/vue-snap/tree/master/examples) folder for more details.
 
 ## Development
