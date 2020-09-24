@@ -1,12 +1,13 @@
 <template>
   <div class="vs-carousel">
-    <div
+    <component
+      :is="tag"
       ref="vsWrapper"
       class="vs-carousel__wrapper"
     >
       <!-- @slot Slot for Slides -->
       <slot />
-    </div>
+    </component>
 
     <!-- @slot Slot for Arrows -->
     <slot
@@ -66,6 +67,13 @@ export default {
     hideArrowsOnBound: {
       type: Boolean,
       default: false
+    },
+    /**
+     * Custom tag
+     */
+    tag: {
+      type: String,
+      default: 'ul'
     }
   },
   data: () => ({
