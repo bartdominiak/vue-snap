@@ -1,9 +1,24 @@
 <template>
-  <div
+  <component
+    :is="tag"
     ref="vsSlide"
     class="vs-carousel__slide"
     tabindex="0"
   >
     <slot />
-  </div>
+  </component>
 </template>
+
+<script>
+export default {
+  props: {
+    /**
+     * Custom tag
+     */
+    tag: {
+      type: String,
+      default: 'li'
+    }
+  }
+}
+</script>
