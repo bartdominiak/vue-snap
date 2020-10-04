@@ -26,8 +26,8 @@ Idea behind this plugin is that to create fully responsive and well optimised Ca
 We used new CSS properties [Scroll Snapping](https://developers.google.com/web/updates/2018/07/css-scroll-snap), which allows us to lock the Carousel Wrapper to certain Slides or locations after a user has finished scrolling. This helps us to minimize library size, with only critical part, and avoid any heavy JS calculations or any CSS Hacks inside.
 
 ## Examples/Stories
-- 📕 [Example](https://vue-snap.surge.sh)
-- 📺 [Props/Events/Slots](https://vue-snap.surge.sh/?path=/docs/carousel--default)
+- 📕 [Example](https://vue-snap.vercel.app)
+- 📺 [Props/Events/Slots](https://vue-snap.vercel.app/?path=/docs/carousel--default)
 
 ## Benefits:
 - Lightweight (5-10x times lighter than other libs)
