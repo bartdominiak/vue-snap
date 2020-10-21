@@ -227,7 +227,7 @@ export default {
     calcNextWidth(direction) {
       const nextSlideIndex = direction > 0 ? this.currentPage : this.currentPage + direction
       // Don't use ES6 destructing - reduce bundle size
-      const width = this.slidesWidth[nextSlideIndex].width || 0
+      const width = nextSlideIndex >=0 && this.slidesWidth[nextSlideIndex].width || 0
 
       if (!width) {
         return
