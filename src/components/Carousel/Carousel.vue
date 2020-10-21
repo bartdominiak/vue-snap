@@ -225,7 +225,7 @@ export default {
       this.maxPages = this.slidesWidth.findIndex(({ offsetLeft }) => offsetLeft > maxPos) - 1
     },
     calcNextWidth(direction) {
-      const nextSlideIndex = direction > 0 ? this.currentPage : this.currentPage + direction
+      const nextSlideIndex = Math.max( direction > 0 ? this.currentPage : this.currentPage + direction, 0)
       // Don't use ES6 destructing - reduce bundle size
       const width = nextSlideIndex >=0 && this.slidesWidth[nextSlideIndex].width || 0
 
