@@ -17,7 +17,8 @@
 - [Installation & Usage](#installation--usage)
   - [Vue@2 version](#vue2-version)
   - [Vue@3 version](#vue3-version)
-- [Examples Usage](#examples))
+- [Examples Usage](#examples-usage)
+- [Development](#development)
 - [Contribution](#contribution)
 - [License](#license)
 
@@ -106,7 +107,7 @@ export default {
 }
 ```
 
-### Example usage
+## Examples usage
 Check out [examples](https://github.com/bartdominiak/vue-snap/tree/master/examples) folder for more details.
 
 ## Development
