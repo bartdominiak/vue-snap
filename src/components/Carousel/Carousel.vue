@@ -155,7 +155,7 @@ export default {
       wrapperVisibleWidth.value = vsWrapper.value.offsetWidth
     }
     const calcSlidesWidth = () => {
-      const childNodes = [ ...this.$refs.vsWrapper.children ]
+      const childNodes = [ ...vsWrapper.value.children ]
 
       slidesWidth.value = childNodes.map(node => ({
         offsetLeft: node.offsetLeft,
