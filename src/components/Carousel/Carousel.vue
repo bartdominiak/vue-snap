@@ -13,6 +13,9 @@
     <slot
       v-if="!hideArrows"
       name="arrows"
+      :change-slide="changeSlide"
+      :bound-left="boundLeft"
+      :bound-right="boundRight"
     >
       <button
         v-show="hideArrowsOnBound ? !boundLeft : true"
