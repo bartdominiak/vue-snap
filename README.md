@@ -1,23 +1,34 @@
-[![npm version](https://badge.fury.io/js/vue-snap.svg)](https://badge.fury.io/js/vue-snap)
-[![Build Status](https://travis-ci.org/bartdominiak/vue-snap.svg?branch=master)](https://travis-ci.org/bartdominiak/vue-snap)
-![npm bundle size](https://img.shields.io/bundlephobia/minzip/vue-snap)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/bartdominiak/vue-snap/blob/master/LICENSE.md)
+# vue-snap
+
+> Lightweight Carousel based on CSS Scroll Snap.
 
 <div align="left">
   <img width="750" heigth="250" src="/static/logo-snap.jpg" alt="vue-snap logo">
 </div>
 
-# vue-snap
-> Lightweight Carousel based on CSS Scroll Snap.
+[![npm version](https://badge.fury.io/js/vue-snap.svg)](https://badge.fury.io/js/vue-snap)
+[![Build Status](https://travis-ci.org/bartdominiak/vue-snap.svg?branch=master)](https://travis-ci.org/bartdominiak/vue-snap)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/vue-snap)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/bartdominiak/vue-snap/blob/master/LICENSE.md)
+
+
+<a href="https://www.buymeacoffee.com/bartdominiak">
+  <img
+    src="https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-2.svg"
+    alt="Buy Me a Coffee"
+    height="32"
+  >
+</a>
 
 ## Table of Contents
 - [About](#about)
 - [Examples/Stories](#examplesstories)
-- [Benefits](#benefits)
+- [Pros](#pros)
 - [Installation & Usage](#installation--usage)
   - [Vue@2 version](#vue2-version)
   - [Vue@3 version](#vue3-version)
-- [Examples Usage](#examples))
+- [Examples Usage](#examples-usage)
+- [Development](#development)
 - [Contribution](#contribution)
 - [License](#license)
 
@@ -26,10 +37,10 @@ Idea behind this plugin is that to create fully responsive and well optimised Ca
 We used new CSS properties [Scroll Snapping](https://developers.google.com/web/updates/2018/07/css-scroll-snap), which allows us to lock the Carousel Wrapper to certain Slides or locations after a user has finished scrolling. This helps us to minimize library size, with only critical part, and avoid any heavy JS calculations or any CSS Hacks inside.
 
 ## Examples/Stories
-- 📕 [Example](https://vue-snap.surge.sh)
-- 📺 [Props/Events/Slots](https://vue-snap.surge.sh/?path=/docs/carousel--default)
+- 📕 [Example](https://vue-snap.vercel.app)
+- 📺 [Props/Events/Slots](https://vue-snap.vercel.app/?path=/docs/carousel--default)
 
-## Benefits:
+## Pros:
 - Lightweight (5-10x times lighter than other libs)
 - There is no calculation or heavy logic inside (Performence aspect)
 - Fully responsive and mostly all customization via CSS - like how many Slides do you want to display
@@ -106,12 +117,12 @@ export default {
 }
 ```
 
-### Example usage
+## Examples usage
 Check out [examples](https://github.com/bartdominiak/vue-snap/tree/master/examples) folder for more details.
 
 ## Development
 
-Install necessary depandancies with yarn or npm
+Install necessary depandancies
 ```
   yarn // or npm install
 ```
