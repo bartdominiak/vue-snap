@@ -9,7 +9,4 @@ dist/report.html
 // Storybook
 storybook-static
 
-// Docs
-docs/.vuepress/dist
-
 .vercel
