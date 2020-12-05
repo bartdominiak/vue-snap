@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.5] - 2020-12-05
+### Updated
+- Dependencies
+
 ## [0.6.4] - 2020-11-29
 ### Added
 - changeSlide, BoundLeft, BoundRight inside slot-scope
@@ -14,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Updated
 - elementScrollBy function name (#47)
 - Dependencies
+
 ## [0.6.2] - 2020-11-01
 ### Fixed
 - Slide children method

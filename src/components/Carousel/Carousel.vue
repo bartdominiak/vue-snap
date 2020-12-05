@@ -215,7 +215,6 @@ export default {
         return approximatelyEqual(slide.offsetLeft, this.currentPos, 5)
       })
 
-
       if (getCurrentPage !== -1 && getCurrentPage !== -2) {
         this.currentPage = getCurrentPage || 0
       }
@@ -229,7 +228,6 @@ export default {
     },
     calcNextWidth(direction) {
       const nextSlideIndex = direction > 0 ? this.currentPage : this.currentPage + direction
-      // Don't use ES6 destructing - reduce bundle size
       const width = this.slidesWidth[nextSlideIndex].width || 0
 
       if (!width) {
