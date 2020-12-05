@@ -11,3 +11,5 @@ storybook-static
 
 // Docs
 docs/.vuepress/dist
+
+.vercel

@@ -4,8 +4,8 @@ import Carousel from './components/Carousel/Carousel.vue'
 import Slide from './components/Slide/Slide.vue'
 
 const install = Vue => {
-  Vue.component('carousel', Carousel)
-  Vue.component('slide', Slide)
+  Vue.component('Carousel', Carousel)
+  Vue.component('Slide', Slide)
 }
 
 export default {
