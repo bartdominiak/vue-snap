@@ -59,6 +59,49 @@ export const Multiple = (_, { argTypes }) => ({
   `
 })
 
+export const MultipleCustomArrows = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  data: () => ({ carouselMock }),
+  components: { Carousel, Slide },
+  methods: actions('pageClick', 'boundLeftClick', 'boundRightClick'),
+  template: `
+    <carousel
+      class="story-carousel story-carousel--colors story-carousel--multiple"
+      :hide-arrows="hideArrows"
+      :hide-arrows-on-bound="hideArrowsOnBound"
+      @page="pageClick"
+      @bound-left="boundLeftClick"
+      @bound-right="boundRightClick"
+    >
+      <slide
+        class="story-carousel__slide"
+        v-for="{ id, content } in carouselMock"
+        :key="id"
+      >
+        {{ content }}
+      </slide>
+
+      <template #arrows="{ changeSlide, boundLeft, boundRight }">
+        <button @click="changeSlide(-1)">
+          left
+        </button>
+
+        <button @click="changeSlide(1)">
+          right
+        </button>
+
+        <p v-if="boundLeft">
+          boundLeft!
+        </p>
+
+        <p v-else-if="boundRight">
+          boundRight!
+        </p>
+      </template>
+    </carousel>
+  `
+})
+
 export const NonRegular = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   data: () => ({ carouselMock }),

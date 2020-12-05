@@ -13,6 +13,9 @@
     <slot
       v-if="!hideArrows"
       name="arrows"
+      :change-slide="changeSlide"
+      :bound-left="boundLeft"
+      :bound-right="boundRight"
     >
       <button
         v-if="hideArrowsOnBound ? !boundLeft : true"
@@ -178,17 +181,16 @@ export default {
         return approximatelyEqual(slide.offsetLeft, currentPos.value, 5)
       })
 
-
       if (getCurrentPage !== -1 && getCurrentPage !== -2) {
         currentPage.value = getCurrentPage || 0
       }
     }
-    const calcMaxPages = () => {
-      const maxPos = wrapperScrollWidth.value - wrapperVisibleWidth.value
-      maxPages.value = slidesWidth.value.findIndex(slide => slide.offsetLeft > maxPos) - 1
-    }
     const calcCurrentPosition = () => {
       currentPos.value = vsWrapper.value.scrollLeft || 0
+    }
+    const calcMaxPages = () => {
+      const maxPos = wrapperScrollWidth.value - wrapperVisibleWidth.value
+      maxPages.value = slidesWidth.value.findIndex(({ offsetLeft }) => offsetLeft > maxPos) - 1
     }
     const calcOnInit = () => {
       if (!vsWrapper.value) {
