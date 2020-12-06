@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import VueSnap from 'vue-snap'
+import VueSnap from '../../../../dist/vue-snap.esm'
 import 'vue-snap/dist/vue-snap.css'
 
 Vue.use(VueSnap)

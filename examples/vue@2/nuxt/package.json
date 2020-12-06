@@ -8,6 +8,6 @@
   },
   "dependencies": {
     "nuxt": "^2.14.7",
-    "vue-snap": "^0.6.4"
+    "vue-snap": "^0.6.6"
   }
 }
