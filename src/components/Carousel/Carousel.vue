@@ -98,7 +98,6 @@ export default {
     wrapperVisibleWidth: 0,
     currentPage: 0,
     currentPos: 0,
-    maxPages: 0,
     step: 1,
     observer: null,
     onResizeFn: null,
@@ -141,9 +140,8 @@ export default {
       this.calcWrapperWidth()
       this.calcSlidesWidth()
       this.calcCurrentPosition()
-      this.calcCurrentPage()
+      this.setCurrentPage()
       this.calcBounds()
-      this.calcMaxPages()
     },
     calcOnScroll() {
       if (!this.$refs.vsWrapper) {
@@ -151,7 +149,7 @@ export default {
       }
 
       this.calcCurrentPosition()
-      this.calcCurrentPage()
+      this.setCurrentPage()
       this.calcBounds()
     },
     calcBounds() {
@@ -199,38 +197,36 @@ export default {
         width: node.offsetWidth
       }))
     },
-    calcCurrentPage() {
-      const getCurrentPage = this.slidesWidth.findIndex(slide => {
-        // Find the closest point, with 5px approximate.
+    getCurrentPage() {
+      // Last element if there is nothing left to scroll
+      if (approximatelyEqual(
+        this.currentPos + this.wrapperVisibleWidth,
+        this.wrapperScrollWidth,
+        5
+      )) {
+        return this.slidesWidth.length - 1
+      }
+
+      // Find slide closest to scroll position, with 5px approximate
+      return this.slidesWidth.findIndex(slide => {
         return approximatelyEqual(slide.offsetLeft, this.currentPos, 5)
       })
+    },
+    setCurrentPage(index) {
+      const newPage = index !== undefined ? index : this.getCurrentPage()
 
-      if (getCurrentPage < 0) {
+      if (newPage < 0) {
         return
       }
 
       const previous = this.currentPage
-      const current = getCurrentPage || 0
+      const current = newPage > 0 ? newPage : 0
 
       this.currentPage = current
       this.$emit('page', { current, previous })
     },
     calcCurrentPosition() {
       this.currentPos = this.$refs.vsWrapper.scrollLeft || 0
-    },
-    calcMaxPages() {
-      const maxPos = this.wrapperScrollWidth - this.wrapperVisibleWidth
-      this.maxPages = this.slidesWidth.findIndex(({ offsetLeft }) => offsetLeft > maxPos) - 1
-    },
-    calcNextWidth(direction) {
-      const nextSlideIndex = direction > 0 ? this.currentPage : this.currentPage + direction
-      const width = this.slidesWidth[nextSlideIndex].width || 0
-
-      if (!width) {
-        return
-      }
-
-      return width * direction
     },
     attachMutationObserver() {
       this.observer = new MutationObserver(() => {
@@ -243,23 +239,7 @@ export default {
       )
     },
     changeSlide(direction) {
-      const leftBoundLimit = direction === -1 && this.boundLeft
-      const rightBoundLimit = direction === 1 && this.boundRight
-
-      if (leftBoundLimit || rightBoundLimit) {
-        return
-      }
-
-      const nextSlideWidth = this.calcNextWidth(direction)
-
-      if (!nextSlideWidth) {
-        return
-      }
-
-      this.$refs.vsWrapper.scrollBy({
-        left: nextSlideWidth,
-        behavior: 'smooth'
-      })
+      this.goToSlide(this.currentPage + direction)
     },
     goToSlide(index) {
       if (!this.slidesWidth[index]) {
@@ -270,6 +250,8 @@ export default {
         left: this.slidesWidth[index].offsetLeft,
         behavior: 'smooth'
       })
+
+      this.setCurrentPage(index)
     }
   }
 }
