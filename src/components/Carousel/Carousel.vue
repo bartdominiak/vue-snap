@@ -26,7 +26,7 @@
           vs-carousel__arrows
           vs-carousel__arrows--left
         "
-        @click="changeSlide(-1)"
+        @click="goToSlide(currentPage - 1)"
       >
         ←
       </button>
@@ -40,7 +40,7 @@
           vs-carousel__arrows
           vs-carousel__arrows--right
         "
-        @click="changeSlide(1)"
+        @click="goToSlide(currentPage + 1)"
       >
         →
       </button>
@@ -228,16 +228,6 @@ export default {
     calcCurrentPosition() {
       this.currentPos = this.$refs.vsWrapper.scrollLeft || 0
     },
-    calcNextWidth(direction) {
-      const nextSlideIndex = direction > 0 ? this.currentPage : this.currentPage + direction
-      const width = this.slidesWidth[nextSlideIndex].width || 0
-
-      if (!width) {
-        return
-      }
-
-      return width * direction
-    },
     attachMutationObserver() {
       this.observer = new MutationObserver(() => {
         this.calcOnInit()
@@ -247,25 +237,6 @@ export default {
         this.$refs.vsWrapper,
         { attributes: true, childList: true, characterData: true, subtree: true }
       )
-    },
-    changeSlide(direction) {
-      const leftBoundLimit = direction === -1 && this.boundLeft
-      const rightBoundLimit = direction === 1 && this.boundRight
-
-      if (leftBoundLimit || rightBoundLimit) {
-        return
-      }
-
-      const nextSlideWidth = this.calcNextWidth(direction)
-
-      if (!nextSlideWidth) {
-        return
-      }
-
-      this.$refs.vsWrapper.scrollBy({
-        left: nextSlideWidth,
-        behavior: 'smooth'
-      })
     },
     goToSlide(index) {
       if (!this.slidesWidth[index]) {
