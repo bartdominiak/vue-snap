@@ -26,7 +26,7 @@
           vs-carousel__arrows
           vs-carousel__arrows--left
         "
-        @click="goToSlide(currentPage - 1)"
+        @click="changeSlide(-1)"
       >
         ←
       </button>
@@ -40,7 +40,7 @@
           vs-carousel__arrows
           vs-carousel__arrows--right
         "
-        @click="goToSlide(currentPage + 1)"
+        @click="changeSlide(1)"
       >
         →
       </button>
@@ -237,6 +237,9 @@ export default {
         this.$refs.vsWrapper,
         { attributes: true, childList: true, characterData: true, subtree: true }
       )
+    },
+    changeSlide(direction) {
+      this.goToSlide(this.currentPage + direction)
     },
     goToSlide(index) {
       if (!this.slidesWidth[index]) {
