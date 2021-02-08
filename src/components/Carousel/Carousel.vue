@@ -104,18 +104,6 @@ export default {
     onResizeFn: null,
     onScrollFn: null
   }),
-  watch: {
-    currentPage(current, previous) {
-      if (current !== previous) {
-        /**
-         * Page changed
-         * @event page
-         * @type {Event}
-         */
-        this.$emit('page', { current, previous })
-      }
-    }
-  },
   mounted() {
     this.calcOnInit()
 
@@ -130,6 +118,8 @@ export default {
       // Events
       this.$refs.vsWrapper.addEventListener('scroll', this.onScrollFn)
       window.addEventListener('resize', this.onResizeFn, false)
+
+      this.$on('go-to-page', index => this.goToSlide(index))
     }
   },
   beforeDestroy() {
@@ -215,9 +205,15 @@ export default {
         return approximatelyEqual(slide.offsetLeft, this.currentPos, 5)
       })
 
-      if (getCurrentPage !== -1 && getCurrentPage !== -2) {
-        this.currentPage = getCurrentPage || 0
+      if (getCurrentPage < 0) {
+        return
       }
+
+      const previous = this.currentPage
+      const current = getCurrentPage || 0
+
+      this.currentPage = current
+      this.$emit('page', { current, previous })
     },
     calcCurrentPosition() {
       this.currentPos = this.$refs.vsWrapper.scrollLeft || 0
@@ -260,10 +256,20 @@ export default {
         return
       }
 
-      this.scrollTo(nextSlideWidth)
+      this.$refs.vsWrapper.scrollBy({
+        left: nextSlideWidth,
+        behavior: 'smooth'
+      })
     },
-    scrollTo(x = 0) {
-      this.$refs.vsWrapper.scrollBy({ left: x, behavior: 'smooth' })
+    goToSlide(index) {
+      if (!this.slidesWidth[index]) {
+        return
+      }
+
+      this.$refs.vsWrapper.scrollTo({
+        left: this.slidesWidth[index].offsetLeft,
+        behavior: 'smooth'
+      })
     }
   }
 }
