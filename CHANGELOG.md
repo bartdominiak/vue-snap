@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.7] - 2021-08-02
+### Added
+- Go to slide API (#54)
+
 ## [0.6.6] - 2020-12-06
 ### Updated
 - Rollback rollup-plugin-vue(6.0.0 => 5.1.9)
