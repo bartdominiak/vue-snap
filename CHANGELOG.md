@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.0] - 2021-08-02
+### Removed
+- maxPages and its calculation (#55)
+
+### Updated
+- Replace changeSlide with simpler goToSlide, for consistent behavior with exposed go-to-page API + removal of dependent method that is not in use anymore (#55)
+- Split getting current page index from setting it, supporting passing the index from outside, for example goToSlide method, so in some cases the index will change, even if there was no scroll event. (#55)
+
+### Fixed
+- Fix support for calculating a proper current slide index, when there is nothing left to scroll (#55)
+
 ## [0.6.7] - 2021-08-02
 ### Added
 - Go to slide API (#54)
