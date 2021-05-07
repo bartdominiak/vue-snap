@@ -13,15 +13,16 @@ export const Default = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   data: () => ({ carouselMock }),
   components: { Carousel, Slide },
-  methods: actions('pageClick', 'boundLeftClick', 'boundRightClick'),
+  methods: actions('pageEvent', 'boundLeftEvent', 'boundRightEvent', 'mountedEvent'),
   template: `
     <carousel
       class="story-carousel story-carousel--colors"
       :hide-arrows="hideArrows"
       :hide-arrows-on-bound="hideArrowsOnBound"
-      @page="pageClick"
-      @bound-left="boundLeftClick"
-      @bound-right="boundRightClick"
+      @page="pageEvent"
+      @bound-left="boundLeftEvent"
+      @bound-right="boundRightEvent"
+      @mounted="mountedEvent"
     >
       <slide
         class="story-carousel__slide"
@@ -38,15 +39,16 @@ export const Multiple = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   data: () => ({ carouselMock }),
   components: { Carousel, Slide },
-  methods: actions('pageClick', 'boundLeftClick', 'boundRightClick'),
+  methods: actions('pageEvent', 'boundLeftEvent', 'boundRightEvent', 'mountedEvent'),
   template: `
     <carousel
       class="story-carousel story-carousel--colors story-carousel--multiple"
       :hide-arrows="hideArrows"
       :hide-arrows-on-bound="hideArrowsOnBound"
-      @page="pageClick"
-      @bound-left="boundLeftClick"
-      @bound-right="boundRightClick"
+      @page="pageEvent"
+      @bound-left="boundLeftEvent"
+      @bound-right="boundRightEvent"
+      @mounted="mountedEvent"
     >
       <slide
         class="story-carousel__slide"
@@ -63,15 +65,16 @@ export const MultipleCustomArrows = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   data: () => ({ carouselMock }),
   components: { Carousel, Slide },
-  methods: actions('pageClick', 'boundLeftClick', 'boundRightClick'),
+  methods: actions('pageEvent', 'boundLeftEvent', 'boundRightEvent', 'mountedEvent'),
   template: `
     <carousel
       class="story-carousel story-carousel--colors story-carousel--multiple"
       :hide-arrows="hideArrows"
       :hide-arrows-on-bound="hideArrowsOnBound"
-      @page="pageClick"
-      @bound-left="boundLeftClick"
-      @bound-right="boundRightClick"
+      @page="pageEvent"
+      @bound-left="boundLeftEvent"
+      @bound-right="boundRightEvent"
+      @mounted="mountedEvent"
     >
       <slide
         class="story-carousel__slide"
@@ -106,15 +109,16 @@ export const NonRegular = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   data: () => ({ carouselMock }),
   components: { Carousel, Slide },
-  methods: actions('pageClick', 'boundLeftClick', 'boundRightClick'),
+  methods: actions('pageEvent', 'boundLeftEvent', 'boundRightEvent', 'mountedEvent'),
   template: `
     <carousel
       class="story-carousel story-carousel--colors story-carousel--non-regular"
       :hide-arrows="hideArrows"
       :hide-arrows-on-bound="hideArrowsOnBound"
-      @page="pageClick"
-      @bound-left="boundLeftClick"
-      @bound-right="boundRightClick"
+      @page="pageEvent"
+      @bound-left="boundLeftEvent"
+      @bound-right="boundRightEvent"
+      @mounted="mountedEvent"
     >
       <slide
         class="story-carousel__slide"
@@ -132,15 +136,16 @@ export const Images = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   data: () => ({ carouselMock }),
   components: { Carousel, Slide },
-  methods: actions('pageClick', 'boundLeftClick', 'boundRightClick'),
+  methods: actions('pageEvent', 'boundLeftEvent', 'boundRightEvent', 'mountedEvent'),
   template: `
     <carousel
       class="story-carousel story-carousel--multiple story-carousel--images"
       :hide-arrows="hideArrows"
       :hide-arrows-on-bound="hideArrowsOnBound"
-      @page="pageClick"
-      @bound-left="boundLeftClick"
-      @bound-right="boundRightClick"
+      @page="pageEvent"
+      @bound-left="boundLeftEvent"
+      @bound-right="boundRightEvent"
+      @mounted="mountedEvent"
     >
       <slide
         class="story-carousel__slide"
@@ -160,15 +165,16 @@ export const ImagesLazy = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   data: () => ({ carouselMock }),
   components: { Carousel, Slide },
-  methods: actions('pageClick', 'boundLeftClick', 'boundRightClick'),
+  methods: actions('pageEvent', 'boundLeftEvent', 'boundRightEvent', 'mountedEvent'),
   template: `
     <carousel
       class="story-carousel story-carousel--multiple story-carousel--images"
       :hide-arrows="hideArrows"
       :hide-arrows-on-bound="hideArrowsOnBound"
-      @page="pageClick"
-      @bound-left="boundLeftClick"
-      @bound-right="boundRightClick"
+      @page="pageEvent"
+      @bound-left="boundLeftEvent"
+      @bound-right="boundRightEvent"
+      @mounted="mountedEvent"
     >
       <slide
         class="story-carousel__slide"

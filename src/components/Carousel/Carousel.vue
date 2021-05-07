@@ -97,12 +97,51 @@ export default {
     wrapperScrollWidth: 0,
     wrapperVisibleWidth: 0,
     currentPage: 0,
+    previousPage: 0,
     currentPos: 0,
     step: 1,
     observer: null,
     onResizeFn: null,
     onScrollFn: null
   }),
+  watch: {
+    currentPage(currentPage, previousPage) {
+      if (currentPage === previousPage) {
+        return
+      }
+
+      /**
+       * Page changed
+       * @event page
+       * @type {Event}
+       */
+      this.$emit('page', { currentPage, previousPage })
+    },
+    boundLeft(state) {
+      if (!state) {
+        return
+      }
+
+      /**
+       * Reach first item
+       * @event bound-left
+       * @type {Event}
+       */
+      this.$emit('bound-left', true)
+    },
+    boundRight(state) {
+      if (!state) {
+        return
+      }
+
+      /**
+       * Reach last item
+       * @event bound-right
+       * @type {Event}
+       */
+      this.$emit('bound-right', true)
+    },
+  },
   mounted() {
     this.calcOnInit()
 
@@ -119,6 +158,13 @@ export default {
       window.addEventListener('resize', this.onResizeFn, false)
 
       this.$on('go-to-page', index => this.goToSlide(index))
+
+      /**
+       * Carousel mounted
+       * @event mounted
+       * @type {Event}
+       */
+      this.$emit('mounted', true)
     }
   },
   beforeDestroy() {
@@ -162,24 +208,12 @@ export default {
       )
 
       if (isBoundLeft) {
-        /**
-         * Reach first item
-         * @event bound-left
-         * @type {Event}
-         */
-        this.$emit('bound-left', true)
         this.boundLeft = true
       } else {
         this.boundLeft = false
       }
 
       if (isBoundRight) {
-        /**
-         * Reach last item
-         * @event bound-right
-         * @type {Event}
-         */
-        this.$emit('bound-right', true)
         this.boundRight = true
       } else {
         this.boundRight = false
@@ -219,11 +253,8 @@ export default {
         return
       }
 
-      const previous = this.currentPage
-      const current = newPage > 0 ? newPage : 0
-
-      this.currentPage = current
-      this.$emit('page', { current, previous })
+      this.previousPage = this.currentPage
+      this.currentPage = newPage > 0 ? newPage : 0
     },
     calcCurrentPosition() {
       this.currentPos = this.$refs.vsWrapper.scrollLeft || 0
