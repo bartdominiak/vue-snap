@@ -12,6 +12,18 @@ body {
         color: #fff;
     }
 
+    .vs-carousel__dots {
+        list-style: none;
+        padding: 0;
+        text-align: center;
+
+        > li {
+            display: inline-block;
+            padding: .25em;
+            cursor: pointer;
+        }
+    }
+
     &--colors {
         .story-carousel__slide {
             &:nth-child(n+1) {
