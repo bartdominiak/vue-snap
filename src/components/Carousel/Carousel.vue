@@ -4,6 +4,9 @@
       :is="tag"
       ref="vsWrapper"
       class="vs-carousel__wrapper"
+      :class="{
+        'vs-carousel__wrapper--hide-scrollbar': hideScrollbar
+      }"
     >
       <!-- @slot Slot for Slides -->
       <slot />
@@ -13,22 +16,23 @@
     <slot
       v-if="!hideArrows"
       name="arrows"
-      :change-slide="changeSlide"
-      :bound-left="boundLeft"
-      :bound-right="boundRight"
+      v-bind="{
+        hideArrowsOnBound,
+        changeSlide,
+        boundLeft,
+        boundRight,
+        i18n
+      }"
     >
       <button
         v-show="hideArrowsOnBound ? !boundLeft : true"
         type="button"
         :aria-label="i18n.slideLeft"
         :disabled="boundLeft"
-        class="
-          vs-carousel__arrows
-          vs-carousel__arrows--left
-        "
+        class="vs-carousel__arrows vs-carousel__arrows--left"
         @click="changeSlide(-1)"
       >
-        ←
+        <slot name="arrowLeftIcon"> ← </slot>
       </button>
 
       <button
@@ -36,13 +40,10 @@
         type="button"
         :aria-label="i18n.slideRight"
         :disabled="boundRight"
-        class="
-          vs-carousel__arrows
-          vs-carousel__arrows--right
-        "
+        class="vs-carousel__arrows vs-carousel__arrows--right"
         @click="changeSlide(1)"
       >
-        →
+        <slot name="arrowRightIcon"> → </slot>
       </button>
     </slot>
   </div>
@@ -88,6 +89,13 @@ export default {
         const translations = ['slideLeft', 'slideRight']
         return translations.every(key => key in config)
       }
+    },
+    /**
+     * Scrollbar
+     */
+    hideScrollbar: {
+      type: Boolean,
+      default: true
     }
   },
   data: () => ({
@@ -140,7 +148,7 @@ export default {
        * @type {Event}
        */
       this.$emit('bound-right', true)
-    },
+    }
   },
   mounted() {
     this.calcOnInit()
@@ -224,7 +232,7 @@ export default {
       this.wrapperVisibleWidth = this.$refs.vsWrapper.offsetWidth
     },
     calcSlidesWidth() {
-      const childNodes = [ ...this.$refs.vsWrapper.children ]
+      const childNodes = [...this.$refs.vsWrapper.children]
 
       this.slidesWidth = childNodes.map(node => ({
         offsetLeft: node.offsetLeft,
@@ -259,10 +267,12 @@ export default {
         this.calcOnInit()
       })
 
-      this.observer.observe(
-        this.$refs.vsWrapper,
-        { attributes: true, childList: true, characterData: true, subtree: true }
-      )
+      this.observer.observe(this.$refs.vsWrapper, {
+        attributes: true,
+        childList: true,
+        characterData: true,
+        subtree: true
+      })
     },
     changeSlide(direction) {
       this.goToSlide(this.currentPage + direction)
