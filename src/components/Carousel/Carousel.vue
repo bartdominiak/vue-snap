@@ -232,19 +232,14 @@ export default {
       }))
     },
     getCurrentPage() {
-      // Last element if there is nothing left to scroll
-      if (approximatelyEqual(
-        this.currentPos + this.wrapperVisibleWidth,
-        this.wrapperScrollWidth,
-        5
-      )) {
-        return this.slidesWidth.length - 1
-      }
-
       // Find slide closest to scroll position, with 5px approximate
-      return this.slidesWidth.findIndex(slide => {
-        return approximatelyEqual(slide.offsetLeft, this.currentPos, 5)
-      })
+      return this.slidesWidth.findIndex((slide) => {
+        return approximatelyEqual(
+          slide.offsetLeft,
+          this.currentPos,
+          slide.width / 2
+        );
+      });
     },
     setCurrentPage(index) {
       const newPage = index !== undefined ? index : this.getCurrentPage()
