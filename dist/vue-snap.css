@@ -16,7 +16,7 @@
     padding: 0;
 }
 
-.vs-carousel__wrapper::-webkit-scrollbar {
+.vs-carousel__wrapper.vs-carousel__wrapper--hide-scrollbar::-webkit-scrollbar {
     display: none;
 }
 
