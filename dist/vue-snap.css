@@ -52,3 +52,15 @@
 .vs-carousel__arrows--right {
     right: 0;
 }
+
+.vs-carousel__dots {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.vs-carousel__dots li {
+    display: inline-block;
+    padding: 2px;
+    cursor: pointer;
+}

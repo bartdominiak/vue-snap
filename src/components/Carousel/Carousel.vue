@@ -56,14 +56,16 @@
     >
       <ol
         class="vs-carousel__dots"
-        :aria-label="i18n.paginationNavigation">
+        :aria-label="i18n.paginationNavigation"
       >
         <li
           v-for="index in dotsCount"
           :key="index"
           :aria-current="index -1 === currentPage"
           @click="goToSlide(index - 1)"
-        >⬤</li>
+        >
+          &bull;
+        </li>
       </ol>
     </slot>
   </div>
