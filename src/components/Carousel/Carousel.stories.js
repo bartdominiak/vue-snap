@@ -105,6 +105,35 @@ export const MultipleCustomArrows = (_, { argTypes }) => ({
   `
 })
 
+export const MultipleCustomArrowsIcons = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  data: () => ({ carouselMock }),
+  components: { Carousel, Slide },
+  methods: actions('pageEvent', 'boundLeftEvent', 'boundRightEvent', 'mountedEvent'),
+  template: `
+    <carousel
+      class="story-carousel story-carousel--colors story-carousel--multiple"
+      :hide-arrows="hideArrows"
+      :hide-arrows-on-bound="hideArrowsOnBound"
+      @page="pageEvent"
+      @bound-left="boundLeftEvent"
+      @bound-right="boundRightEvent"
+      @mounted="mountedEvent"
+    >
+      <slide
+        class="story-carousel__slide"
+        v-for="{ id, content } in carouselMock"
+        :key="id"
+      >
+        {{ content }}
+      </slide>
+
+      <template #arrowLeftIcon>L</template>
+      <template #arrowRightIcon>R</template>
+    </carousel>
+  `
+})
+
 export const NonRegular = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   data: () => ({ carouselMock }),
@@ -131,6 +160,36 @@ export const NonRegular = (_, { argTypes }) => ({
     </carousel>
   `
 })
+
+export const WithScrollbar = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  data: () => ({ carouselMock }),
+  components: { Carousel, Slide },
+  methods: actions('pageEvent', 'boundLeftEvent', 'boundRightEvent', 'mountedEvent'),
+  template: `
+    <carousel
+      class="story-carousel story-carousel--colors story-carousel--multiple"
+      :hide-arrows="hideArrows"
+      :hide-arrows-on-bound="hideArrowsOnBound"
+      :hide-scrollbar="hideScrollbar"
+      @page="pageEvent"
+      @bound-left="boundLeftEvent"
+      @bound-right="boundRightEvent"
+      @mounted="mountedEvent"
+    >
+      <slide
+        class="story-carousel__slide"
+        v-for="{ id, content } in carouselMock"
+        :key="id"
+      >
+        {{ content }}
+      </slide>
+    </carousel>
+  `
+})
+WithScrollbar.args = {
+  hideScrollbar: false
+}
 
 export const Images = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
