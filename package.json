@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/bartdominiak/vue-snap.git"
+    "url": "https://github.com/bartdominiak/vue-snap.git"
   },
   "keywords": [
     "vue",
