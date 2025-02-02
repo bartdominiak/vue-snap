@@ -45,6 +45,29 @@
         →
       </button>
     </slot>
+
+    <!-- @slot Slot for Dots -->
+    <slot
+      v-if="!hideDots"
+      name="dots"
+      :go-to-slide="goToSlide"
+      :current-page="currentPage"
+      :dots-count="dotsCount"
+    >
+      <ol
+        class="vs-carousel__dots"
+        :aria-label="i18n.paginationNavigation"
+      >
+        <li
+          v-for="index in dotsCount"
+          :key="index"
+          :aria-current="index -1 === currentPage"
+          @click="goToSlide(index - 1)"
+        >
+          &bull;
+        </li>
+      </ol>
+    </slot>
   </div>
 </template>
 
@@ -68,6 +91,13 @@ export default {
      * Disable arrows on bound
      */
     hideArrowsOnBound: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Disable dots
+     */
+    hideDots: {
       type: Boolean,
       default: false
     },
@@ -104,6 +134,11 @@ export default {
     onResizeFn: null,
     onScrollFn: null
   }),
+  computed: {
+    dotsCount() {
+      return this.slidesWidth.length
+    }
+  },
   watch: {
     currentPage(currentPage, previousPage) {
       if (currentPage === previousPage) {
