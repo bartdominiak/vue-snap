@@ -157,7 +157,9 @@ export default {
       this.$refs.vsWrapper.addEventListener('scroll', this.onScrollFn)
       window.addEventListener('resize', this.onResizeFn, false)
 
-      this.$on('go-to-page', index => this.goToSlide(index))
+      const handleGoToPage = index => this.goToSlide(index);
+
+      this.$on('go-to-page', handleGoToPage)
 
       /**
        * Carousel mounted
@@ -165,6 +167,10 @@ export default {
        * @type {Event}
        */
       this.$emit('mounted', true)
+
+      this.$once('hook:beforeDestroy', () => {
+        this.$off('go-to-page', handleGoToPage);
+      });
     }
   },
   beforeDestroy() {
