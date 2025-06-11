@@ -1,15 +1,12 @@
-import './polyfills'
-
-import Carousel from './components/Carousel/Carousel.vue'
-import Slide from './components/Slide/Slide.vue'
-
-const install = Vue => {
-  Vue.component('Carousel', Carousel)
-  Vue.component('Slide', Slide)
-}
+import Carousel from './components/Carousel.vue'
+import Slide from './components/Slide.vue'
 
 export default {
-  install
+  install: (app) => {
+    app.component('Carousel', Carousel)
+    app.component('Slide', Slide)
+  }
 }
 
+// Also export components directly
 export { Carousel, Slide }

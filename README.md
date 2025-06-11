@@ -33,21 +33,19 @@
 - [License](#license)
 
 ## About
-Idea behind this plugin is that to create fully responsive and well optimised Carousel.
-We used new CSS properties [Scroll Snapping](https://developers.google.com/web/updates/2018/07/css-scroll-snap), which allows us to lock the Carousel Wrapper to certain Slides or locations after a user has finished scrolling. This helps us to minimize library size, with only critical part, and avoid any heavy JS calculations or any CSS Hacks inside.
+The idea behind this plugin is to create a fully responsive and well-optimized carousel. We’ve used modern CSS features like [Scroll Snapping](https://developers.google.com/web/updates/2018/07/css-scroll-snap), which allows the carousel wrapper to lock onto specific slides or positions after the user finishes scrolling. This approach helps us minimize the library size by including only the essential parts, and it avoids heavy JavaScript computations or CSS hacks.
 
 ## Examples/Stories
 - 📕 [Example](https://vue-snap.vercel.app)
 - 📺 [Props/Events/Slots](https://vue-snap.vercel.app/?path=/docs/carousel--default)
 
-## Pros:
-- Lightweight (5-10x times lighter than other libs)
-- There is no calculation or heavy logic inside (Performence aspect)
-- Fully responsive and mostly all customization via CSS - like how many Slides do you want to display
-- ESM Bundle with Dead Code Elimination (Tree Shaking)
-- SSR Support like Nuxt.js 🎉  (More [here](https://github.com/bartdominiak/vue-snap/tree/master/examples))
-- `Vue@3` and `Vue@2` Support 🎉  (More [here](#installation--usage))
-- Support all modern/common browsers (More [here](https://caniuse.com/css-snappoints))
+- **Lightweight** – up to 5–10× smaller than other libraries
+- **No calculations or heavy logic** – performance-first approach
+- **Fully responsive** – most customization is handled via CSS (e.g. number of visible slides)
+- **ESM bundle with tree-shaking** – dead code is automatically eliminated
+- **SSR support** – works with frameworks like Nuxt.js 🎉 [More here](https://github.com/bartdominiak/vue-snap/tree/master/examples)
+- **Vue 3 & Vue 2 support** 🎉  [More here](#installation--usage)
+- **Modern browser support** – compatible with all common browsers [More here](https://caniuse.com/css-snappoints)
 
 ## Installation & Usage
 ### `Vue@3` version

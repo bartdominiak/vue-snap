@@ -10,3 +10,5 @@ dist/report.html
 storybook-static
 
 .vercel
+
+*storybook.log
