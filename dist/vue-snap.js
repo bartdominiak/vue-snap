@@ -1,6 +1,4 @@
-(function(global2, factory) {
-  typeof exports === "object" && typeof module !== "undefined" ? factory(exports, require("vue")) : typeof define === "function" && define.amd ? define(["exports", "vue"], factory) : (global2 = typeof globalThis !== "undefined" ? globalThis : global2 || self, factory(global2.VueSnap = {}, global2.Vue));
-})(this, function(exports2, vue) {
+var VueSnap = function(exports, vue) {
   "use strict";
   var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
   function getDefaultExportFromCjs(x) {
@@ -528,15 +526,16 @@
       };
     }
   };
-  const VueSnap = {
+  const VueSnap2 = {
     install: (app) => {
       app.component("Carousel", _sfc_main$1);
       app.component("Slide", _sfc_main);
     }
   };
-  exports2.Carousel = _sfc_main$1;
-  exports2.Slide = _sfc_main;
-  exports2.VueSnap = VueSnap;
-  exports2.default = VueSnap;
-  Object.defineProperties(exports2, { __esModule: { value: true }, [Symbol.toStringTag]: { value: "Module" } });
-});
+  exports.Carousel = _sfc_main$1;
+  exports.Slide = _sfc_main;
+  exports.VueSnap = VueSnap2;
+  exports.default = VueSnap2;
+  Object.defineProperties(exports, { __esModule: { value: true }, [Symbol.toStringTag]: { value: "Module" } });
+  return exports;
+}({}, Vue);

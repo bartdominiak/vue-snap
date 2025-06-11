@@ -1,28 +1,24 @@
 <template>
-  <carousel class="story-carousel story-carousel--colors">
-    <slide class="story-carousel__slide">
+  <div>
+    <Carousel class="story-carousel story-carousel--colors">
+    <Slide class="story-carousel__slide">
       Slide 1
-    </slide>
-    <slide class="story-carousel__slide">
+    </Slide>
+    <Slide class="story-carousel__slide">
       Slide 2
-    </slide>
-    <slide class="story-carousel__slide">
+    </Slide>
+    <Slide class="story-carousel__slide">
       Slide 3
-    </slide>
-    <slide class="story-carousel__slide">
+    </Slide>
+    <Slide class="story-carousel__slide">
       Slide 4
-    </slide>
-    <slide class="story-carousel__slide">
+    </Slide>
+    <Slide class="story-carousel__slide">
       Slide 5
-    </slide>
-  </carousel>
+    </Slide>
+  </Carousel>
+  </div>
 </template>
-
-<script>
-export default {
-  name: 'HelloWorld'
-}
-</script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');

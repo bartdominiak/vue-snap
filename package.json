@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/bartdominiak/vue-snap#README",
   "peerDependencies": {
-    "vue": "^3.2.45"
+    "vue": "^3.5.16"
   },
   "dependencies": {
     "core-js": "^3.43.0",

@@ -9,18 +9,15 @@
   </component>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  props: {
-    /**
-     * Custom tag
-     */
-    tag: {
-      type: String,
-      default: 'li'
-    }
+<script setup>
+defineProps({
+  /**
+   * Custom tag
+   */
+  tag: {
+    type: String,
+    default: 'li'
   }
 });
+
 </script>

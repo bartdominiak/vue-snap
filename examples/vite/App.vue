@@ -1,25 +1,24 @@
 <template>
-  <carousel class="story-carousel story-carousel--colors">
-    <slide class="story-carousel__slide">
+  <Carousel class="story-carousel story-carousel--colors">
+    <Slide class="story-carousel__slide">
       Slide 1
-    </slide>
-    <slide class="story-carousel__slide">
+    </Slide>
+    <Slide class="story-carousel__slide">
       Slide 2
-    </slide>
-    <slide class="story-carousel__slide">
+    </Slide>
+    <Slide class="story-carousel__slide">
       Slide 3
-    </slide>
-    <slide class="story-carousel__slide">
+    </Slide>
+    <Slide class="story-carousel__slide">
       Slide 4
-    </slide>
-    <slide class="story-carousel__slide">
+    </Slide>
+    <Slide class="story-carousel__slide">
       Slide 5
-    </slide>
-  </carousel>
+    </Slide>
+  </Carousel>
 </template>
 
 <script>
-
 export default {
   name: 'HelloWorld'
 }

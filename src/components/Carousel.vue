@@ -11,7 +11,6 @@
 
     <!-- @slot Slot for Arrows -->
     <slot
-      v-if="!hideArrows"
       name="arrows"
       :change-slide="changeSlide"
       :bound-left="boundLeft"
@@ -43,7 +42,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, watch, computed } from 'vue';
+import { ref, onMounted, onBeforeUnmount, watch } from 'vue';
 import debounce from 'lodash/debounce';
 import { approximatelyEqual, isClient } from '../utils';
 
@@ -225,6 +224,10 @@ watch(boundRight, (state) => {
   if (state) {
     emit('bound-right', true);
   }
+});
+
+defineOptions({
+  name: 'VsCarousel'
 });
 </script>
 

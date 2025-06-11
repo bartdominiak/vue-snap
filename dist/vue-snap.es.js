@@ -1,213 +1,322 @@
-import { ref as p, onMounted as je, onBeforeUnmount as Re, watch as W, createElementBlock as qe, openBlock as J, createBlock as pe, renderSlot as K, createCommentVNode as Ee, resolveDynamicComponent as ye, withCtx as _e, withDirectives as Y, createElementVNode as ee, vShow as te, defineComponent as Le } from "vue";
-var L = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
-function Ie(e) {
-  return e && e.__esModule && Object.prototype.hasOwnProperty.call(e, "default") ? e.default : e;
+import { ref, onMounted, onBeforeUnmount, watch, createElementBlock, openBlock, createBlock, renderSlot, resolveDynamicComponent, withCtx, withDirectives, createElementVNode, vShow } from "vue";
+var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
+function getDefaultExportFromCjs(x) {
+  return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
 }
-var N, re;
-function Se() {
-  if (re) return N;
-  re = 1;
-  function e(t) {
-    var n = typeof t;
-    return t != null && (n == "object" || n == "function");
+var isObject_1;
+var hasRequiredIsObject;
+function requireIsObject() {
+  if (hasRequiredIsObject) return isObject_1;
+  hasRequiredIsObject = 1;
+  function isObject(value) {
+    var type = typeof value;
+    return value != null && (type == "object" || type == "function");
   }
-  return N = e, N;
+  isObject_1 = isObject;
+  return isObject_1;
 }
-var x, ne;
-function Ce() {
-  if (ne) return x;
-  ne = 1;
-  var e = typeof L == "object" && L && L.Object === Object && L;
-  return x = e, x;
+var _freeGlobal;
+var hasRequired_freeGlobal;
+function require_freeGlobal() {
+  if (hasRequired_freeGlobal) return _freeGlobal;
+  hasRequired_freeGlobal = 1;
+  var freeGlobal = typeof commonjsGlobal == "object" && commonjsGlobal && commonjsGlobal.Object === Object && commonjsGlobal;
+  _freeGlobal = freeGlobal;
+  return _freeGlobal;
 }
-var P, ie;
-function Te() {
-  if (ie) return P;
-  ie = 1;
-  var e = Ce(), t = typeof self == "object" && self && self.Object === Object && self, n = e || t || Function("return this")();
-  return P = n, P;
+var _root;
+var hasRequired_root;
+function require_root() {
+  if (hasRequired_root) return _root;
+  hasRequired_root = 1;
+  var freeGlobal = require_freeGlobal();
+  var freeSelf = typeof self == "object" && self && self.Object === Object && self;
+  var root = freeGlobal || freeSelf || Function("return this")();
+  _root = root;
+  return _root;
 }
-var $, ae;
-function ke() {
-  if (ae) return $;
-  ae = 1;
-  var e = Te(), t = function() {
-    return e.Date.now();
+var now_1;
+var hasRequiredNow;
+function requireNow() {
+  if (hasRequiredNow) return now_1;
+  hasRequiredNow = 1;
+  var root = require_root();
+  var now = function() {
+    return root.Date.now();
   };
-  return $ = t, $;
+  now_1 = now;
+  return now_1;
 }
-var G, oe;
-function Be() {
-  if (oe) return G;
-  oe = 1;
-  var e = /\s/;
-  function t(n) {
-    for (var r = n.length; r-- && e.test(n.charAt(r)); )
-      ;
-    return r;
+var _trimmedEndIndex;
+var hasRequired_trimmedEndIndex;
+function require_trimmedEndIndex() {
+  if (hasRequired_trimmedEndIndex) return _trimmedEndIndex;
+  hasRequired_trimmedEndIndex = 1;
+  var reWhitespace = /\s/;
+  function trimmedEndIndex(string) {
+    var index = string.length;
+    while (index-- && reWhitespace.test(string.charAt(index))) {
+    }
+    return index;
   }
-  return G = t, G;
+  _trimmedEndIndex = trimmedEndIndex;
+  return _trimmedEndIndex;
 }
-var A, ue;
-function We() {
-  if (ue) return A;
-  ue = 1;
-  var e = Be(), t = /^\s+/;
-  function n(r) {
-    return r && r.slice(0, e(r) + 1).replace(t, "");
+var _baseTrim;
+var hasRequired_baseTrim;
+function require_baseTrim() {
+  if (hasRequired_baseTrim) return _baseTrim;
+  hasRequired_baseTrim = 1;
+  var trimmedEndIndex = require_trimmedEndIndex();
+  var reTrimStart = /^\s+/;
+  function baseTrim(string) {
+    return string ? string.slice(0, trimmedEndIndex(string) + 1).replace(reTrimStart, "") : string;
   }
-  return A = n, A;
+  _baseTrim = baseTrim;
+  return _baseTrim;
 }
-var D, se;
-function Oe() {
-  if (se) return D;
-  se = 1;
-  var e = Te(), t = e.Symbol;
-  return D = t, D;
+var _Symbol;
+var hasRequired_Symbol;
+function require_Symbol() {
+  if (hasRequired_Symbol) return _Symbol;
+  hasRequired_Symbol = 1;
+  var root = require_root();
+  var Symbol = root.Symbol;
+  _Symbol = Symbol;
+  return _Symbol;
 }
-var M, le;
-function Ne() {
-  if (le) return M;
-  le = 1;
-  var e = Oe(), t = Object.prototype, n = t.hasOwnProperty, r = t.toString, o = e ? e.toStringTag : void 0;
-  function d(l) {
-    var c = n.call(l, o), f = l[o];
+var _getRawTag;
+var hasRequired_getRawTag;
+function require_getRawTag() {
+  if (hasRequired_getRawTag) return _getRawTag;
+  hasRequired_getRawTag = 1;
+  var Symbol = require_Symbol();
+  var objectProto = Object.prototype;
+  var hasOwnProperty = objectProto.hasOwnProperty;
+  var nativeObjectToString = objectProto.toString;
+  var symToStringTag = Symbol ? Symbol.toStringTag : void 0;
+  function getRawTag(value) {
+    var isOwn = hasOwnProperty.call(value, symToStringTag), tag = value[symToStringTag];
     try {
-      l[o] = void 0;
-      var i = !0;
-    } catch {
+      value[symToStringTag] = void 0;
+      var unmasked = true;
+    } catch (e) {
     }
-    var m = r.call(l);
-    return i && (c ? l[o] = f : delete l[o]), m;
-  }
-  return M = d, M;
-}
-var U, ce;
-function xe() {
-  if (ce) return U;
-  ce = 1;
-  var e = Object.prototype, t = e.toString;
-  function n(r) {
-    return t.call(r);
-  }
-  return U = n, U;
-}
-var F, fe;
-function Pe() {
-  if (fe) return F;
-  fe = 1;
-  var e = Oe(), t = Ne(), n = xe(), r = "[object Null]", o = "[object Undefined]", d = e ? e.toStringTag : void 0;
-  function l(c) {
-    return c == null ? c === void 0 ? o : r : d && d in Object(c) ? t(c) : n(c);
-  }
-  return F = l, F;
-}
-var V, de;
-function $e() {
-  if (de) return V;
-  de = 1;
-  function e(t) {
-    return t != null && typeof t == "object";
-  }
-  return V = e, V;
-}
-var z, ve;
-function Ge() {
-  if (ve) return z;
-  ve = 1;
-  var e = Pe(), t = $e(), n = "[object Symbol]";
-  function r(o) {
-    return typeof o == "symbol" || t(o) && e(o) == n;
-  }
-  return z = r, z;
-}
-var H, be;
-function Ae() {
-  if (be) return H;
-  be = 1;
-  var e = We(), t = Se(), n = Ge(), r = NaN, o = /^[-+]0x[0-9a-f]+$/i, d = /^0b[01]+$/i, l = /^0o[0-7]+$/i, c = parseInt;
-  function f(i) {
-    if (typeof i == "number")
-      return i;
-    if (n(i))
-      return r;
-    if (t(i)) {
-      var m = typeof i.valueOf == "function" ? i.valueOf() : i;
-      i = t(m) ? m + "" : m;
-    }
-    if (typeof i != "string")
-      return i === 0 ? i : +i;
-    i = e(i);
-    var v = d.test(i);
-    return v || l.test(i) ? c(i.slice(2), v ? 2 : 8) : o.test(i) ? r : +i;
-  }
-  return H = f, H;
-}
-var X, me;
-function De() {
-  if (me) return X;
-  me = 1;
-  var e = Se(), t = ke(), n = Ae(), r = "Expected a function", o = Math.max, d = Math.min;
-  function l(c, f, i) {
-    var m, v, y, g, b, h, S = 0, q = !1, T = !1, O = !0;
-    if (typeof c != "function")
-      throw new TypeError(r);
-    f = n(f) || 0, e(i) && (q = !!i.leading, T = "maxWait" in i, y = T ? o(n(i.maxWait) || 0, f) : y, O = "trailing" in i ? !!i.trailing : O);
-    function w(s) {
-      var _ = m, R = v;
-      return m = v = void 0, S = s, g = c.apply(R, _), g;
-    }
-    function C(s) {
-      return S = s, b = setTimeout(a, f), q ? w(s) : g;
-    }
-    function j(s) {
-      var _ = s - h, R = s - S, Q = f - _;
-      return T ? d(Q, y - R) : Q;
-    }
-    function E(s) {
-      var _ = s - h, R = s - S;
-      return h === void 0 || _ >= f || _ < 0 || T && R >= y;
-    }
-    function a() {
-      var s = t();
-      if (E(s))
-        return u(s);
-      b = setTimeout(a, j(s));
-    }
-    function u(s) {
-      return b = void 0, O && m ? w(s) : (m = v = void 0, g);
-    }
-    function k() {
-      b !== void 0 && clearTimeout(b), S = 0, m = h = v = b = void 0;
-    }
-    function we() {
-      return b === void 0 ? g : u(t());
-    }
-    function B() {
-      var s = t(), _ = E(s);
-      if (m = arguments, v = this, h = s, _) {
-        if (b === void 0)
-          return C(h);
-        if (T)
-          return clearTimeout(b), b = setTimeout(a, f), w(h);
+    var result = nativeObjectToString.call(value);
+    if (unmasked) {
+      if (isOwn) {
+        value[symToStringTag] = tag;
+      } else {
+        delete value[symToStringTag];
       }
-      return b === void 0 && (b = setTimeout(a, f)), g;
     }
-    return B.cancel = k, B.flush = we, B;
+    return result;
   }
-  return X = l, X;
+  _getRawTag = getRawTag;
+  return _getRawTag;
 }
-var Me = De();
-const Z = /* @__PURE__ */ Ie(Me), I = (e, t, n) => Math.abs(e - t) <= n, Ue = typeof window > "u", ge = !Ue, Fe = { class: "vs-carousel" }, Ve = ["aria-label", "disabled"], ze = ["aria-label", "disabled"], He = 100, he = 410, Xe = {
+var _objectToString;
+var hasRequired_objectToString;
+function require_objectToString() {
+  if (hasRequired_objectToString) return _objectToString;
+  hasRequired_objectToString = 1;
+  var objectProto = Object.prototype;
+  var nativeObjectToString = objectProto.toString;
+  function objectToString(value) {
+    return nativeObjectToString.call(value);
+  }
+  _objectToString = objectToString;
+  return _objectToString;
+}
+var _baseGetTag;
+var hasRequired_baseGetTag;
+function require_baseGetTag() {
+  if (hasRequired_baseGetTag) return _baseGetTag;
+  hasRequired_baseGetTag = 1;
+  var Symbol = require_Symbol(), getRawTag = require_getRawTag(), objectToString = require_objectToString();
+  var nullTag = "[object Null]", undefinedTag = "[object Undefined]";
+  var symToStringTag = Symbol ? Symbol.toStringTag : void 0;
+  function baseGetTag(value) {
+    if (value == null) {
+      return value === void 0 ? undefinedTag : nullTag;
+    }
+    return symToStringTag && symToStringTag in Object(value) ? getRawTag(value) : objectToString(value);
+  }
+  _baseGetTag = baseGetTag;
+  return _baseGetTag;
+}
+var isObjectLike_1;
+var hasRequiredIsObjectLike;
+function requireIsObjectLike() {
+  if (hasRequiredIsObjectLike) return isObjectLike_1;
+  hasRequiredIsObjectLike = 1;
+  function isObjectLike(value) {
+    return value != null && typeof value == "object";
+  }
+  isObjectLike_1 = isObjectLike;
+  return isObjectLike_1;
+}
+var isSymbol_1;
+var hasRequiredIsSymbol;
+function requireIsSymbol() {
+  if (hasRequiredIsSymbol) return isSymbol_1;
+  hasRequiredIsSymbol = 1;
+  var baseGetTag = require_baseGetTag(), isObjectLike = requireIsObjectLike();
+  var symbolTag = "[object Symbol]";
+  function isSymbol(value) {
+    return typeof value == "symbol" || isObjectLike(value) && baseGetTag(value) == symbolTag;
+  }
+  isSymbol_1 = isSymbol;
+  return isSymbol_1;
+}
+var toNumber_1;
+var hasRequiredToNumber;
+function requireToNumber() {
+  if (hasRequiredToNumber) return toNumber_1;
+  hasRequiredToNumber = 1;
+  var baseTrim = require_baseTrim(), isObject = requireIsObject(), isSymbol = requireIsSymbol();
+  var NAN = 0 / 0;
+  var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
+  var reIsBinary = /^0b[01]+$/i;
+  var reIsOctal = /^0o[0-7]+$/i;
+  var freeParseInt = parseInt;
+  function toNumber(value) {
+    if (typeof value == "number") {
+      return value;
+    }
+    if (isSymbol(value)) {
+      return NAN;
+    }
+    if (isObject(value)) {
+      var other = typeof value.valueOf == "function" ? value.valueOf() : value;
+      value = isObject(other) ? other + "" : other;
+    }
+    if (typeof value != "string") {
+      return value === 0 ? value : +value;
+    }
+    value = baseTrim(value);
+    var isBinary = reIsBinary.test(value);
+    return isBinary || reIsOctal.test(value) ? freeParseInt(value.slice(2), isBinary ? 2 : 8) : reIsBadHex.test(value) ? NAN : +value;
+  }
+  toNumber_1 = toNumber;
+  return toNumber_1;
+}
+var debounce_1;
+var hasRequiredDebounce;
+function requireDebounce() {
+  if (hasRequiredDebounce) return debounce_1;
+  hasRequiredDebounce = 1;
+  var isObject = requireIsObject(), now = requireNow(), toNumber = requireToNumber();
+  var FUNC_ERROR_TEXT = "Expected a function";
+  var nativeMax = Math.max, nativeMin = Math.min;
+  function debounce2(func, wait, options) {
+    var lastArgs, lastThis, maxWait, result, timerId, lastCallTime, lastInvokeTime = 0, leading = false, maxing = false, trailing = true;
+    if (typeof func != "function") {
+      throw new TypeError(FUNC_ERROR_TEXT);
+    }
+    wait = toNumber(wait) || 0;
+    if (isObject(options)) {
+      leading = !!options.leading;
+      maxing = "maxWait" in options;
+      maxWait = maxing ? nativeMax(toNumber(options.maxWait) || 0, wait) : maxWait;
+      trailing = "trailing" in options ? !!options.trailing : trailing;
+    }
+    function invokeFunc(time) {
+      var args = lastArgs, thisArg = lastThis;
+      lastArgs = lastThis = void 0;
+      lastInvokeTime = time;
+      result = func.apply(thisArg, args);
+      return result;
+    }
+    function leadingEdge(time) {
+      lastInvokeTime = time;
+      timerId = setTimeout(timerExpired, wait);
+      return leading ? invokeFunc(time) : result;
+    }
+    function remainingWait(time) {
+      var timeSinceLastCall = time - lastCallTime, timeSinceLastInvoke = time - lastInvokeTime, timeWaiting = wait - timeSinceLastCall;
+      return maxing ? nativeMin(timeWaiting, maxWait - timeSinceLastInvoke) : timeWaiting;
+    }
+    function shouldInvoke(time) {
+      var timeSinceLastCall = time - lastCallTime, timeSinceLastInvoke = time - lastInvokeTime;
+      return lastCallTime === void 0 || timeSinceLastCall >= wait || timeSinceLastCall < 0 || maxing && timeSinceLastInvoke >= maxWait;
+    }
+    function timerExpired() {
+      var time = now();
+      if (shouldInvoke(time)) {
+        return trailingEdge(time);
+      }
+      timerId = setTimeout(timerExpired, remainingWait(time));
+    }
+    function trailingEdge(time) {
+      timerId = void 0;
+      if (trailing && lastArgs) {
+        return invokeFunc(time);
+      }
+      lastArgs = lastThis = void 0;
+      return result;
+    }
+    function cancel() {
+      if (timerId !== void 0) {
+        clearTimeout(timerId);
+      }
+      lastInvokeTime = 0;
+      lastArgs = lastCallTime = lastThis = timerId = void 0;
+    }
+    function flush() {
+      return timerId === void 0 ? result : trailingEdge(now());
+    }
+    function debounced() {
+      var time = now(), isInvoking = shouldInvoke(time);
+      lastArgs = arguments;
+      lastThis = this;
+      lastCallTime = time;
+      if (isInvoking) {
+        if (timerId === void 0) {
+          return leadingEdge(lastCallTime);
+        }
+        if (maxing) {
+          clearTimeout(timerId);
+          timerId = setTimeout(timerExpired, wait);
+          return invokeFunc(lastCallTime);
+        }
+      }
+      if (timerId === void 0) {
+        timerId = setTimeout(timerExpired, wait);
+      }
+      return result;
+    }
+    debounced.cancel = cancel;
+    debounced.flush = flush;
+    return debounced;
+  }
+  debounce_1 = debounce2;
+  return debounce_1;
+}
+var debounceExports = requireDebounce();
+const debounce = /* @__PURE__ */ getDefaultExportFromCjs(debounceExports);
+const approximatelyEqual = (v1, v2, epsilon) => {
+  return Math.abs(v1 - v2) <= epsilon;
+};
+const isSSR = typeof window === "undefined";
+const isClient = !isSSR;
+const _hoisted_1 = { class: "vs-carousel" };
+const _hoisted_2 = ["aria-label", "disabled"];
+const _hoisted_3 = ["aria-label", "disabled"];
+const SCROLL_DEBOUNCE = 100;
+const RESIZE_DEBOUNCE = 410;
+const _sfc_main$1 = /* @__PURE__ */ Object.assign({
+  name: "VsCarousel"
+}, {
   __name: "Carousel",
   props: {
     hideArrows: {
       type: Boolean,
-      default: !1
+      default: false
     },
     hideArrowsOnBound: {
       type: Boolean,
-      default: !1
+      default: false
     },
     tag: {
       type: String,
@@ -216,108 +325,182 @@ const Z = /* @__PURE__ */ Ie(Me), I = (e, t, n) => Math.abs(e - t) <= n, Ue = ty
     i18n: {
       type: Object,
       default: () => ({ slideLeft: "Slide left", slideRight: "Slide right" }),
-      validator: (e) => ["slideLeft", "slideRight"].every((n) => n in e)
+      validator: (config) => {
+        const translations = ["slideLeft", "slideRight"];
+        return translations.every((key) => key in config);
+      }
     }
   },
   emits: ["page", "bound-left", "bound-right"],
-  setup(e, { emit: t }) {
-    const n = t, r = p(null), o = p(!0), d = p(!1), l = p([]), c = p(0), f = p(0), i = p(0), m = p(0), v = p(0), y = p(null), g = () => {
-      r.value && (S(), q(), w(), O(), h());
-    }, b = Z(() => {
-      r.value && (w(), O(), h());
-    }, He), h = () => {
-      const a = I(v.value, 0, 5), u = I(
-        c.value - f.value,
-        v.value,
+  setup(__props, { emit: __emit }) {
+    const emit = __emit;
+    const vsWrapper = ref(null);
+    const boundLeft = ref(true);
+    const boundRight = ref(false);
+    const slidesWidth = ref([]);
+    const wrapperScrollWidth = ref(0);
+    const wrapperVisibleWidth = ref(0);
+    const currentPage = ref(0);
+    const previousPage = ref(0);
+    const currentPos = ref(0);
+    const observer = ref(null);
+    const calcOnInit = () => {
+      if (!vsWrapper.value) {
+        return;
+      }
+      calcWrapperWidth();
+      calcSlidesWidth();
+      calcCurrentPosition();
+      setCurrentPage();
+      calcBounds();
+    };
+    const calcOnScroll = debounce(() => {
+      if (!vsWrapper.value) {
+        return;
+      }
+      calcCurrentPosition();
+      setCurrentPage();
+      calcBounds();
+    }, SCROLL_DEBOUNCE);
+    const calcBounds = () => {
+      const isBoundLeft = approximatelyEqual(currentPos.value, 0, 5);
+      const isBoundRight = approximatelyEqual(
+        wrapperScrollWidth.value - wrapperVisibleWidth.value,
+        currentPos.value,
         5
       );
-      o.value = a, d.value = u;
-    }, S = () => {
-      c.value = r.value.scrollWidth, f.value = r.value.offsetWidth;
-    }, q = () => {
-      const a = [...r.value.children];
-      l.value = a.map((u) => ({
-        offsetLeft: u.offsetLeft,
-        width: u.offsetWidth
-      }));
-    }, T = () => I(
-      v.value + f.value,
-      c.value,
-      5
-    ) ? l.value.length - 1 : l.value.findIndex((a) => I(a.offsetLeft, v.value, 5)), O = (a) => {
-      const u = a !== void 0 ? a : T();
-      u < 0 || (m.value = i.value, i.value = u > 0 ? u : 0);
-    }, w = () => {
-      v.value = r.value.scrollLeft || 0;
-    }, C = () => {
-      y.value = new MutationObserver(() => {
-        g();
-      }), y.value.observe(
-        r.value,
-        { attributes: !0, childList: !0, characterData: !0, subtree: !0 }
-      );
-    }, j = (a) => {
-      E(i.value + a);
-    }, E = (a) => {
-      l.value[a] && (r.value.scrollTo({
-        left: l.value[a].offsetLeft,
-        behavior: "smooth"
-      }), O(a));
+      boundLeft.value = isBoundLeft;
+      boundRight.value = isBoundRight;
     };
-    return je(() => {
-      g(), ge && (window.addEventListener("resize", Z(g, he), !1), r.value.addEventListener("scroll", b), C());
-    }), Re(() => {
-      ge && (y.value.disconnect(), r.value.removeEventListener("scroll", b), window.removeEventListener("resize", Z(g, he), !1));
-    }), W(i, (a, u) => {
-      a !== u && n("page", { currentPage: a, previousPage: u });
-    }), W(o, (a) => {
-      a && n("bound-left", !0);
-    }), W(d, (a) => {
-      a && n("bound-right", !0);
-    }), (a, u) => (J(), qe("div", Fe, [
-      (J(), pe(ye(e.tag), {
-        ref_key: "vsWrapper",
-        ref: r,
-        class: "vs-carousel__wrapper"
-      }, {
-        default: _e(() => [
-          K(a.$slots, "default")
-        ]),
-        _: 3
-      }, 512)),
-      e.hideArrows ? Ee("", !0) : K(a.$slots, "arrows", {
-        key: 0,
-        changeSlide: j,
-        boundLeft: o.value,
-        boundRight: d.value
-      }, () => [
-        Y(ee("button", {
-          type: "button",
-          "aria-label": e.i18n.slideLeft,
-          disabled: o.value,
-          class: "vs-carousel__arrows vs-carousel__arrows--left",
-          onClick: u[0] || (u[0] = (k) => j(-1))
-        }, " ← ", 8, Ve), [
-          [te, e.hideArrowsOnBound ? !o.value : !0]
-        ]),
-        Y(ee("button", {
-          type: "button",
-          "aria-label": e.i18n.slideRight,
-          disabled: d.value,
-          class: "vs-carousel__arrows vs-carousel__arrows--right",
-          onClick: u[1] || (u[1] = (k) => j(1))
-        }, " → ", 8, ze), [
-          [te, e.hideArrowsOnBound ? !d.value : !0]
+    const calcWrapperWidth = () => {
+      wrapperScrollWidth.value = vsWrapper.value.scrollWidth;
+      wrapperVisibleWidth.value = vsWrapper.value.offsetWidth;
+    };
+    const calcSlidesWidth = () => {
+      const childNodes = [...vsWrapper.value.children];
+      slidesWidth.value = childNodes.map((node) => ({
+        offsetLeft: node.offsetLeft,
+        width: node.offsetWidth
+      }));
+    };
+    const getCurrentPage = () => {
+      if (approximatelyEqual(
+        currentPos.value + wrapperVisibleWidth.value,
+        wrapperScrollWidth.value,
+        5
+      )) {
+        return slidesWidth.value.length - 1;
+      }
+      return slidesWidth.value.findIndex((slide) => {
+        return approximatelyEqual(slide.offsetLeft, currentPos.value, 5);
+      });
+    };
+    const setCurrentPage = (index) => {
+      const newPage = index !== void 0 ? index : getCurrentPage();
+      if (newPage < 0) {
+        return;
+      }
+      previousPage.value = currentPage.value;
+      currentPage.value = newPage > 0 ? newPage : 0;
+    };
+    const calcCurrentPosition = () => {
+      currentPos.value = vsWrapper.value.scrollLeft || 0;
+    };
+    const attachMutationObserver = () => {
+      observer.value = new MutationObserver(() => {
+        calcOnInit();
+      });
+      observer.value.observe(
+        vsWrapper.value,
+        { attributes: true, childList: true, characterData: true, subtree: true }
+      );
+    };
+    const changeSlide = (direction) => {
+      goToSlide(currentPage.value + direction);
+    };
+    const goToSlide = (index) => {
+      if (!slidesWidth.value[index]) {
+        return;
+      }
+      vsWrapper.value.scrollTo({
+        left: slidesWidth.value[index].offsetLeft,
+        behavior: "smooth"
+      });
+      setCurrentPage(index);
+    };
+    onMounted(() => {
+      calcOnInit();
+      if (isClient) {
+        window.addEventListener("resize", debounce(calcOnInit, RESIZE_DEBOUNCE), false);
+        vsWrapper.value.addEventListener("scroll", calcOnScroll);
+        attachMutationObserver();
+      }
+    });
+    onBeforeUnmount(() => {
+      if (!isClient) {
+        return;
+      }
+      observer.value.disconnect();
+      vsWrapper.value.removeEventListener("scroll", calcOnScroll);
+      window.removeEventListener("resize", debounce(calcOnInit, RESIZE_DEBOUNCE), false);
+    });
+    watch(currentPage, (newPage, oldPage) => {
+      if (newPage !== oldPage) {
+        emit("page", { currentPage: newPage, previousPage: oldPage });
+      }
+    });
+    watch(boundLeft, (state) => {
+      if (state) {
+        emit("bound-left", true);
+      }
+    });
+    watch(boundRight, (state) => {
+      if (state) {
+        emit("bound-right", true);
+      }
+    });
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock("div", _hoisted_1, [
+        (openBlock(), createBlock(resolveDynamicComponent(__props.tag), {
+          ref_key: "vsWrapper",
+          ref: vsWrapper,
+          class: "vs-carousel__wrapper"
+        }, {
+          default: withCtx(() => [
+            renderSlot(_ctx.$slots, "default")
+          ]),
+          _: 3
+        }, 512)),
+        renderSlot(_ctx.$slots, "arrows", {
+          changeSlide,
+          boundLeft: boundLeft.value,
+          boundRight: boundRight.value
+        }, () => [
+          withDirectives(createElementVNode("button", {
+            type: "button",
+            "aria-label": __props.i18n.slideLeft,
+            disabled: boundLeft.value,
+            class: "vs-carousel__arrows vs-carousel__arrows--left",
+            onClick: _cache[0] || (_cache[0] = ($event) => changeSlide(-1))
+          }, " ← ", 8, _hoisted_2), [
+            [vShow, __props.hideArrowsOnBound ? !boundLeft.value : true]
+          ]),
+          withDirectives(createElementVNode("button", {
+            type: "button",
+            "aria-label": __props.i18n.slideRight,
+            disabled: boundRight.value,
+            class: "vs-carousel__arrows vs-carousel__arrows--right",
+            onClick: _cache[1] || (_cache[1] = ($event) => changeSlide(1))
+          }, " → ", 8, _hoisted_3), [
+            [vShow, __props.hideArrowsOnBound ? !boundRight.value : true]
+          ])
         ])
-      ])
-    ]));
+      ]);
+    };
   }
-}, Ze = (e, t) => {
-  const n = e.__vccOpts || e;
-  for (const [r, o] of t)
-    n[r] = o;
-  return n;
-}, Je = Le({
+});
+const _sfc_main = {
+  __name: "Slide",
   props: {
     /**
      * Custom tag
@@ -326,27 +509,31 @@ const Z = /* @__PURE__ */ Ie(Me), I = (e, t, n) => Math.abs(e - t) <= n, Ue = ty
       type: String,
       default: "li"
     }
+  },
+  setup(__props) {
+    return (_ctx, _cache) => {
+      return openBlock(), createBlock(resolveDynamicComponent(__props.tag), {
+        ref: "vsSlide",
+        class: "vs-carousel__slide",
+        tabindex: "0"
+      }, {
+        default: withCtx(() => [
+          renderSlot(_ctx.$slots, "default")
+        ]),
+        _: 3
+      }, 512);
+    };
   }
-});
-function Ke(e, t, n, r, o, d) {
-  return J(), pe(ye(e.tag), {
-    ref: "vsSlide",
-    class: "vs-carousel__slide",
-    tabindex: "0"
-  }, {
-    default: _e(() => [
-      K(e.$slots, "default")
-    ]),
-    _: 3
-  }, 512);
-}
-const Qe = /* @__PURE__ */ Ze(Je, [["render", Ke]]), et = {
-  install: (e) => {
-    e.component("Carousel", Xe), e.component("Slide", Qe);
+};
+const VueSnap = {
+  install: (app) => {
+    app.component("Carousel", _sfc_main$1);
+    app.component("Slide", _sfc_main);
   }
 };
 export {
-  Xe as Carousel,
-  Qe as Slide,
-  et as default
+  _sfc_main$1 as Carousel,
+  _sfc_main as Slide,
+  VueSnap,
+  VueSnap as default
 };
