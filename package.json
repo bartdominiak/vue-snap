@@ -11,7 +11,8 @@
   "scripts": {
     "release": "pnpm vite build -c ./config/vite.config.ts",
     "lint": "eslint 'src/**/*.{js,vue}' 'config/**/*.js'",
-    "test": "test --passWithNoTests"
+    "test": "test --passWithNoTests",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
