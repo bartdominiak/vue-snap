@@ -1,6 +1,7 @@
 {
   "name": "vue-snap",
   "version": "0.7.1",
+  "type": "module",
   "description": "Lightweight Carousel based on CSS Scroll Snap",
   "main": "dist/vue-snap.umd.js",
   "module": "dist/vue-snap.es.js",
@@ -10,7 +11,7 @@
   },
   "scripts": {
     "release": "pnpm vite build -c ./config/vite.config.ts",
-    "lint": "eslint 'src/**/*.{js,vue}' 'config/**/*.js'",
+    "lint": "eslint 'src/**/*.{js,vue}'",
     "test": "test --passWithNoTests",
     "prepare": "husky"
   },
@@ -40,9 +41,14 @@
     "seamless-scroll-polyfill": "^2.3.4"
   },
   "devDependencies": {
-    "vite": "^6.3.5",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.28.0",
     "@vitejs/plugin-vue": "^5.2.4",
-    "husky": "^9.1.7"
+    "eslint": "^9.28.0",
+    "eslint-plugin-vue": "^10.2.0",
+    "globals": "^16.2.0",
+    "husky": "^9.1.7",
+    "vite": "^6.3.5"
   },
   "husky": {
     "hooks": {
