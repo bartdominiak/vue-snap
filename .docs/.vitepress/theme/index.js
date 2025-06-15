@@ -8,8 +8,8 @@ import ImageCarousel from '../components/examples/ImageCarousel.vue';
 // import Slide from '../components/base/Slide.vue';
 // import Hero from '../components/Hero.vue';
 import DefaultTheme from 'vitepress/theme';
-import VueSnap from '../../../dist/vue-snap.es.js';
-import '../../../dist/vue-snap.css';
+import VueSnap from 'vue-snap';
+import 'vue-snap/dist/vue-snap.css';
 import './custom.css';
 import 'virtual:group-icons.css';
 
