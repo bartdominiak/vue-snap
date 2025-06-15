@@ -1,4 +1,4 @@
-import VueSnap from '../../../dist/vue-snap.es.js'
+import VueSnap from 'vue-snap'
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.use(VueSnap);

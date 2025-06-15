@@ -3,6 +3,6 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
   css: [
-    '../../dist/vue-snap.css'
+    'vue-snap/dist/vue-snap.css'
   ]
 })
