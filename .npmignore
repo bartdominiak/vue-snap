@@ -7,3 +7,6 @@ examples
 .eslintrc
 .editorconfig
 .gitignore
+.docs
+.github
+.husky

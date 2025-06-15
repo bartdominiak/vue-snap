@@ -84,7 +84,7 @@ export default {
 ```
 
 ## Examples usage
-Check out [examples](https://github.com/bartdominiak/vue-snap/tree/master/examples) folder for more details.
+Check out [examples](https://github.com/bartdominiak/vue-snap/tree/master/examples) folder for more details or [documentation](https://vue-snap.vercel.app/)
 
 ## Contribution
 If you have a feature request then feel free to start a new issue, or just grab existing one.
