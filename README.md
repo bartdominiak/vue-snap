@@ -1,6 +1,6 @@
 # vue-snap
 
-> Lightweight Carousel based on CSS Scroll Snap.
+> 🌿 Modern, lightweight Vue 3 Carousel powered by CSS Scroll Snap.
 
 <div align="left">
   <img width="750" heigth="250" src="/static/logo-snap.jpg" alt="vue-snap logo">
@@ -11,22 +11,11 @@
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/vue-snap)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/bartdominiak/vue-snap/blob/master/LICENSE.md)
 
-
-<a href="https://www.buymeacoffee.com/bartdominiak">
-  <img
-    src="https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-2.svg"
-    alt="Buy Me a Coffee"
-    height="32"
-  >
-</a>
-
 ## Table of Contents
 - [About](#about)
 - [Examples/Stories](#examplesstories)
-- [Pros](#pros)
 - [Installation & Usage](#installation--usage)
 - [Examples Usage](#examples-usage)
-- [Development](#development)
 - [Contribution](#contribution)
 - [License](#license)
 
@@ -34,8 +23,8 @@
 The idea behind this plugin is to create a fully responsive and well-optimized carousel. We’ve used modern CSS features like [Scroll Snapping](https://developers.google.com/web/updates/2018/07/css-scroll-snap), which allows the carousel wrapper to lock onto specific slides or positions after the user finishes scrolling. This approach helps us minimize the library size by including only the essential parts, and it avoids heavy JavaScript computations or CSS hacks.
 
 ## Examples/Stories
-- 📕 [Example](https://vue-snap.vercel.app)
-- 📺 [Props/Events/Slots](https://vue-snap.vercel.app/?path=/docs/carousel--default)
+- 📕 [Example](https://vue-snap.vercel.app/examples.html)
+- 📺 [Props/Events/Slots](https://vue-snap.vercel.app/api.html)
 
 - **Lightweight** – up to 5–10× smaller than other libraries
 - **No calculations or heavy logic** – performance-first approach
