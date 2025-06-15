@@ -6,7 +6,7 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [ vue() ],
   build: {
-    minify: false,
+    minify: true,
     lib: {
       entry: resolve(__dirname, '../src/entry.js'),
       name: 'VueSnap',

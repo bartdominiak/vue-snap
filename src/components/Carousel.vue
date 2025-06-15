@@ -44,7 +44,13 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount, watch } from 'vue';
 import debounce from 'lodash/debounce';
-import { approximatelyEqual, isClient } from '../utils';
+
+const approximatelyEqual = (v1, v2, epsilon) => {
+  return Math.abs(v1 - v2) <= epsilon
+}
+
+const isSSR = typeof window === 'undefined'
+const isClient = !isSSR
 
 const props = defineProps({
   hideArrows: {
@@ -231,30 +237,25 @@ defineOptions({
 });
 </script>
 
-<style>
+<style lang="scss">
 .vs-carousel {
-    position: relative;
-}
+  position: relative;
 
-.vs-carousel__wrapper {
+  // Resets CSS
+  ul.vs-carousel__wrapper,
+  ol.vs-carousel__wrapper { margin: 0; padding: 0; list-style: none;}
+  li.vs-carousel__slide   { margin: 0; padding: 0; }
+
+  &__wrapper {
     display: flex;
     overflow-x: scroll;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: none;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
+  }
 
-.vs-carousel__wrapper::-webkit-scrollbar {
-    display: none;
-}
-
-.vs-carousel__slide {
+  &__slide {
     flex: 0 0 100%;
     height: 100%;
     scroll-snap-align: start;
@@ -262,9 +263,10 @@ defineOptions({
     justify-content: center;
     align-items: center;
     outline: none;
-}
+    margin: 0;
+  }
 
-.vs-carousel__arrows {
+  &__arrows {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -273,17 +275,18 @@ defineOptions({
     height: 48px;
     padding: 0;
     cursor: pointer;
-}
 
-.vs-carousel__arrows:disabled {
-    cursor: not-allowed;
-}
+    &:disabled {
+      cursor: not-allowed;
+    }
 
-.vs-carousel__arrows--left {
-    left: 0;
-}
+    &--left {
+      left: 0;
+    }
 
-.vs-carousel__arrows--right {
-    right: 0;
+    &--right {
+      right: 0;
+    }
+  }
 }
 </style>

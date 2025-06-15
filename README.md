@@ -25,8 +25,6 @@
 - [Examples/Stories](#examplesstories)
 - [Pros](#pros)
 - [Installation & Usage](#installation--usage)
-  - [Vue@2 version](#vue2-version)
-  - [Vue@3 version](#vue3-version)
 - [Examples Usage](#examples-usage)
 - [Development](#development)
 - [Contribution](#contribution)
@@ -44,18 +42,19 @@ The idea behind this plugin is to create a fully responsive and well-optimized c
 - **Fully responsive** – most customization is handled via CSS (e.g. number of visible slides)
 - **ESM bundle with tree-shaking** – dead code is automatically eliminated
 - **SSR support** – works with frameworks like Nuxt.js 🎉 [More here](https://github.com/bartdominiak/vue-snap/tree/master/examples)
-- **Vue 3 & Vue 2 support** 🎉  [More here](#installation--usage)
+- **Vue 3 support** 🎉  [More here](#installation--usage)
 - **Modern browser support** – compatible with all common browsers [More here](https://caniuse.com/css-snappoints)
 
 ## Installation & Usage
-### `Vue@3` version
-#### Installation
+### Installation
 
 ```terminal
-  yarn add vue-snap@next // or npm install vue-snap@next
+  pnpm add vue-snap
+  yarn add vue-snap
+  npm install vue-snap
 ```
 
-#### Usage - Globally
+### Usage - Globally
 
 ```js
 import { createApp } from 'vue'
@@ -70,38 +69,7 @@ myApp.use(VueSnap)
 myApp.mount('#app')
 ```
 
-#### Usage - Locally
-
-```js
-import { Carousel, Slide } from 'vue-snap'
-import 'vue-snap/dist/vue-snap.css'
-
-export default {
-  components: {
-    Carousel,
-    Slide
-  }
-}
-```
-
-### `Vue@2` version
-#### Installation
-
-```terminal
-  yarn add vue-snap // or npm install vue-snap
-```
-
-#### Usage - Globally
-
-```js
-import Vue from 'vue'
-import VueSnap from 'vue-snap'
-import 'vue-snap/dist/vue-snap.css'
-
-Vue.use(VueSnap)
-```
-
-#### Usage - Locally
+### Usage - Locally
 
 ```js
 import { Carousel, Slide } from 'vue-snap'
@@ -117,23 +85,6 @@ export default {
 
 ## Examples usage
 Check out [examples](https://github.com/bartdominiak/vue-snap/tree/master/examples) folder for more details.
-
-## Development
-
-Install necessary depandancies
-```
-  yarn // or npm install
-```
-
-Run Storybook for development mode
-```
-  yarn storybook:dev
-```
-
-Release
-```
-  yarn release
-```
 
 ## Contribution
 If you have a feature request then feel free to start a new issue, or just grab existing one.
