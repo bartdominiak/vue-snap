@@ -1,8 +1,11 @@
 {
   "name": "docs",
   "version": "0.7.1",
-  "description": "Vite Press documentation",
+  "description": "Vue Snap documentation site",
   "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
   "devDependencies": {
     "lodash": "^4.17.21",
     "sass-embedded": "^1.89.2",

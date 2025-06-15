@@ -1,44 +1,50 @@
 <template>
-  <div>
-    <Carousel class="story-carousel story-carousel--colors">
-    <Slide class="story-carousel__slide">
+  <Carousel class="my-carousel">
+    <Slide>
       Slide 1
     </Slide>
-    <Slide class="story-carousel__slide">
+    <Slide>
       Slide 2
     </Slide>
-    <Slide class="story-carousel__slide">
+    <Slide>
       Slide 3
     </Slide>
-    <Slide class="story-carousel__slide">
+    <Slide>
       Slide 4
     </Slide>
-    <Slide class="story-carousel__slide">
+    <Slide>
       Slide 5
     </Slide>
   </Carousel>
-  </div>
 </template>
 
-<style>
+<style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
 
 body {
     font-family: 'Lato', sans-serif;
     font-weight: 300;
+    color: #fff;
 }
 
-.story-carousel .story-carousel__slide {
-  height: 200px;
-  font-size: 18px;
-  color: #fff;
-}
+.my-carousel {
+  .vs-carousel__wrapper {
+    height: 200px;
+  }
 
-.story-carousel--colors .story-carousel__slide:nth-child(n+1) {
-  background: #2e5c8a;
-}
+  .vs-carousel__slide {
+    &:nth-child(n+1) {
+      background: #18794e;
+    }
 
-.story-carousel--colors .story-carousel__slide:nth-child(2n+1) {
-  background: #336699;
+    &:nth-child(2n+1) {
+      background: #299764;
+    }
+  }
+
+  .vs-carousel__arrows {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
 }
 </style>

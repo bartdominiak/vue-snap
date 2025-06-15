@@ -6,7 +6,7 @@ Here are all the available props and events for the Vue Snap Carousel component:
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `hideArrows` | Boolean | `false` | Disable arrows |
-| `hideArrowsOnBOund` | Boolean | `false` | Disable arrows on bound |
+| `hideArrowsOnBound` | Boolean | `false` | Disable arrows on bound |
 | `tag` | string | `ul` | Custom tag |
 | `i18n` | object | `{ slideLeft: 'Slide left', slideRight: 'Slide right'}` | Transaltions |
 
