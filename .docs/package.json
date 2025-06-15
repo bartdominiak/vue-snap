@@ -16,6 +16,6 @@
   },
   "dependencies": {
     "vitepress-plugin-group-icons": "^1.6.0",
-    "vue-snap": "^1.0.2"
+    "vue-snap": "^1.0.3"
   }
 }

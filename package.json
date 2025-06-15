@@ -1,6 +1,6 @@
 {
   "name": "vue-snap",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "description": "Lightweight Carousel based on CSS Scroll Snap",
   "main": "dist/vue-snap.umd.js",
