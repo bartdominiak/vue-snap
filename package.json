@@ -1,22 +1,19 @@
 {
   "name": "vue-snap",
-  "version": "0.7.1",
+  "version": "1.0.0",
+  "type": "module",
   "description": "Lightweight Carousel based on CSS Scroll Snap",
   "main": "dist/vue-snap.umd.js",
-  "module": "dist/vue-snap.esm.js",
+  "module": "dist/vue-snap.es.js",
   "unpkg": "dist/vue-snap.js",
   "engines": {
-    "node": ">=12"
+    "node": ">=20"
   },
   "scripts": {
-    "release": "yarn release:browser && yarn release:es && yarn release:umd",
-    "release:browser": "rollup --config ./config/rollup/rollup.config.browser.js",
-    "release:es": "rollup --config ./config/rollup/rollup.config.es.js",
-    "release:umd": "rollup --config ./config/rollup/rollup.config.umd.js",
-    "storybook:dev": "start-storybook -s ./static -c ./config/storybook -p 4000",
-    "storybook:build": "build-storybook -s ./static -c ./config/storybook --quiet",
-    "lint": "eslint 'src/**/*.{js,vue}' 'config/**/*.js'",
-    "test": "test --passWithNoTests"
+    "release": "pnpm vite build -c ./config/vite.config.ts",
+    "lint": "eslint 'src/**/*.{js,vue}'",
+    "test": "test --passWithNoTests",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -36,44 +33,23 @@
   },
   "homepage": "https://github.com/bartdominiak/vue-snap#README",
   "peerDependencies": {
-    "vue": "^2.6.12"
+    "vue": "^3.5.16"
   },
   "dependencies": {
-    "core-js": "^3.8.0",
-    "lodash": "^4.17.20",
-    "seamless-scroll-polyfill": "^1.2.3"
+    "core-js": "^3.43.0",
+    "seamless-scroll-polyfill": "^2.3.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9",
-    "@babel/preset-env": "^7.12.7",
-    "@rollup/plugin-babel": "^5.2.2",
-    "@rollup/plugin-commonjs": "^17.0.0",
-    "@rollup/plugin-node-resolve": "^11.0.0",
-    "@storybook/addon-a11y": "^6.2.9",
-    "@storybook/addon-actions": "^6.2.9",
-    "@storybook/addon-controls": "^^6.2.9",
-    "@storybook/addon-docs": "^6.2.9",
-    "@storybook/addon-storysource": "^6.2.9",
-    "@storybook/addon-viewport": "^6.2.9",
-    "@storybook/vue": "^6.2.9",
-    "babel-loader": "^8.2.2",
-    "babel-preset-vue": "^2.0.2",
-    "eslint": "^7.15.0",
-    "eslint-plugin-vue": "^7.2.0",
-    "husky": "^4.3.4",
-    "react": "*",
-    "react-dom": "*",
-    "rollup": "^2.34.1",
-    "rollup-plugin-analyzer": "^3.3.0",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-vue": "^5.1.9",
-    "sass": "^1.30.0",
-    "sass-loader": "^10.1.0",
-    "vue-lazy": "^0.3.0",
-    "vue-loader": "^15.9.5",
-    "vue-style-loader": "^4.1.2",
-    "vue-template-compiler": "^2.6.12",
-    "vuepress": "^1.7.1"
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.28.0",
+    "@vitejs/plugin-vue": "^5.2.4",
+    "eslint": "^9.28.0",
+    "eslint-plugin-vue": "^10.2.0",
+    "globals": "^16.2.0",
+    "husky": "^9.1.7",
+    "lodash": "^4.17.21",
+    "sass-embedded": "^1.89.2",
+    "vite": "^6.3.5"
   },
   "husky": {
     "hooks": {

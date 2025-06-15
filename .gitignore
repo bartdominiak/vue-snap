@@ -6,7 +6,6 @@ node_modules
 dist/stats.json
 dist/report.html
 
-// Storybook
-storybook-static
-
 .vercel
+.docs/.vitepress/dist
+.docs/.vitepress/cache
