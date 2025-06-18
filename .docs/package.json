@@ -10,6 +10,8 @@
     "lodash": "^4.17.21",
     "sass-embedded": "^1.89.2",
     "vite": "^6.3.5",
+    "vite-plugin-html": "^3.2.2",
+    "vite-plugin-vue-devtools": "^7.7.7",
     "vitepress": "^1.6.3"
   },
   "scripts": {
@@ -19,6 +21,6 @@
   },
   "dependencies": {
     "vitepress-plugin-group-icons": "^1.6.0",
-    "vue-snap": "^1.0.3"
+    "vue-snap": "^1.1.0"
   }
 }

@@ -1,44 +1,14 @@
 <template>
   <Carousel class="my-carousel-multiple">
-    <Slide>
-      Slide 1
-    </Slide>
-    <Slide>
-      Slide 2
-    </Slide>
-    <Slide>
-      Slide 3
-    </Slide>
-    <Slide>
-      Slide 4
-    </Slide>
-    <Slide>
-      Slide 5
-    </Slide>
-    <Slide>
-      Slide 6
-    </Slide>
-    <Slide>
-      Slide 7
-    </Slide>
-    <Slide>
-      Slide 8
-    </Slide>
-    <Slide>
-      Slide 9
-    </Slide>
-    <Slide>
-      Slide 10
+    <Slide v-for="slide in slides" :key="slide">
+      Slide {{ slide + 1 }}
     </Slide>
   </Carousel>
 </template>
 
-<script>
-export default {
-  name: 'MyComponent',
-}
+<script setup>
+const slides = [ ...Array(18) ].map((_, i) => i);
 </script>
-
 
 <style lang="scss">
 .my-carousel-multiple {
@@ -50,14 +20,6 @@ export default {
   }
 
   .vs-carousel__slide {
-    &:nth-child(n+1) {
-      background: #18794e;
-    }
-
-    &:nth-child(2n+1) {
-      background: #299764;
-    }
-
     flex: 0 0 100%;
 
     @media (min-width: 500px) {
@@ -68,12 +30,12 @@ export default {
         flex: 0 0 33.33%;
     }
 
-    @media (min-width: 1024px) {
-        flex: 0 0 25%;
+    &:nth-child(n+1) {
+      background: #18794e;
     }
 
-    @media (min-width: 1280px) and (max-width: 1440px) {
-        flex: 0 0 20%;
+    &:nth-child(2n+1) {
+      background: #299764;
     }
   }
 

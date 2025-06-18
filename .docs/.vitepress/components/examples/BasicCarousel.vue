@@ -1,42 +1,13 @@
 <template>
   <Carousel class="custom-carousel">
-    <Slide>
-      Slide 1
-    </Slide>
-    <Slide>
-      Slide 2
-    </Slide>
-    <Slide>
-      Slide 3
-    </Slide>
-    <Slide>
-      Slide 4
-    </Slide>
-    <Slide>
-      Slide 5
-    </Slide>
-    <Slide>
-      Slide 6
-    </Slide>
-    <Slide>
-      Slide 7
-    </Slide>
-    <Slide>
-      Slide 8
-    </Slide>
-    <Slide>
-      Slide 9
-    </Slide>
-    <Slide>
-      Slide 10
+    <Slide v-for="slide in slides" :key="slide">
+      Slide {{ slide + 1 }}
     </Slide>
   </Carousel>
 </template>
 
-<script>
-export default {
-  name: 'MyComponent',
-}
+<script setup>
+const slides = [ ...Array(18) ].map((_, i) => i);
 </script>
 
 

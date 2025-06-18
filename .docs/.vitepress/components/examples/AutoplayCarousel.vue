@@ -1,7 +1,7 @@
 <template>
   <Carousel
-    ref="carousel03"
-    class="custom-carousel"
+    ref="carousel01"
+    class="my-carousel my-carousel-multiple-3"
     @left-bound="onLeftBounded"
     @right-bound="onRightBounded"
   >
@@ -15,7 +15,7 @@
 import { ref, onMounted } from 'vue';
 const slides = [ ...Array(12) ].map((_, i) => i);
 
-const carousel03 = ref();
+const carousel01 = ref();
 const direction = ref(1);
 
 const onLeftBounded = () => {
@@ -28,29 +28,31 @@ const onRightBounded = () => {
 
 onMounted(() => {
   setInterval(() => {
-    carousel03.value?.changeSlide(direction.value);
-  }, 2000);
+    carousel01.value?.changeSlide(direction.value);
+  }, 1500);
 });
 </script>
 
 <style lang="scss">
-.vs-carousel {
-    // Resets CSS
-  ul.vs-carousel__wrapper,
-  ol.vs-carousel__wrapper { margin: 0; padding: 0; list-style: none;}
-  li.vs-carousel__slide   { margin: 0; padding: 0; }
-}
-
-.custom-carousel {
+.my-carousel-multiple {
   color: #ffffff;
   font-size: 18px;
-  margin-bottom: 1px;
 
   .vs-carousel__wrapper {
     height: 200px;
   }
 
   .vs-carousel__slide {
+    flex: 0 0 100%;
+
+    @media (min-width: 500px) {
+        flex: 0 0 50%;
+    }
+
+    @media (min-width: 768px) {
+        flex: 0 0 33.33%;
+    }
+
     &:nth-child(n+1) {
       background: #18794e;
     }

@@ -41,7 +41,7 @@ export default defineConfig({
   },
   vite: {
     plugins: [
-      groupIconVitePlugin()
+      groupIconVitePlugin(),
     ],
   }
 })

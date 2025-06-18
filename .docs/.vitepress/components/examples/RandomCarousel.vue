@@ -1,9 +1,7 @@
 <template>
   <Carousel
-    ref="carousel03"
-    class="custom-carousel"
-    @left-bound="onLeftBounded"
-    @right-bound="onRightBounded"
+    ref="carousel01"
+    class="my-carousel my-carousel-multiple-3"
   >
     <Slide v-for="slide in slides" :key="slide">
       Slide {{ slide + 1 }}
@@ -15,42 +13,36 @@
 import { ref, onMounted } from 'vue';
 const slides = [ ...Array(12) ].map((_, i) => i);
 
-const carousel03 = ref();
-const direction = ref(1);
-
-const onLeftBounded = () => {
-  direction.value = 1;
-};
-
-const onRightBounded = () => {
-  direction.value = -1;
-};
+const carousel01 = ref();
 
 onMounted(() => {
   setInterval(() => {
-    carousel03.value?.changeSlide(direction.value);
-  }, 2000);
+    const randNumber = Math.floor(Math.random() * (slides.length - 1));
+    carousel01.value?.goToSlide(randNumber);
+  }, 1500);
 });
 </script>
 
 <style lang="scss">
-.vs-carousel {
-    // Resets CSS
-  ul.vs-carousel__wrapper,
-  ol.vs-carousel__wrapper { margin: 0; padding: 0; list-style: none;}
-  li.vs-carousel__slide   { margin: 0; padding: 0; }
-}
-
-.custom-carousel {
+.my-carousel-multiple {
   color: #ffffff;
   font-size: 18px;
-  margin-bottom: 1px;
 
   .vs-carousel__wrapper {
     height: 200px;
   }
 
   .vs-carousel__slide {
+    flex: 0 0 100%;
+
+    @media (min-width: 500px) {
+        flex: 0 0 50%;
+    }
+
+    @media (min-width: 768px) {
+        flex: 0 0 33.33%;
+    }
+
     &:nth-child(n+1) {
       background: #18794e;
     }

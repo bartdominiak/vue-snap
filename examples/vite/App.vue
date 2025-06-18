@@ -1,22 +1,14 @@
 <template>
   <Carousel class="my-carousel">
-    <Slide>
-      Slide 1
-    </Slide>
-    <Slide>
-      Slide 2
-    </Slide>
-    <Slide>
-      Slide 3
-    </Slide>
-    <Slide>
-      Slide 4
-    </Slide>
-    <Slide>
-      Slide 5
+    <Slide v-for="slide in slides" :key="slide">
+      Slide {{ slide + 1 }}
     </Slide>
   </Carousel>
 </template>
+
+<script setup>
+const slides = [ ...Array(18) ].map((_, i) => i);
+</script>
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
@@ -25,9 +17,12 @@ body {
     font-family: 'Lato', sans-serif;
     font-weight: 300;
     color: #fff;
+    margin: 1px;
 }
 
 .my-carousel {
+  margin-bottom: 1px;
+
   .vs-carousel__wrapper {
     height: 200px;
   }
@@ -44,7 +39,6 @@ body {
 
   .vs-carousel__arrows {
     background-color: rgba(255, 255, 255, 0.1);
-    color: #fff;
   }
 }
 </style>
