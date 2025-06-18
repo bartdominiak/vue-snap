@@ -43,21 +43,22 @@
 import { ref } from 'vue';
 import { useCarousel } from '../hooks/useCarousel';
 
-defineProps({
-  tag: {
-    type: String,
-    default: 'ul',
-  },
-  hideArrowsOnBound: {
-    type: Boolean,
-    default: false,
-  },
-  i18n: {
-    default: () =>
-      ({ slideLeft: 'Slide left', slideRight: 'Slide right' }),
-    validator: (config: any) =>
-      [ 'slideLeft', 'slideRight' ].every(key => key in config)
-  },
+interface CarouselProps {
+  tag?: string;
+  hideArrowsOnBound?: boolean;
+  i18n?: {
+    slideLeft: string;
+    slideRight: string;
+  };
+}
+
+withDefaults(defineProps<CarouselProps>(), {
+  tag: 'ul',
+  hideArrowsOnBound: false,
+  i18n: () => ({
+    slideLeft: 'Slide left',
+    slideRight: 'Slide right',
+  }),
 });
 
 const emit = defineEmits(['mounted', 'slideChange', 'leftBound', 'rightBound']);

@@ -1,23 +1,45 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { isClient, approximatelyEqual, debounce } from '../utils/helpers';
+import type { Ref } from 'vue';
 
 const SCROLL_DEBOUNCE = 100;
 
-export function useCarousel(emit: any, vsWrapper: any) {
+type CarouselEmits = {
+  (e: 'mounted', value: boolean): void;
+  (e: 'slideChange', index: number): void;
+  (e: 'leftBound', value: boolean): void;
+  (e: 'rightBound', value: boolean): void;
+};
+
+type Slide = {
+  offsetLeft: number;
+  offsetWidth: number;
+};
+
+export function useCarousel(emit: CarouselEmits, vsWrapper: Ref<HTMLElement | null>) {
   const isBoundLeft = ref(true);
   const isBoundRight = ref(false);
   const currentIndex = ref(0);
 
-  const getSlides = () =>
-    [ ...vsWrapper.value?.children ].map(({ offsetLeft, offsetWidth }: any) => ({
-      offsetLeft,
-      offsetWidth,
-    }));
+const getSlides = (): Slide[] => {
+  if (!vsWrapper.value) return [];
 
-  const getCurrentIndex = (slides: any[]) =>
-    slides.findIndex(({ offsetLeft }) => approximatelyEqual(offsetLeft, vsWrapper.value.scrollLeft, 10));
+  return Array.from(vsWrapper.value.children ?? []).map(
+    (child: Element): Slide => ({
+      offsetLeft: (child as HTMLElement).offsetLeft,
+      offsetWidth: (child as HTMLElement).offsetWidth,
+    })
+  );
+};
+
+  const getCurrentIndex = (slides: Slide[]) => {
+    if (!vsWrapper.value) return -1;
+    return slides.findIndex(({ offsetLeft }) => approximatelyEqual(offsetLeft, vsWrapper.value!.scrollLeft, 10));
+  }
 
   const updateBoundaries = (index: number) => {
+    if (!vsWrapper.value) return;
+
     const { scrollLeft, offsetWidth, scrollWidth } = vsWrapper.value;
 
     if (index !== currentIndex.value) {
@@ -53,7 +75,7 @@ export function useCarousel(emit: any, vsWrapper: any) {
     const nextIndex = currentIndex + direction;
     const targetSlide = slides[nextIndex];
 
-    if (!targetSlide) return;
+    if (!targetSlide || !vsWrapper.value) return;
 
     vsWrapper.value.scrollTo({ left: targetSlide.offsetLeft, behavior: 'smooth' });
     // emit('slideChange', nextIndex);
@@ -63,7 +85,7 @@ export function useCarousel(emit: any, vsWrapper: any) {
     const slides = getSlides();
     const targetSlide = slides[index];
 
-    if (!targetSlide) return;
+    if (!targetSlide || !vsWrapper.value) return;
 
     vsWrapper.value.scrollTo({ left: targetSlide.offsetLeft, behavior: 'smooth' });
     // emit('slideChange', index);
