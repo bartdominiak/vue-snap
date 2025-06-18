@@ -1,6 +1,6 @@
 {
   "name": "vue-snap",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "type": "module",
   "description": "Lightweight Carousel based on CSS Scroll Snap",
   "main": "dist/vue-snap.umd.js",
@@ -17,10 +17,9 @@
     "./dist/vue-snap.css": "./dist/vue-snap.css"
   },
   "scripts": {
-    "release": "pnpm vite build -c ./config/vite.config.ts",
+    "release": "vue-tsc -b && vite build -c ./config/vite.config.ts",
     "lint": "eslint 'src/**/*.{js,vue}'",
-    "test": "test --passWithNoTests",
-    "prepare": "husky"
+    "test": "test --passWithNoTests"
   },
   "repository": {
     "type": "git",
@@ -42,27 +41,18 @@
   "peerDependencies": {
     "vue": "^3.5.16"
   },
-  "dependencies": {
-    "core-js": "^3.43.0",
-    "seamless-scroll-polyfill": "^2.3.4"
-  },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.28.0",
+    "@eslint/js": "^9.29.0",
     "@vitejs/plugin-vue": "^5.2.4",
-    "eslint": "^9.28.0",
+    "@vue/tsconfig": "^0.7.0",
+    "eslint": "^9.29.0",
     "eslint-plugin-vue": "^10.2.0",
     "globals": "^16.2.0",
-    "husky": "^9.1.7",
     "lodash": "^4.17.21",
+    "typescript": "~5.8.3",
     "sass-embedded": "^1.89.2",
-    "vite": "^6.3.5"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint",
-      "pre-push": "yarn lint"
-    }
-  },
-  "browserslist": "> 0.25%, not dead"
+    "vite": "^6.3.5",
+    "vue-tsc": "^2.2.10"
+  }
 }

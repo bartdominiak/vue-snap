@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2025-06-21
+## Updated
+- Refactored core logic into a custom useCarousel hook
+- Removed unnecessary logic (e.g. resize events, lodash/debounce)
+- Simplified and optimized carousel calculations
+- Minified entire carousel bundle to just 4KB
+
 ## [1.0.3] - 2025-06-15
 
 ### Fixed

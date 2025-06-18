@@ -12,15 +12,13 @@
     <!-- @slot Slot for Arrows -->
     <slot
       name="arrows"
-      :change-slide="changeSlide"
-      :bound-left="boundLeft"
-      :bound-right="boundRight"
+      v-bind="{ changeSlide, isBoundLeft, isBoundRight }"
     >
       <button
-        v-show="hideArrowsOnBound ? !boundLeft : true"
         type="button"
+        v-show="hideArrowsOnBound ? !isBoundLeft : true"
         :aria-label="i18n.slideLeft"
-        :disabled="boundLeft"
+        :disabled="isBoundLeft"
         class="vs-carousel__arrows vs-carousel__arrows--left"
         @click="changeSlide(-1)"
       >
@@ -28,10 +26,10 @@
       </button>
 
       <button
-        v-show="hideArrowsOnBound ? !boundRight : true"
         type="button"
+        v-show="hideArrowsOnBound ? !isBoundRight : true"
         :aria-label="i18n.slideRight"
-        :disabled="boundRight"
+        :disabled="isBoundRight"
         class="vs-carousel__arrows vs-carousel__arrows--right"
         @click="changeSlide(1)"
       >
@@ -41,199 +39,35 @@
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted, onBeforeUnmount, watch } from 'vue';
-import debounce from 'lodash/debounce';
+<script setup lang="ts">
+import { ref } from 'vue';
+import { useCarousel } from '../hooks/useCarousel';
 
-const approximatelyEqual = (v1, v2, epsilon) => {
-  return Math.abs(v1 - v2) <= epsilon
-}
-
-const isSSR = typeof window === 'undefined'
-const isClient = !isSSR
-
-const props = defineProps({
-  hideArrows: {
-    type: Boolean,
-    default: false
+defineProps({
+  tag: {
+    type: String,
+    default: 'ul',
   },
   hideArrowsOnBound: {
     type: Boolean,
-    default: false
-  },
-  tag: {
-    type: String,
-    default: 'ul'
+    default: false,
   },
   i18n: {
-    type: Object,
-    default: () => ({ slideLeft: 'Slide left', slideRight: 'Slide right' }),
-    validator: config => {
-      const translations = [ 'slideLeft', 'slideRight' ];
-      return translations.every(key => key in config);
-    }
-  }
+    default: () =>
+      ({ slideLeft: 'Slide left', slideRight: 'Slide right' }),
+    validator: (config: any) =>
+      [ 'slideLeft', 'slideRight' ].every(key => key in config)
+  },
 });
 
-const emit = defineEmits(['page', 'bound-left', 'bound-right']);
-
-const SCROLL_DEBOUNCE = 100;
-const RESIZE_DEBOUNCE = 410;
-
+const emit = defineEmits(['mounted', 'slideChange', 'leftBound', 'rightBound']);
 const vsWrapper = ref(null);
-const boundLeft = ref(true);
-const boundRight = ref(false);
-const slidesWidth = ref([]);
-const wrapperScrollWidth = ref(0);
-const wrapperVisibleWidth = ref(0);
-const currentPage = ref(0);
-const previousPage = ref(0);
-const currentPos = ref(0);
-const observer = ref(null);
 
-const calcOnInit = () => {
-  if (!vsWrapper.value) {
-    return;
-  };
+const { changeSlide, goToSlide, isBoundLeft, isBoundRight } = useCarousel(emit, vsWrapper);
 
-  calcWrapperWidth();
-  calcSlidesWidth();
-  calcCurrentPosition();
-  setCurrentPage();
-  calcBounds();
-};
-
-const calcOnScroll = debounce(() => {
-  if (!vsWrapper.value) {
-    return;
-  }
-
-  calcCurrentPosition();
-  setCurrentPage();
-  calcBounds();
-}, SCROLL_DEBOUNCE);
-
-const calcBounds = () => {
-  const isBoundLeft = approximatelyEqual(currentPos.value, 0, 5);
-  const isBoundRight = approximatelyEqual(
-    wrapperScrollWidth.value - wrapperVisibleWidth.value,
-    currentPos.value,
-    5
-  );
-
-  boundLeft.value = isBoundLeft;
-  boundRight.value = isBoundRight;
-};
-
-const calcWrapperWidth = () => {
-  wrapperScrollWidth.value = vsWrapper.value.scrollWidth;
-  wrapperVisibleWidth.value = vsWrapper.value.offsetWidth;
-};
-
-const calcSlidesWidth = () => {
-  const childNodes = [...vsWrapper.value.children];
-  slidesWidth.value = childNodes.map(node => ({
-    offsetLeft: node.offsetLeft,
-    width: node.offsetWidth
-  }));
-};
-
-const getCurrentPage = () => {
-  if (approximatelyEqual(
-    currentPos.value + wrapperVisibleWidth.value,
-    wrapperScrollWidth.value,
-    5
-  )) {
-    return slidesWidth.value.length - 1;
-  }
-
-  return slidesWidth.value.findIndex(slide => {
-    return approximatelyEqual(slide.offsetLeft, currentPos.value, 5);
-  });
-};
-
-const setCurrentPage = (index) => {
-  const newPage = index !== undefined ? index : getCurrentPage();
-  if (newPage < 0) {
-    return;
-  }
-
-  previousPage.value = currentPage.value;
-  currentPage.value = newPage > 0 ? newPage : 0;
-};
-
-const calcCurrentPosition = () => {
-  currentPos.value = vsWrapper.value.scrollLeft || 0;
-};
-
-const attachMutationObserver = () => {
-  observer.value = new MutationObserver(() => {
-    calcOnInit();
-  });
-
-  observer.value.observe(
-    vsWrapper.value,
-    { attributes: true, childList: true, characterData: true, subtree: true }
-  );
-};
-
-const changeSlide = (direction) => {
-  goToSlide(currentPage.value + direction);
-};
-
-const goToSlide = (index) => {
-  if (!slidesWidth.value[index]) {
-    return;
-  }
-
-  vsWrapper.value.scrollTo({
-    left: slidesWidth.value[index].offsetLeft,
-    behavior: 'smooth'
-  });
-
-  setCurrentPage(index);
-};
-
-onMounted(() => {
-  calcOnInit();
-
-  if (isClient) {
-    window.addEventListener('resize', debounce(calcOnInit, RESIZE_DEBOUNCE), false);
-    vsWrapper.value.addEventListener('scroll', calcOnScroll);
-    attachMutationObserver();
-  }
-});
-
-onBeforeUnmount(() => {
-  if (!isClient) {
-    return;
-  }
-
-  observer.value.disconnect();
-  vsWrapper.value.removeEventListener('scroll', calcOnScroll);
-  window.removeEventListener('resize', debounce(calcOnInit, RESIZE_DEBOUNCE), false);
-});
-
-watch(currentPage, (newPage, oldPage) => {
-  if (newPage !== oldPage) {
-    emit('page', { currentPage: newPage, previousPage: oldPage });
-  }
-});
-
-watch(boundLeft, (state) => {
-  if (state) {
-    emit('bound-left', true);
-  }
-});
-
-watch(boundRight, (state) => {
-  if (state) {
-    emit('bound-right', true);
-  }
-});
-
-defineOptions({
-  name: 'VsCarousel'
+defineExpose({
+  changeSlide,
+  goToSlide,
 });
 </script>
 
@@ -253,6 +87,9 @@ defineOptions({
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     scrollbar-width: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
   &__slide {
@@ -264,6 +101,7 @@ defineOptions({
     align-items: center;
     outline: none;
     margin: 0;
+    padding: 0;
   }
 
   &__arrows {
@@ -275,6 +113,7 @@ defineOptions({
     height: 48px;
     padding: 0;
     cursor: pointer;
+    border: 0;
 
     &:disabled {
       cursor: not-allowed;
