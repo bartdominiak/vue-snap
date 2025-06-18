@@ -9,6 +9,6 @@ export const VueSnap = {
   }
 }
 
-export { Carousel, Slide }
+export { Carousel, Slide };
 
-export default VueSnap
+export default VueSnap;

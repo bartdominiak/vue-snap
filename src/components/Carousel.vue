@@ -15,8 +15,8 @@
       v-bind="{ changeSlide, isBoundLeft, isBoundRight }"
     >
       <button
-        type="button"
         v-show="hideArrowsOnBound ? !isBoundLeft : true"
+        type="button"
         :aria-label="i18n.slideLeft"
         :disabled="isBoundLeft"
         class="vs-carousel__arrows vs-carousel__arrows--left"
@@ -26,8 +26,8 @@
       </button>
 
       <button
-        type="button"
         v-show="hideArrowsOnBound ? !isBoundRight : true"
+        type="button"
         :aria-label="i18n.slideRight"
         :disabled="isBoundRight"
         class="vs-carousel__arrows vs-carousel__arrows--right"
@@ -75,11 +75,6 @@ defineExpose({
 <style lang="scss">
 .vs-carousel {
   position: relative;
-
-  // Resets CSS
-  ul.vs-carousel__wrapper,
-  ol.vs-carousel__wrapper { margin: 0; padding: 0; list-style: none;}
-  li.vs-carousel__slide   { margin: 0; padding: 0; }
 
   &__wrapper {
     display: flex;
