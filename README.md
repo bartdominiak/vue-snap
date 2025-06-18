@@ -11,6 +11,7 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/bartdominiak/vue-snap/blob/master/LICENSE.md)
 
 ## Table of Contents
+- [Docs](https://vue-snap.vercel.app/)
 - [About](#about)
 - [Examples/Stories](#examplesstories)
 - [Installation & Usage](#installation--usage)
@@ -25,7 +26,7 @@ The idea behind this plugin is to create a fully responsive and well-optimized c
 - 📕 [Example](https://vue-snap.vercel.app/examples.html)
 - 📺 [Props/Events/Slots](https://vue-snap.vercel.app/api.html)
 
-- **Lightweight** – up to 5–10× smaller than other libraries
+- **Lightweight** – Only 4KB, fast and efficient.
 - **No calculations or heavy logic** – performance-first approach
 - **Fully responsive** – most customization is handled via CSS (e.g. number of visible slides)
 - **ESM bundle with tree-shaking** – dead code is automatically eliminated
