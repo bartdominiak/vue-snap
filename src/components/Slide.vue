@@ -9,7 +9,8 @@
   </component>
 </template>
 
-<script setup>
+<script setup lang="ts">
+
 defineProps({
   /**
    * Custom tag

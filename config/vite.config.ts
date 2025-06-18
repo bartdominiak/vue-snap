@@ -8,7 +8,7 @@ export default defineConfig({
   build: {
     minify: true,
     lib: {
-      entry: resolve(__dirname, '../src/entry.js'),
+      entry: resolve(__dirname, '../src/entry.ts'),
       name: 'VueSnap',
       formats: ['es', 'umd', 'iife'],
       fileName: (format) => {
