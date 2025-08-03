@@ -9,6 +9,7 @@
 [![npm version](https://badge.fury.io/js/vue-snap.svg?icon=si%3Anpm)](https://badge.fury.io/js/vue-snap)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/vue-snap)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/bartdominiak/vue-snap/blob/master/LICENSE.md)
+[![MadeWithVueJs.com shield](https://madewithvuejs.com/storage/repo-shields/5792-shield.svg)](https://madewithvuejs.com/p/vuesnap/shield-link)
 
 ## Table of Contents
 - [Docs](https://vue-snap.vercel.app/)
