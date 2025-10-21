@@ -9,7 +9,7 @@
   "devDependencies": {
     "lodash": "^4.17.21",
     "sass-embedded": "^1.89.2",
-    "vite": "^6.3.5",
+    "vite": "^6.4.1",
     "vite-plugin-html": "^3.2.2",
     "vite-plugin-vue-devtools": "^7.7.7",
     "vitepress": "^1.6.3"
