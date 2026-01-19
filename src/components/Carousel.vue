@@ -15,7 +15,7 @@
       v-bind="{ changeSlide, isBoundLeft, isBoundRight }"
     >
       <button
-        v-show="hideArrowsOnBound ? !isBoundLeft : true"
+        v-show="hideArrows ? false : (hideArrowsOnBound ? !isBoundLeft : true)"
         type="button"
         :aria-label="i18n.slideLeft"
         :disabled="isBoundLeft"
@@ -26,7 +26,7 @@
       </button>
 
       <button
-        v-show="hideArrowsOnBound ? !isBoundRight : true"
+        v-show="hideArrows ? false : (hideArrowsOnBound ? !isBoundRight : true)"
         type="button"
         :aria-label="i18n.slideRight"
         :disabled="isBoundRight"
@@ -45,6 +45,7 @@ import { useCarousel } from '../hooks/useCarousel';
 
 interface CarouselProps {
   tag?: string;
+  hideArrows?: boolean;
   hideArrowsOnBound?: boolean;
   i18n?: {
     slideLeft: string;
@@ -54,6 +55,7 @@ interface CarouselProps {
 
 withDefaults(defineProps<CarouselProps>(), {
   tag: 'ul',
+  hideArrows: false,
   hideArrowsOnBound: false,
   i18n: () => ({
     slideLeft: 'Slide left',
