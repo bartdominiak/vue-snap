@@ -57,19 +57,15 @@ export function useCarousel(
     const atStart = index === 0;
     const atEnd = approximatelyEqual(scrollLeft + offsetWidth, scrollWidth, 10);
 
-    if (atStart) {
-      isBoundLeft.value = true;
+    if (atStart && !isBoundLeft.value) {
       emit('leftBound', true);
-    } else {
-      isBoundLeft.value = false;
     }
+    isBoundLeft.value = atStart;
 
-    if (atEnd) {
-      isBoundRight.value = true;
+    if (atEnd && !isBoundRight.value) {
       emit('rightBound', true);
-    } else {
-      isBoundRight.value = false;
     }
+    isBoundRight.value = atEnd;
   };
 
   const changeSlide = (direction: number) => {
