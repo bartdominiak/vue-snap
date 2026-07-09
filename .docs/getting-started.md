@@ -8,6 +8,10 @@
 
 ::: code-group
 
+```bash [bun]
+bun add vue-snap
+```
+
 ```bash [npm]
 npm install vue-snap
 ```
