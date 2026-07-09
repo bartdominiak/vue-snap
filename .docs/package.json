@@ -4,7 +4,7 @@
   "description": "Vue Snap documentation site",
   "type": "module",
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   },
   "devDependencies": {
     "lodash": "^4.18.1",
@@ -21,6 +21,6 @@
   },
   "dependencies": {
     "vitepress-plugin-group-icons": "^1.7.5",
-    "vue-snap": "^1.1.0"
+    "vue-snap": "^1.2.0"
   }
 }

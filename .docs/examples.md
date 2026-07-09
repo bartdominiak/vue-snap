@@ -172,42 +172,23 @@ This page demonstrates some of the examples of vue-snap usage.
 ## Autoplay
 <AutoplayCarousel />
 
+Set `autoplay` to advance slides on a timer, and `autoplay-interval` to control the delay. Autoplay loops back to the first slide after the last, and automatically pauses on hover.
+
 ::: code-group
 
 ```html [App.vue]
-<template>
-  <Carousel
-    ref="carousel01"
-    class="my-carousel"
-    @left-bound="onLeftBounded"
-    @right-bound="onRightBounded"
-  >
-    <Slide v-for="slide in slides" :key="slide">
-      Slide {{ slide + 1 }}
-    </Slide>
-  </Carousel>
-</template>
+<Carousel
+  class="my-carousel"
+  autoplay
+  :autoplay-interval="1500"
+>
+  <Slide v-for="slide in slides" :key="slide">
+    Slide {{ slide + 1 }}
+  </Slide>
+</Carousel>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-const slides = [ ...Array(12) ].map((_, i) => i);
-
-const carousel01 = ref();
-const direction = ref(1);
-
-const onLeftBounded = () => {
-  direction.value = 1;
-};
-
-const onRightBounded = () => {
-  direction.value = -1;
-};
-
-onMounted(() => {
-  setInterval(() => {
-    carousel01.value?.changeSlide(direction.value);
-  }, 1500);
-});
+  const slides = [ ...Array(12) ].map((_, i) => i);
 </script>
 ```
 
@@ -275,17 +256,23 @@ onMounted(() => {
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 const slides = [ ...Array(12) ].map((_, i) => i);
 
 const carousel01 = ref();
 
+let intervalId = null
+
 onMounted(() => {
-  setInterval(() => {
-    const randNumber = Math.floor(Math.random() * (slides.length - 1));
-    carousel01.value?.goToSlide(randNumber);
-  }, 1500);
-});
+  intervalId = setInterval(() => {
+    const randNumber = Math.floor(Math.random() * (slides.length - 1))
+    carousel01.value?.goToSlide(randNumber)
+  }, 1500)
+})
+
+onBeforeUnmount(() => {
+  clearInterval(intervalId)
+})
 </script>
 ```
 

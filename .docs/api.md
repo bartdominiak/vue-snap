@@ -1,35 +1,49 @@
 # API
 
-# Vue Snap Carousel – API
+## `Carousel`
 
-## Props
+### Props
 
-| Prop                | Type    | Default                                               | Description                                        |
-|---------------------|---------|-------------------------------------------------------|----------------------------------------------------|
-| `hideArrows`        | Boolean | `false`                                               | Hides navigation arrows                            |
-| `hideArrowsOnBound` | Boolean | `false`                                               | Hides arrows when at the first or last slide       |
-| `tag`               | String  | `'ul'`                                                | HTML tag used for the slide container              |
-| `i18n`              | Object  | `{ slideLeft: 'Slide left', slideRight: 'Slide right' }` | Translations for accessibility and tooltips        |
+| Prop                | Type    | Default                                                  | Description                                             |
+|----------------------|---------|-----------------------------------------------------------|-----------------------------------------------------------|
+| `tag`                | String  | `'ul'`                                                    | HTML tag used for the slide container                     |
+| `hideArrowsOnBound`  | Boolean | `false`                                                    | Hides the relevant arrow when the first/last slide is active |
+| `autoplay`           | Boolean | `false`                                                    | Automatically advances slides, looping back to the start  |
+| `autoplayInterval`   | Number  | `3000`                                                     | Delay in milliseconds between autoplay advances            |
+| `i18n`               | Object  | `{ slideLeft: 'Slide left', slideRight: 'Slide right' }`   | Accessible labels for the built-in arrow buttons            |
 
-## Events
+Hovering the carousel pauses autoplay; it resumes on mouse leave.
 
-| Event          | Payload    | Description                              |
-|----------------|------------|------------------------------------------|
-| `mounted`      | -          | Emitted when the carousel is mounted     |
-| `slide-change` | `Number`   | Emitted on slide change (new index)      |
-| `left-bound`   | `Boolean`  | Emitted when the first slide is reached  |
-| `right-bound`  | `Boolean`  | Emitted when the last slide is reached   |
+### Events
 
-## Slots
+| Event         | Payload   | Description                                              |
+|----------------|-----------|-------------------------------------------------------------|
+| `mounted`      | `Boolean` | Emitted once the carousel has mounted                      |
+| `slide-change` | `Number`  | Emitted when the active slide changes, with the new index  |
+| `left-bound`   | `Boolean` | Emitted when the first slide becomes active                |
+| `right-bound`  | `Boolean` | Emitted when the last slide becomes active                 |
+| `autoplay`     | `Boolean` | Emitted when autoplay pauses (`false`) or resumes (`true`) |
 
-| Slot      | Description                    |
-|-----------|--------------------------------|
-| `default` | Slot for slide content         |
-| `arrows`  | Slot for custom arrow controls |
+### Slots
 
-## Functions
+| Slot      | Props                                          | Description                        |
+|-----------|-------------------------------------------------|---------------------------------------|
+| `default` | –                                                | Slide content, typically `<Slide>` items |
+| `arrows`  | `{ changeSlide, isBoundLeft, isBoundRight }`     | Replace the default arrow buttons    |
 
-| Method        | Parameters                    | Description                                   |
-|---------------|-------------------------------|-----------------------------------------------|
-| `goToSlide`   | `index: Number`               | Navigates to a specific slide by index        |
-| `changeSlide` | `direction: Number (1 or -1)` | Moves forward (1) or backward (-1) one slide  |
+### Exposed methods
+
+Access these via a template ref on `<Carousel>`.
+
+| Method        | Parameters                    | Description                                    |
+|---------------|--------------------------------|--------------------------------------------------|
+| `goToSlide`   | `index: number`                | Scrolls to the slide at the given index          |
+| `changeSlide` | `direction: 1 \| -1`           | Moves forward (`1`) or backward (`-1`) one slide |
+
+## `Slide`
+
+### Props
+
+| Prop  | Type   | Default | Description                            |
+|-------|--------|---------|------------------------------------------|
+| `tag` | String | `'li'`  | HTML tag rendered for the slide element |

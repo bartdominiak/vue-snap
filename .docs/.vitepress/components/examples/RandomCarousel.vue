@@ -10,17 +10,23 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 const slides = [ ...Array(12) ].map((_, i) => i);
 
 const carousel01 = ref();
 
+let intervalId = null
+
 onMounted(() => {
-  setInterval(() => {
-    const randNumber = Math.floor(Math.random() * (slides.length - 1));
-    carousel01.value?.goToSlide(randNumber);
-  }, 1500);
-});
+  intervalId = setInterval(() => {
+    const randNumber = Math.floor(Math.random() * (slides.length - 1))
+    carousel01.value?.goToSlide(randNumber)
+  }, 1500)
+})
+
+onBeforeUnmount(() => {
+  clearInterval(intervalId)
+})
 </script>
 
 <style lang="scss">
