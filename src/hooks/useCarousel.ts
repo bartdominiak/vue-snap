@@ -57,28 +57,24 @@ export function useCarousel(
     const atStart = index === 0;
     const atEnd = approximatelyEqual(scrollLeft + offsetWidth, scrollWidth, 10);
 
-    if (atStart) {
-      isBoundLeft.value = true;
+    if (atStart && !isBoundLeft.value) {
       emit('leftBound', true);
-    } else {
-      isBoundLeft.value = false;
     }
+    isBoundLeft.value = atStart;
 
-    if (atEnd) {
-      isBoundRight.value = true;
+    if (atEnd && !isBoundRight.value) {
       emit('rightBound', true);
-    } else {
-      isBoundRight.value = false;
     }
+    isBoundRight.value = atEnd;
   };
 
   const changeSlide = (direction: number) => {
     const slides = getSlides();
-    const currentIndex = getCurrentIndex(slides);
+    const activeIndex = getCurrentIndex(slides);
 
-    if (currentIndex === -1) return;
+    if (activeIndex === -1) return;
 
-    const nextIndex = currentIndex + direction;
+    const nextIndex = activeIndex + direction;
     const targetSlide = slides[nextIndex];
 
     if (!targetSlide || !vsWrapper.value) return;
@@ -88,6 +84,7 @@ export function useCarousel(
       behavior: 'smooth',
     });
 
+    currentIndex.value = nextIndex;
     emit('slideChange', nextIndex);
   };
 
@@ -102,6 +99,7 @@ export function useCarousel(
       behavior: 'smooth',
     });
 
+    currentIndex.value = index;
     emit('slideChange', index);
   };
 
