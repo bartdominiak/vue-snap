@@ -39,6 +39,7 @@ The idea behind this plugin is to create a fully responsive and well-optimized c
 ### Installation
 
 ```terminal
+  bun add vue-snap
   pnpm add vue-snap
   yarn add vue-snap
   npm install vue-snap
