@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- `hideArrows` prop to hide both navigation arrows entirely
+- Bundled TypeScript declarations (`.d.ts`) and a `vue-snap/style.css` export
+
+### Changed
+- Publish only `dist` via a `files` allowlist, roughly halving package size
+
 ## [1.2.0] - 2026-07-09
 
 ### Fixed

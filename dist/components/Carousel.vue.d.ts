@@ -1,5 +1,6 @@
 interface CarouselProps {
     tag?: string;
+    hideArrows?: boolean;
     hideArrowsOnBound?: boolean;
     autoplay?: boolean;
     autoplayInterval?: number;
@@ -37,6 +38,7 @@ declare const __VLS_base: import('vue').DefineComponent<CarouselProps, {
     autoplay: boolean;
     autoplayInterval: number;
     tag: string;
+    hideArrows: boolean;
     hideArrowsOnBound: boolean;
     i18n: {
         slideLeft: string;

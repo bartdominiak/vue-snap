@@ -15,6 +15,7 @@
 
     <!-- @slot Slot for Arrows -->
     <slot
+      v-if="!hideArrows"
       name="arrows"
       v-bind="{ changeSlide, isBoundLeft, isBoundRight }"
     >
@@ -49,6 +50,7 @@ import { useCarousel } from '../hooks/useCarousel';
 
 interface CarouselProps {
   tag?: string;
+  hideArrows?: boolean;
   hideArrowsOnBound?: boolean;
   autoplay?: boolean;
   autoplayInterval?: number;
@@ -60,6 +62,7 @@ interface CarouselProps {
 
 const props = withDefaults(defineProps<CarouselProps>(), {
   tag: 'ul',
+  hideArrows: false,
   hideArrowsOnBound: false,
   autoplay: false,
   autoplayInterval: 3000,

@@ -1,7 +1,7 @@
-import { createBlock as e, createElementBlock as t, createElementVNode as n, defineComponent as r, guardReactiveProps as i, normalizeProps as a, onBeforeUnmount as o, onMounted as s, openBlock as c, ref as l, renderSlot as u, resolveDynamicComponent as d, toRef as f, unref as p, vShow as m, watch as h, withCtx as g, withDirectives as _ } from "vue";
+import { createBlock as e, createCommentVNode as t, createElementBlock as n, createElementVNode as r, defineComponent as i, mergeProps as a, normalizeProps as o, onBeforeUnmount as s, onMounted as c, openBlock as l, ref as u, renderSlot as d, resolveDynamicComponent as f, toRef as p, unref as m, vShow as h, watch as g, withCtx as _, withDirectives as v } from "vue";
 //#region src/utils/helpers.ts
-var v = typeof window < "u", y = (e, t, n = 5) => Math.abs(e - t) <= n;
-function b(e, t) {
+var y = typeof window < "u", b = (e, t, n = 5) => Math.abs(e - t) <= n;
+function x(e, t) {
 	let n = null, r = (...r) => {
 		n && clearTimeout(n), n = setTimeout(() => {
 			e(...r);
@@ -13,9 +13,9 @@ function b(e, t) {
 }
 //#endregion
 //#region src/hooks/useCarousel.ts
-var x = 100;
-function S(e, t, { autoplay: n, autoplayInterval: r }) {
-	let i = l(!0), a = l(!1), c = l(0), u = null, d = () => t.value ? Array.from(t.value.children ?? []).map((e) => ({
+var S = 100;
+function C(e, t, { autoplay: n, autoplayInterval: r }) {
+	let i = u(!0), a = u(!1), o = u(0), l = null, d = () => t.value ? Array.from(t.value.children ?? []).map((e) => ({
 		offsetLeft: e.offsetLeft,
 		offsetWidth: e.offsetWidth
 	})) : [], f = (e) => {
@@ -23,50 +23,50 @@ function S(e, t, { autoplay: n, autoplayInterval: r }) {
 		return !n || e.length === 0 ? -1 : e.reduce((t, r, i) => Math.abs(r.offsetLeft - n.scrollLeft) < Math.abs(e[t].offsetLeft - n.scrollLeft) ? i : t, 0);
 	}, p = (n) => {
 		if (!t.value) return;
-		let { scrollLeft: r, offsetWidth: o, scrollWidth: s } = t.value;
-		n !== c.value && e("slideChange", n), c.value = n;
-		let l = n === 0, u = y(r + o, s, 10);
+		let { scrollLeft: r, offsetWidth: s, scrollWidth: c } = t.value;
+		n !== o.value && e("slideChange", n), o.value = n;
+		let l = n === 0, u = b(r + s, c, 10);
 		l && !i.value && e("leftBound", !0), i.value = l, u && !a.value && e("rightBound", !0), a.value = u;
 	}, m = (n) => {
 		let r = d(), i = f(r);
 		if (i === -1) return;
-		let a = i + n, o = r[a];
-		!o || !t.value || (t.value.scrollTo({
-			left: o.offsetLeft,
+		let a = i + n, s = r[a];
+		!s || !t.value || (t.value.scrollTo({
+			left: s.offsetLeft,
 			behavior: "smooth"
-		}), c.value = a, e("slideChange", a), w());
-	}, g = (n) => {
+		}), o.value = a, e("slideChange", a), w());
+	}, h = (n) => {
 		let r = d()[n];
 		!r || !t.value || (t.value.scrollTo({
 			left: r.offsetLeft,
 			behavior: "smooth"
-		}), c.value = n, e("slideChange", n), w());
+		}), o.value = n, e("slideChange", n), w());
 	}, _ = () => {
-		a.value ? g(0) : m(1);
-	}, S = () => {
-		u &&= (clearInterval(u), null);
+		a.value ? h(0) : m(1);
+	}, v = () => {
+		l &&= (clearInterval(l), null);
 	}, C = () => {
-		S(), !(!v || !n.value) && (u = setInterval(_, r.value));
+		v(), !(!y || !n.value) && (l = setInterval(_, r.value));
 	}, w = () => {
 		n.value && C();
 	}, T = () => {
-		!n.value || !u || (S(), e("autoplay", !1));
+		!n.value || !l || (v(), e("autoplay", !1));
 	}, E = () => {
-		!n.value || u || (C(), e("autoplay", !0));
+		!n.value || l || (C(), e("autoplay", !0));
 	}, D = () => {
 		let e = d(), t = f(e);
 		t !== -1 && p(t);
-	}, O = b(D, x);
-	return h(n, (e) => {
-		e ? C() : S();
-	}), h(r, () => {
+	}, O = x(D, S);
+	return g(n, (e) => {
+		e ? C() : v();
+	}), g(r, () => {
 		n.value && C();
+	}), c(() => {
+		!y || !t.value || (D(), t.value.addEventListener("scroll", O), e("mounted", !0), C());
 	}), s(() => {
-		!v || !t.value || (D(), t.value.addEventListener("scroll", O), e("mounted", !0), C());
-	}), o(() => {
-		S(), !(!v || !t.value) && t.value.removeEventListener("scroll", O);
+		v(), !(!y || !t.value) && t.value.removeEventListener("scroll", O);
 	}), {
-		goToSlide: g,
+		goToSlide: h,
 		changeSlide: m,
 		isBoundLeft: i,
 		isBoundRight: a,
@@ -76,10 +76,14 @@ function S(e, t, { autoplay: n, autoplayInterval: r }) {
 }
 //#endregion
 //#region src/components/Carousel.vue?vue&type=script&setup=true&lang.ts
-var C = ["aria-label", "disabled"], w = ["aria-label", "disabled"], T = /* @__PURE__ */ r({
+var w = ["aria-label", "disabled"], T = ["aria-label", "disabled"], E = /* @__PURE__ */ i({
 	__name: "Carousel",
 	props: {
 		tag: { default: "ul" },
+		hideArrows: {
+			type: Boolean,
+			default: !1
+		},
 		hideArrowsOnBound: {
 			type: Boolean,
 			default: !1
@@ -101,61 +105,61 @@ var C = ["aria-label", "disabled"], w = ["aria-label", "disabled"], T = /* @__PU
 		"rightBound",
 		"autoplay"
 	],
-	setup(r, { expose: o, emit: s }) {
-		let h = r, v = s, y = l(null), { changeSlide: b, goToSlide: x, isBoundLeft: T, isBoundRight: E, pauseAutoplay: D, resumeAutoplay: O } = S(v, y, {
-			autoplay: f(h, "autoplay"),
-			autoplayInterval: f(h, "autoplayInterval")
+	setup(i, { expose: s, emit: c }) {
+		let g = i, y = c, b = u(null), { changeSlide: x, goToSlide: S, isBoundLeft: E, isBoundRight: D, pauseAutoplay: O, resumeAutoplay: k } = C(y, b, {
+			autoplay: p(g, "autoplay"),
+			autoplayInterval: p(g, "autoplayInterval")
 		});
-		return o({
-			changeSlide: b,
-			goToSlide: x
-		}), (r, o) => (c(), t("div", {
+		return s({
+			changeSlide: x,
+			goToSlide: S
+		}), (i, s) => (l(), n("div", {
 			class: "vs-carousel",
-			onMouseenter: o[2] ||= (...e) => p(D) && p(D)(...e),
-			onMouseleave: o[3] ||= (...e) => p(O) && p(O)(...e)
-		}, [(c(), e(d(r.tag), {
+			onMouseenter: s[2] ||= (...e) => m(O) && m(O)(...e),
+			onMouseleave: s[3] ||= (...e) => m(k) && m(k)(...e)
+		}, [(l(), e(f(i.tag), {
 			ref_key: "vsWrapper",
-			ref: y,
+			ref: b,
 			class: "vs-carousel__wrapper"
 		}, {
-			default: g(() => [u(r.$slots, "default")]),
+			default: _(() => [d(i.$slots, "default")]),
 			_: 3
-		}, 512)), u(r.$slots, "arrows", a(i({
-			changeSlide: p(b),
-			isBoundLeft: p(T),
-			isBoundRight: p(E)
-		})), () => [_(n("button", {
+		}, 512)), i.hideArrows ? t("", !0) : d(i.$slots, "arrows", o(a({ key: 0 }, {
+			changeSlide: m(x),
+			isBoundLeft: m(E),
+			isBoundRight: m(D)
+		})), () => [v(r("button", {
 			type: "button",
-			"aria-label": r.i18n.slideLeft,
-			disabled: p(T),
+			"aria-label": i.i18n.slideLeft,
+			disabled: m(E),
 			class: "vs-carousel__arrows vs-carousel__arrows--left",
-			onClick: o[0] ||= (e) => p(b)(-1)
-		}, " ← ", 8, C), [[m, !r.hideArrowsOnBound || !p(T)]]), _(n("button", {
+			onClick: s[0] ||= (e) => m(x)(-1)
+		}, " ← ", 8, w), [[h, !i.hideArrowsOnBound || !m(E)]]), v(r("button", {
 			type: "button",
-			"aria-label": r.i18n.slideRight,
-			disabled: p(E),
+			"aria-label": i.i18n.slideRight,
+			disabled: m(D),
 			class: "vs-carousel__arrows vs-carousel__arrows--right",
-			onClick: o[1] ||= (e) => p(b)(1)
-		}, " → ", 8, w), [[m, !r.hideArrowsOnBound || !p(E)]])])], 32));
+			onClick: s[1] ||= (e) => m(x)(1)
+		}, " → ", 8, T), [[h, !i.hideArrowsOnBound || !m(D)]])])], 32));
 	}
-}), E = /* @__PURE__ */ r({
+}), D = /* @__PURE__ */ i({
 	__name: "Slide",
 	props: { tag: {
 		type: String,
 		default: "li"
 	} },
 	setup(t) {
-		return (n, r) => (c(), e(d(t.tag), {
+		return (n, r) => (l(), e(f(t.tag), {
 			ref: "vsSlide",
 			class: "vs-carousel__slide",
 			tabindex: "0"
 		}, {
-			default: g(() => [u(n.$slots, "default")]),
+			default: _(() => [d(n.$slots, "default")]),
 			_: 3
 		}, 512));
 	}
-}), D = { install: (e) => {
-	e.component("Carousel", T), e.component("Slide", E);
+}), O = { install: (e) => {
+	e.component("Carousel", E), e.component("Slide", D);
 } };
 //#endregion
-export { T as Carousel, E as Slide, D as VueSnap, D as default };
+export { E as Carousel, D as Slide, O as VueSnap, O as default };
