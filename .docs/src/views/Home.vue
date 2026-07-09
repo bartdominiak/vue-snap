@@ -36,8 +36,22 @@
           </router-link>
         </div>
 
-        <div class="mx-auto mt-4 inline-flex items-center gap-2 font-mono text-sm text-ink/50">
-          <code class="rounded-lg bg-black/5 px-3 py-1.5">npm install vue-snap</code>
+        <div class="mx-auto mt-4 inline-flex items-center gap-1 rounded-lg bg-black/5 pl-3 pr-1 font-mono text-sm text-ink/50">
+          <code class="py-1.5">npm install vue-snap</code>
+          <button
+            type="button"
+            class="rounded-md p-1.5 text-ink/40 transition-colors hover:bg-black/5 hover:text-ink"
+            :aria-label="copied ? 'Copied' : 'Copy install command'"
+            @click="copyInstall"
+          >
+            <svg v-if="copied" viewBox="0 0 24 24" class="h-4 w-4 text-brand" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+            <svg v-else viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="9" y="9" width="13" height="13" rx="2" />
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+            </svg>
+          </button>
         </div>
       </div>
     </section>
@@ -86,7 +100,21 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import PreviewCarousel from '../demos/PreviewCarousel.vue';
+
+const INSTALL_COMMAND = 'npm install vue-snap';
+const COPIED_RESET_MS = 2000;
+
+const copied = ref(false);
+
+const copyInstall = async () => {
+  await navigator.clipboard.writeText(INSTALL_COMMAND);
+  copied.value = true;
+  setTimeout(() => {
+    copied.value = false;
+  }, COPIED_RESET_MS);
+};
 
 const features = [
   { title: 'Lightweight', details: 'Just 4KB, fast and efficient.', icon: '/mix-black.svg' },
