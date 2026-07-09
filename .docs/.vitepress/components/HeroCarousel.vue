@@ -1,5 +1,6 @@
 <template>
   <Carousel
+    autoplay
     ref="carousel03"
     class="custom-carousel"
     @left-bound="onLeftBounded"
@@ -25,12 +26,6 @@ const onLeftBounded = () => {
 const onRightBounded = () => {
   direction.value = -1;
 };
-
-onMounted(() => {
-  setInterval(() => {
-    carousel03.value?.changeSlide(direction.value);
-  }, 2000);
-});
 </script>
 
 <style lang="scss">

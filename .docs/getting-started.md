@@ -2,7 +2,7 @@
 
 ## Requirements
 - **Vue 3**
-- **Node.js v20+**
+- **Node.js v22+**
 
 ## Installation
 

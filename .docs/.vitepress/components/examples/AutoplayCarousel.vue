@@ -1,9 +1,8 @@
 <template>
   <Carousel
-    ref="carousel01"
     class="my-carousel my-carousel-multiple-3"
-    @left-bound="onLeftBounded"
-    @right-bound="onRightBounded"
+    autoplay
+    :autoplay-interval="1500"
   >
     <Slide v-for="slide in slides" :key="slide">
       Slide {{ slide + 1 }}
@@ -12,25 +11,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
 const slides = [ ...Array(12) ].map((_, i) => i);
-
-const carousel01 = ref();
-const direction = ref(1);
-
-const onLeftBounded = () => {
-  direction.value = 1;
-};
-
-const onRightBounded = () => {
-  direction.value = -1;
-};
-
-onMounted(() => {
-  setInterval(() => {
-    carousel01.value?.changeSlide(direction.value);
-  }, 1500);
-});
 </script>
 
 <style lang="scss">
