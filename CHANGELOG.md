@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-07-09
+
+### Fixed
+- Carousel boundary events (`leftBound`/`rightBound`) now fire once, edge-triggered, instead of repeatedly on every scroll tick
+- `changeSlide`/`goToSlide` no longer emit a duplicate `slideChange` for the same navigation
+
+### Changed
+- Migrated examples to Bun
+- Replaced ESLint with Biome
+
 ## [1.1.0] - 2025-06-21
 ## Updated
 - Refactored core logic into a custom useCarousel hook
