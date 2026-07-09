@@ -1,0 +1,30 @@
+version: 2
+updates:
+  # npm/bun dependencies across every package root
+  - package-ecosystem: "npm"
+    directories:
+      - "/"
+      - "/.docs"
+      - "/examples/*"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    groups:
+      # One grouped PR per folder instead of one per dependency
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
+      major:
+        update-types:
+          - "major"
+
+  # Keep GitHub Actions in the CI workflow up to date, grouped
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
