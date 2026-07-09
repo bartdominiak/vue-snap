@@ -64,7 +64,11 @@ withDefaults(defineProps<CarouselProps>(), {
 const emit = defineEmits(['mounted', 'slideChange', 'leftBound', 'rightBound']);
 const vsWrapper = ref(null);
 
-const { changeSlide, goToSlide, isBoundLeft, isBoundRight } = useCarousel(emit, vsWrapper);
+// biome-ignore lint/correctness/noUnusedVariables: used in <template> via v-bind spread
+const { changeSlide, goToSlide, isBoundLeft, isBoundRight } = useCarousel(
+  emit,
+  vsWrapper,
+);
 
 defineExpose({
   changeSlide,

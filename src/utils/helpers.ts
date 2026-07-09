@@ -1,12 +1,16 @@
-export const isClient = typeof window !== 'undefined'
+export const isClient = typeof window !== 'undefined';
 
-export const approximatelyEqual = (v1: number, v2: number, epsilon = 5): boolean => {
-  return Math.abs(v1 - v2) <= epsilon
-}
+export const approximatelyEqual = (
+  v1: number,
+  v2: number,
+  epsilon = 5,
+): boolean => {
+  return Math.abs(v1 - v2) <= epsilon;
+};
 
-export function debounce<T extends (...args: any[]) => void>(
+export function debounce<T extends (...args: unknown[]) => void>(
   fn: T,
-  wait: number
+  wait: number,
 ): {
   (...args: Parameters<T>): void;
   cancel: () => void;

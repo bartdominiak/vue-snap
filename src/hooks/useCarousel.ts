@@ -1,6 +1,6 @@
-import { ref, onMounted, onBeforeUnmount } from 'vue';
-import { isClient, approximatelyEqual, debounce } from '../utils/helpers';
 import type { Ref } from 'vue';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
+import { approximatelyEqual, debounce, isClient } from '../utils/helpers';
 
 const SCROLL_DEBOUNCE = 100;
 
@@ -16,26 +16,32 @@ type Slide = {
   offsetWidth: number;
 };
 
-export function useCarousel(emit: CarouselEmits, vsWrapper: Ref<HTMLElement | null>) {
+export function useCarousel(
+  emit: CarouselEmits,
+  vsWrapper: Ref<HTMLElement | null>,
+) {
   const isBoundLeft = ref(true);
   const isBoundRight = ref(false);
   const currentIndex = ref(0);
 
-const getSlides = (): Slide[] => {
-  if (!vsWrapper.value) return [];
+  const getSlides = (): Slide[] => {
+    if (!vsWrapper.value) return [];
 
-  return Array.from(vsWrapper.value.children ?? []).map(
-    (child: Element): Slide => ({
-      offsetLeft: (child as HTMLElement).offsetLeft,
-      offsetWidth: (child as HTMLElement).offsetWidth,
-    })
-  );
-};
+    return Array.from(vsWrapper.value.children ?? []).map(
+      (child: Element): Slide => ({
+        offsetLeft: (child as HTMLElement).offsetLeft,
+        offsetWidth: (child as HTMLElement).offsetWidth,
+      }),
+    );
+  };
 
   const getCurrentIndex = (slides: Slide[]) => {
-    if (!vsWrapper.value) return -1;
-    return slides.findIndex(({ offsetLeft }) => approximatelyEqual(offsetLeft, vsWrapper.value!.scrollLeft, 10));
-  }
+    const wrapper = vsWrapper.value;
+    if (!wrapper) return -1;
+    return slides.findIndex(({ offsetLeft }) =>
+      approximatelyEqual(offsetLeft, wrapper.scrollLeft, 10),
+    );
+  };
 
   const updateBoundaries = (index: number) => {
     if (!vsWrapper.value) return;
@@ -77,8 +83,12 @@ const getSlides = (): Slide[] => {
 
     if (!targetSlide || !vsWrapper.value) return;
 
-    vsWrapper.value.scrollTo({ left: targetSlide.offsetLeft, behavior: 'smooth' });
-    // emit('slideChange', nextIndex);
+    vsWrapper.value.scrollTo({
+      left: targetSlide.offsetLeft,
+      behavior: 'smooth',
+    });
+
+    emit('slideChange', nextIndex);
   };
 
   const goToSlide = (index: number) => {
@@ -87,8 +97,12 @@ const getSlides = (): Slide[] => {
 
     if (!targetSlide || !vsWrapper.value) return;
 
-    vsWrapper.value.scrollTo({ left: targetSlide.offsetLeft, behavior: 'smooth' });
-    // emit('slideChange', index);
+    vsWrapper.value.scrollTo({
+      left: targetSlide.offsetLeft,
+      behavior: 'smooth',
+    });
+
+    emit('slideChange', index);
   };
 
   const refreshSlideState = () => {
