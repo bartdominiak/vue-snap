@@ -3,7 +3,7 @@
     <NavBar />
 
     <main class="flex-1">
-      <component :is="view" />
+      <router-view />
     </main>
 
     <footer class="border-t border-black/5 bg-white">
@@ -27,20 +27,5 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
-import { currentPath } from './router';
 import NavBar from './components/NavBar.vue';
-import Home from './views/Home.vue';
-import GettingStarted from './views/GettingStarted.vue';
-import Examples from './views/Examples.vue';
-import Api from './views/Api.vue';
-
-const views = {
-  home: Home,
-  'getting-started': GettingStarted,
-  examples: Examples,
-  api: Api,
-};
-
-const view = computed(() => views[currentPath.value] ?? Home);
 </script>

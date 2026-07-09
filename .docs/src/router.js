@@ -1,22 +1,21 @@
-import { ref } from 'vue';
+import { createRouter, createWebHistory } from 'vue-router';
+import Home from './views/Home.vue';
+import GettingStarted from './views/GettingStarted.vue';
+import Examples from './views/Examples.vue';
+import Api from './views/Api.vue';
 
-// A deliberately tiny hash router — no dependency needed for four pages.
 export const routes = [
-  { path: 'home', label: 'Home' },
-  { path: 'getting-started', label: 'Getting Started' },
-  { path: 'examples', label: 'Examples' },
-  { path: 'api', label: 'API' },
+  { path: '/', name: 'home', component: Home, meta: { label: 'Home' } },
+  { path: '/getting-started', name: 'getting-started', component: GettingStarted, meta: { label: 'Getting Started' } },
+  { path: '/examples', name: 'examples', component: Examples, meta: { label: 'Examples' } },
+  { path: '/api', name: 'api', component: Api, meta: { label: 'API' } },
 ];
 
-const parseHash = () => window.location.hash.replace(/^#\/?/, '') || 'home';
+// Nav items for the header, derived from the route table.
+export const navLinks = routes.map(({ path, meta }) => ({ path, label: meta.label }));
 
-export const currentPath = ref(parseHash());
-
-window.addEventListener('hashchange', () => {
-  currentPath.value = parseHash();
-  window.scrollTo({ top: 0 });
+export const router = createRouter({
+  history: createWebHistory(),
+  routes,
+  scrollBehavior: () => ({ top: 0 }),
 });
-
-export const navigate = (path) => {
-  window.location.hash = `/${path}`;
-};

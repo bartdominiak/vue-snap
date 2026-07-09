@@ -1,27 +1,27 @@
 <template>
   <header class="sticky top-0 z-50 border-b border-black/5 bg-white/80 backdrop-blur">
     <nav class="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
-      <a
-        href="#/home"
+      <router-link
+        to="/"
         class="flex items-center gap-2.5 font-semibold tracking-tight text-ink"
       >
         <img src="/logo.svg" alt="" class="h-6 w-auto" />
         <span>Vue Snap</span>
-      </a>
+      </router-link>
 
       <!-- Desktop links -->
       <div class="hidden items-center gap-1 md:flex">
-        <a
-          v-for="route in routes"
-          :key="route.path"
-          :href="`#/${route.path}`"
+        <router-link
+          v-for="link in navLinks"
+          :key="link.path"
+          :to="link.path"
           class="rounded-lg px-3 py-1.5 text-sm font-medium transition-colors"
-          :class="currentPath === route.path
+          :class="route.path === link.path
             ? 'bg-brand/10 text-brand'
             : 'text-ink/60 hover:text-ink hover:bg-black/5'"
         >
-          {{ route.label }}
-        </a>
+          {{ link.label }}
+        </router-link>
 
         <a
           href="https://github.com/bartdominiak/vue-snap"
@@ -61,17 +61,17 @@
 
     <!-- Mobile menu -->
     <div v-show="open" class="border-t border-black/5 bg-white px-5 py-3 md:hidden">
-      <a
-        v-for="route in routes"
-        :key="route.path"
-        :href="`#/${route.path}`"
+      <router-link
+        v-for="link in navLinks"
+        :key="link.path"
+        :to="link.path"
         class="block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors"
-        :class="currentPath === route.path
+        :class="route.path === link.path
           ? 'bg-brand/10 text-brand'
           : 'text-ink/70 hover:bg-black/5'"
       >
-        {{ route.label }}
-      </a>
+        {{ link.label }}
+      </router-link>
 
       <a
         href="https://github.com/bartdominiak/vue-snap"
@@ -94,7 +94,10 @@
 
 <script setup>
 import { ref, computed, watch, onMounted, h } from 'vue';
-import { routes, currentPath } from '../router';
+import { useRoute } from 'vue-router';
+import { navLinks } from '../router';
+
+const route = useRoute();
 
 // Shown immediately and used as fallback if the GitHub API is unreachable.
 const FALLBACK_STARS = 169;
@@ -127,7 +130,7 @@ onMounted(async () => {
 const open = ref(false);
 
 // Close the menu after navigating to a new page.
-watch(currentPath, () => {
+watch(() => route.path, () => {
   open.value = false;
 });
 </script>

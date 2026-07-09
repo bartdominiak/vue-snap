@@ -30,7 +30,7 @@
     </div>
 
     <div class="mt-14 flex justify-end">
-      <a href="#/examples" class="text-sm font-semibold text-brand hover:underline">Examples →</a>
+      <router-link to="/examples" class="text-sm font-semibold text-brand hover:underline">Examples →</router-link>
     </div>
   </div>
 </template>

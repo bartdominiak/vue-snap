@@ -22,18 +22,18 @@
         </p>
 
         <div class="mt-8 flex items-center justify-center gap-3">
-          <a
-            href="#/getting-started"
+          <router-link
+            to="/getting-started"
             class="rounded-xl bg-brand px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-brand/25 transition-transform hover:-translate-y-0.5"
           >
             Get started
-          </a>
-          <a
-            href="#/examples"
+          </router-link>
+          <router-link
+            to="/examples"
             class="rounded-xl border border-black/10 bg-white px-5 py-3 text-sm font-semibold text-ink transition-colors hover:bg-black/5"
           >
             View examples
-          </a>
+          </router-link>
         </div>
 
         <div class="mx-auto mt-4 inline-flex items-center gap-2 font-mono text-sm text-ink/50">
