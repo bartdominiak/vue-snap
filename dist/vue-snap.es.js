@@ -1,146 +1,130 @@
-import { ref as S, onMounted as $, onBeforeUnmount as O, defineComponent as E, createElementBlock as A, openBlock as B, createBlock as I, renderSlot as b, resolveDynamicComponent as R, withCtx as T, normalizeProps as D, guardReactiveProps as x, unref as u, withDirectives as C, createElementVNode as w, vShow as L } from "vue";
-const p = typeof window < "u", y = (t, e, n = 5) => Math.abs(t - e) <= n;
-function M(t, e) {
-  let n = null;
-  const a = (...d) => {
-    n && clearTimeout(n), n = setTimeout(() => {
-      t(...d);
-    }, e);
-  };
-  return a.cancel = () => {
-    n && clearTimeout(n), n = null;
-  }, a;
+import { createBlock as e, createElementBlock as t, createElementVNode as n, defineComponent as r, guardReactiveProps as i, normalizeProps as a, onBeforeUnmount as o, onMounted as s, openBlock as c, ref as l, renderSlot as u, resolveDynamicComponent as d, unref as f, vShow as p, withCtx as m, withDirectives as h } from "vue";
+//#region src/utils/helpers.ts
+var g = typeof window < "u", _ = (e, t, n = 5) => Math.abs(e - t) <= n;
+function v(e, t) {
+	let n = null, r = (...r) => {
+		n && clearTimeout(n), n = setTimeout(() => {
+			e(...r);
+		}, t);
+	};
+	return r.cancel = () => {
+		n && clearTimeout(n), n = null;
+	}, r;
 }
-const N = 100;
-function P(t, e) {
-  const n = S(!0), a = S(!1), d = S(0), i = () => e.value ? Array.from(e.value.children ?? []).map(
-    (o) => ({
-      offsetLeft: o.offsetLeft,
-      offsetWidth: o.offsetWidth
-    })
-  ) : [], v = (o) => {
-    const s = e.value;
-    return s ? o.findIndex(
-      ({ offsetLeft: r }) => y(r, s.scrollLeft, 10)
-    ) : -1;
-  }, c = (o) => {
-    if (!e.value) return;
-    const { scrollLeft: s, offsetWidth: r, scrollWidth: m } = e.value;
-    o !== d.value && t("slideChange", o), d.value = o;
-    const _ = o === 0, k = y(s + r, m, 10);
-    _ ? (n.value = !0, t("leftBound", !0)) : n.value = !1, k ? (a.value = !0, t("rightBound", !0)) : a.value = !1;
-  }, h = (o) => {
-    const s = i(), r = v(s);
-    if (r === -1) return;
-    const m = r + o, _ = s[m];
-    !_ || !e.value || (e.value.scrollTo({
-      left: _.offsetLeft,
-      behavior: "smooth"
-    }), t("slideChange", m));
-  }, l = (o) => {
-    const r = i()[o];
-    !r || !e.value || (e.value.scrollTo({
-      left: r.offsetLeft,
-      behavior: "smooth"
-    }), t("slideChange", o));
-  }, f = () => {
-    const o = i(), s = v(o);
-    s !== -1 && c(s);
-  }, g = M(f, N);
-  return $(() => {
-    !p || !e.value || (f(), e.value.addEventListener("scroll", g), t("mounted", !0));
-  }), O(() => {
-    !p || !e.value || e.value.removeEventListener("scroll", g);
-  }), {
-    goToSlide: l,
-    changeSlide: h,
-    isBoundLeft: n,
-    isBoundRight: a
-  };
+//#endregion
+//#region src/hooks/useCarousel.ts
+var y = 100;
+function b(e, t) {
+	let n = l(!0), r = l(!1), i = l(0), a = () => t.value ? Array.from(t.value.children ?? []).map((e) => ({
+		offsetLeft: e.offsetLeft,
+		offsetWidth: e.offsetWidth
+	})) : [], c = (e) => {
+		let n = t.value;
+		return n ? e.findIndex(({ offsetLeft: e }) => _(e, n.scrollLeft, 10)) : -1;
+	}, u = (a) => {
+		if (!t.value) return;
+		let { scrollLeft: o, offsetWidth: s, scrollWidth: c } = t.value;
+		a !== i.value && e("slideChange", a), i.value = a;
+		let l = a === 0, u = _(o + s, c, 10);
+		l ? (n.value = !0, e("leftBound", !0)) : n.value = !1, u ? (r.value = !0, e("rightBound", !0)) : r.value = !1;
+	}, d = (n) => {
+		let r = a(), i = c(r);
+		if (i === -1) return;
+		let o = i + n, s = r[o];
+		!s || !t.value || (t.value.scrollTo({
+			left: s.offsetLeft,
+			behavior: "smooth"
+		}), e("slideChange", o));
+	}, f = (n) => {
+		let r = a()[n];
+		!r || !t.value || (t.value.scrollTo({
+			left: r.offsetLeft,
+			behavior: "smooth"
+		}), e("slideChange", n));
+	}, p = () => {
+		let e = a(), t = c(e);
+		t !== -1 && u(t);
+	}, m = v(p, y);
+	return s(() => {
+		!g || !t.value || (p(), t.value.addEventListener("scroll", m), e("mounted", !0));
+	}), o(() => {
+		!g || !t.value || t.value.removeEventListener("scroll", m);
+	}), {
+		goToSlide: f,
+		changeSlide: d,
+		isBoundLeft: n,
+		isBoundRight: r
+	};
 }
-const U = { class: "vs-carousel" }, V = ["aria-label", "disabled"], q = ["aria-label", "disabled"], z = /* @__PURE__ */ E({
-  __name: "Carousel",
-  props: {
-    tag: { default: "ul" },
-    hideArrowsOnBound: { type: Boolean, default: !1 },
-    i18n: { default: () => ({
-      slideLeft: "Slide left",
-      slideRight: "Slide right"
-    }) }
-  },
-  emits: ["mounted", "slideChange", "leftBound", "rightBound"],
-  setup(t, { expose: e, emit: n }) {
-    const a = n, d = S(null), { changeSlide: i, goToSlide: v, isBoundLeft: c, isBoundRight: h } = P(
-      a,
-      d
-    );
-    return e({
-      changeSlide: i,
-      goToSlide: v
-    }), (l, f) => (B(), A("div", U, [
-      (B(), I(R(l.tag), {
-        ref_key: "vsWrapper",
-        ref: d,
-        class: "vs-carousel__wrapper"
-      }, {
-        default: T(() => [
-          b(l.$slots, "default")
-        ]),
-        _: 3
-      }, 512)),
-      b(l.$slots, "arrows", D(x({ changeSlide: u(i), isBoundLeft: u(c), isBoundRight: u(h) })), () => [
-        C(w("button", {
-          type: "button",
-          "aria-label": l.i18n.slideLeft,
-          disabled: u(c),
-          class: "vs-carousel__arrows vs-carousel__arrows--left",
-          onClick: f[0] || (f[0] = (g) => u(i)(-1))
-        }, " ← ", 8, V), [
-          [L, l.hideArrowsOnBound ? !u(c) : !0]
-        ]),
-        C(w("button", {
-          type: "button",
-          "aria-label": l.i18n.slideRight,
-          disabled: u(h),
-          class: "vs-carousel__arrows vs-carousel__arrows--right",
-          onClick: f[1] || (f[1] = (g) => u(i)(1))
-        }, " → ", 8, q), [
-          [L, l.hideArrowsOnBound ? !u(h) : !0]
-        ])
-      ])
-    ]));
-  }
-}), j = /* @__PURE__ */ E({
-  __name: "Slide",
-  props: {
-    /**
-     * Custom tag
-     */
-    tag: {
-      type: String,
-      default: "li"
-    }
-  },
-  setup(t) {
-    return (e, n) => (B(), I(R(t.tag), {
-      ref: "vsSlide",
-      class: "vs-carousel__slide",
-      tabindex: "0"
-    }, {
-      default: T(() => [
-        b(e.$slots, "default")
-      ]),
-      _: 3
-    }, 512));
-  }
-}), G = {
-  install: (t) => {
-    t.component("Carousel", z), t.component("Slide", j);
-  }
-};
-export {
-  z as Carousel,
-  j as Slide,
-  G as VueSnap,
-  G as default
-};
+//#endregion
+//#region src/components/Carousel.vue?vue&type=script&setup=true&lang.ts
+var x = { class: "vs-carousel" }, S = ["aria-label", "disabled"], C = ["aria-label", "disabled"], w = /* @__PURE__ */ r({
+	__name: "Carousel",
+	props: {
+		tag: { default: "ul" },
+		hideArrowsOnBound: {
+			type: Boolean,
+			default: !1
+		},
+		i18n: { default: () => ({
+			slideLeft: "Slide left",
+			slideRight: "Slide right"
+		}) }
+	},
+	emits: [
+		"mounted",
+		"slideChange",
+		"leftBound",
+		"rightBound"
+	],
+	setup(r, { expose: o, emit: s }) {
+		let g = s, _ = l(null), { changeSlide: v, goToSlide: y, isBoundLeft: w, isBoundRight: T } = b(g, _);
+		return o({
+			changeSlide: v,
+			goToSlide: y
+		}), (r, o) => (c(), t("div", x, [(c(), e(d(r.tag), {
+			ref_key: "vsWrapper",
+			ref: _,
+			class: "vs-carousel__wrapper"
+		}, {
+			default: m(() => [u(r.$slots, "default")]),
+			_: 3
+		}, 512)), u(r.$slots, "arrows", a(i({
+			changeSlide: f(v),
+			isBoundLeft: f(w),
+			isBoundRight: f(T)
+		})), () => [h(n("button", {
+			type: "button",
+			"aria-label": r.i18n.slideLeft,
+			disabled: f(w),
+			class: "vs-carousel__arrows vs-carousel__arrows--left",
+			onClick: o[0] ||= (e) => f(v)(-1)
+		}, " ← ", 8, S), [[p, !r.hideArrowsOnBound || !f(w)]]), h(n("button", {
+			type: "button",
+			"aria-label": r.i18n.slideRight,
+			disabled: f(T),
+			class: "vs-carousel__arrows vs-carousel__arrows--right",
+			onClick: o[1] ||= (e) => f(v)(1)
+		}, " → ", 8, C), [[p, !r.hideArrowsOnBound || !f(T)]])])]));
+	}
+}), T = /* @__PURE__ */ r({
+	__name: "Slide",
+	props: { tag: {
+		type: String,
+		default: "li"
+	} },
+	setup(t) {
+		return (n, r) => (c(), e(d(t.tag), {
+			ref: "vsSlide",
+			class: "vs-carousel__slide",
+			tabindex: "0"
+		}, {
+			default: m(() => [u(n.$slots, "default")]),
+			_: 3
+		}, 512));
+	}
+}), E = { install: (e) => {
+	e.component("Carousel", w), e.component("Slide", T);
+} };
+//#endregion
+export { w as Carousel, T as Slide, E as VueSnap, E as default };
