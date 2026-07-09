@@ -10,15 +10,13 @@
 </template>
 
 <script setup lang="ts">
-
 defineProps({
   /**
    * Custom tag
    */
   tag: {
     type: String,
-    default: 'li'
-  }
+    default: 'li',
+  },
 });
-
 </script>

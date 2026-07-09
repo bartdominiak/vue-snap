@@ -1,53 +1,64 @@
-import { ref as _, onMounted as $, onBeforeUnmount as O, defineComponent as I, createElementBlock as A, openBlock as B, createBlock as R, renderSlot as b, resolveDynamicComponent as T, withCtx as k, normalizeProps as x, guardReactiveProps as D, unref as r, withDirectives as C, createElementVNode as L, vShow as w } from "vue";
-const y = typeof window < "u", E = (n, e, t = 5) => Math.abs(n - e) <= t;
-function M(n, e) {
-  let t = null;
-  const u = (...a) => {
-    t && clearTimeout(t), t = setTimeout(() => {
-      n(...a);
+import { ref as S, onMounted as $, onBeforeUnmount as O, defineComponent as E, createElementBlock as A, openBlock as B, createBlock as I, renderSlot as b, resolveDynamicComponent as R, withCtx as T, normalizeProps as D, guardReactiveProps as x, unref as u, withDirectives as C, createElementVNode as w, vShow as L } from "vue";
+const p = typeof window < "u", y = (t, e, n = 5) => Math.abs(t - e) <= n;
+function M(t, e) {
+  let n = null;
+  const a = (...d) => {
+    n && clearTimeout(n), n = setTimeout(() => {
+      t(...d);
     }, e);
   };
-  return u.cancel = () => {
-    t && clearTimeout(t), t = null;
-  }, u;
+  return a.cancel = () => {
+    n && clearTimeout(n), n = null;
+  }, a;
 }
 const N = 100;
-function P(n, e) {
-  const t = _(!0), u = _(!1), a = _(0), i = () => e.value ? Array.from(e.value.children ?? []).map(
+function P(t, e) {
+  const n = S(!0), a = S(!1), d = S(0), i = () => e.value ? Array.from(e.value.children ?? []).map(
     (o) => ({
       offsetLeft: o.offsetLeft,
       offsetWidth: o.offsetWidth
     })
-  ) : [], v = (o) => e.value ? o.findIndex(({ offsetLeft: l }) => E(l, e.value.scrollLeft, 10)) : -1, c = (o) => {
+  ) : [], v = (o) => {
+    const s = e.value;
+    return s ? o.findIndex(
+      ({ offsetLeft: r }) => y(r, s.scrollLeft, 10)
+    ) : -1;
+  }, c = (o) => {
     if (!e.value) return;
-    const { scrollLeft: l, offsetWidth: f, scrollWidth: S } = e.value;
-    o !== a.value && n("slideChange", o), a.value = o;
-    const g = o === 0, p = E(l + f, S, 10);
-    g ? (t.value = !0, n("leftBound", !0)) : t.value = !1, p ? (u.value = !0, n("rightBound", !0)) : u.value = !1;
+    const { scrollLeft: s, offsetWidth: r, scrollWidth: m } = e.value;
+    o !== d.value && t("slideChange", o), d.value = o;
+    const _ = o === 0, k = y(s + r, m, 10);
+    _ ? (n.value = !0, t("leftBound", !0)) : n.value = !1, k ? (a.value = !0, t("rightBound", !0)) : a.value = !1;
   }, h = (o) => {
-    const l = i(), f = v(l);
-    if (f === -1) return;
-    const S = f + o, g = l[S];
-    !g || !e.value || e.value.scrollTo({ left: g.offsetLeft, behavior: "smooth" });
-  }, s = (o) => {
-    const f = i()[o];
-    !f || !e.value || e.value.scrollTo({ left: f.offsetLeft, behavior: "smooth" });
-  }, d = () => {
-    const o = i(), l = v(o);
-    l !== -1 && c(l);
-  }, m = M(d, N);
+    const s = i(), r = v(s);
+    if (r === -1) return;
+    const m = r + o, _ = s[m];
+    !_ || !e.value || (e.value.scrollTo({
+      left: _.offsetLeft,
+      behavior: "smooth"
+    }), t("slideChange", m));
+  }, l = (o) => {
+    const r = i()[o];
+    !r || !e.value || (e.value.scrollTo({
+      left: r.offsetLeft,
+      behavior: "smooth"
+    }), t("slideChange", o));
+  }, f = () => {
+    const o = i(), s = v(o);
+    s !== -1 && c(s);
+  }, g = M(f, N);
   return $(() => {
-    !y || !e.value || (d(), e.value.addEventListener("scroll", m), n("mounted", !0));
+    !p || !e.value || (f(), e.value.addEventListener("scroll", g), t("mounted", !0));
   }), O(() => {
-    !y || !e.value || e.value.removeEventListener("scroll", m);
+    !p || !e.value || e.value.removeEventListener("scroll", g);
   }), {
-    goToSlide: s,
+    goToSlide: l,
     changeSlide: h,
-    isBoundLeft: t,
-    isBoundRight: u
+    isBoundLeft: n,
+    isBoundRight: a
   };
 }
-const U = { class: "vs-carousel" }, V = ["aria-label", "disabled"], q = ["aria-label", "disabled"], z = /* @__PURE__ */ I({
+const U = { class: "vs-carousel" }, V = ["aria-label", "disabled"], q = ["aria-label", "disabled"], z = /* @__PURE__ */ E({
   __name: "Carousel",
   props: {
     tag: { default: "ul" },
@@ -58,45 +69,48 @@ const U = { class: "vs-carousel" }, V = ["aria-label", "disabled"], q = ["aria-l
     }) }
   },
   emits: ["mounted", "slideChange", "leftBound", "rightBound"],
-  setup(n, { expose: e, emit: t }) {
-    const u = t, a = _(null), { changeSlide: i, goToSlide: v, isBoundLeft: c, isBoundRight: h } = P(u, a);
+  setup(t, { expose: e, emit: n }) {
+    const a = n, d = S(null), { changeSlide: i, goToSlide: v, isBoundLeft: c, isBoundRight: h } = P(
+      a,
+      d
+    );
     return e({
       changeSlide: i,
       goToSlide: v
-    }), (s, d) => (B(), A("div", U, [
-      (B(), R(T(s.tag), {
+    }), (l, f) => (B(), A("div", U, [
+      (B(), I(R(l.tag), {
         ref_key: "vsWrapper",
-        ref: a,
+        ref: d,
         class: "vs-carousel__wrapper"
       }, {
-        default: k(() => [
-          b(s.$slots, "default")
+        default: T(() => [
+          b(l.$slots, "default")
         ]),
         _: 3
       }, 512)),
-      b(s.$slots, "arrows", x(D({ changeSlide: r(i), isBoundLeft: r(c), isBoundRight: r(h) })), () => [
-        C(L("button", {
+      b(l.$slots, "arrows", D(x({ changeSlide: u(i), isBoundLeft: u(c), isBoundRight: u(h) })), () => [
+        C(w("button", {
           type: "button",
-          "aria-label": s.i18n.slideLeft,
-          disabled: r(c),
+          "aria-label": l.i18n.slideLeft,
+          disabled: u(c),
           class: "vs-carousel__arrows vs-carousel__arrows--left",
-          onClick: d[0] || (d[0] = (m) => r(i)(-1))
+          onClick: f[0] || (f[0] = (g) => u(i)(-1))
         }, " ← ", 8, V), [
-          [w, s.hideArrowsOnBound ? !r(c) : !0]
+          [L, l.hideArrowsOnBound ? !u(c) : !0]
         ]),
-        C(L("button", {
+        C(w("button", {
           type: "button",
-          "aria-label": s.i18n.slideRight,
-          disabled: r(h),
+          "aria-label": l.i18n.slideRight,
+          disabled: u(h),
           class: "vs-carousel__arrows vs-carousel__arrows--right",
-          onClick: d[1] || (d[1] = (m) => r(i)(1))
+          onClick: f[1] || (f[1] = (g) => u(i)(1))
         }, " → ", 8, q), [
-          [w, s.hideArrowsOnBound ? !r(h) : !0]
+          [L, l.hideArrowsOnBound ? !u(h) : !0]
         ])
       ])
     ]));
   }
-}), j = /* @__PURE__ */ I({
+}), j = /* @__PURE__ */ E({
   __name: "Slide",
   props: {
     /**
@@ -107,21 +121,21 @@ const U = { class: "vs-carousel" }, V = ["aria-label", "disabled"], q = ["aria-l
       default: "li"
     }
   },
-  setup(n) {
-    return (e, t) => (B(), R(T(n.tag), {
+  setup(t) {
+    return (e, n) => (B(), I(R(t.tag), {
       ref: "vsSlide",
       class: "vs-carousel__slide",
       tabindex: "0"
     }, {
-      default: k(() => [
+      default: T(() => [
         b(e.$slots, "default")
       ]),
       _: 3
     }, 512));
   }
 }), G = {
-  install: (n) => {
-    n.component("Carousel", z), n.component("Slide", j);
+  install: (t) => {
+    t.component("Carousel", z), t.component("Slide", j);
   }
 };
 export {
