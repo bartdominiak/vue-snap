@@ -70,11 +70,11 @@ export function useCarousel(
 
   const changeSlide = (direction: number) => {
     const slides = getSlides();
-    const currentIndex = getCurrentIndex(slides);
+    const activeIndex = getCurrentIndex(slides);
 
-    if (currentIndex === -1) return;
+    if (activeIndex === -1) return;
 
-    const nextIndex = currentIndex + direction;
+    const nextIndex = activeIndex + direction;
     const targetSlide = slides[nextIndex];
 
     if (!targetSlide || !vsWrapper.value) return;
@@ -84,6 +84,7 @@ export function useCarousel(
       behavior: 'smooth',
     });
 
+    currentIndex.value = nextIndex;
     emit('slideChange', nextIndex);
   };
 
@@ -98,6 +99,7 @@ export function useCarousel(
       behavior: 'smooth',
     });
 
+    currentIndex.value = index;
     emit('slideChange', index);
   };
 
