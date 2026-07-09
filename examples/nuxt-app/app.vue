@@ -25,6 +25,7 @@ body {
     font-family: 'Lato', sans-serif;
     font-weight: 300;
     color: #fff;
+    margin: 0;
 }
 
 .my-carousel {
