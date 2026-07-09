@@ -1,0 +1,118 @@
+@import 'tailwindcss';
+
+/* ---- Design tokens ------------------------------------------------------ */
+@theme {
+  --color-brand: #18794e;
+  --color-brand-soft: #299764;
+  --color-ink: #10231a;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background: #fbfdfb;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* ---- Carousel theming ---------------------------------------------------
+   vue-snap ships structural CSS only; the classes below are the project's
+   own presentation layer, shared by every demo. Individual demos tweak
+   slide sizing via their own wrapper class. */
+@layer components {
+  .demo-carousel .vs-carousel__wrapper {
+    height: 220px;
+    gap: 12px;
+    padding: 2px;
+  }
+
+  .demo-carousel .vs-carousel__slide {
+    border-radius: 16px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, var(--color-brand), var(--color-brand-soft));
+    box-shadow: 0 10px 25px -12px rgba(24, 121, 78, 0.55);
+  }
+
+  .demo-carousel .vs-carousel__slide:nth-child(2n) {
+    background: linear-gradient(135deg, var(--color-brand-soft), #3bb37b);
+  }
+
+  .demo-carousel .vs-carousel__arrows {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin: auto 10px;
+    border-radius: 9999px;
+    font-size: 1.1rem;
+    color: var(--color-brand);
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 6px 18px -6px rgba(16, 35, 26, 0.35);
+    backdrop-filter: blur(4px);
+    transition: transform 0.15s ease, opacity 0.15s ease;
+  }
+
+  .demo-carousel .vs-carousel__arrows:hover:not(:disabled) {
+    transform: scale(1.08);
+  }
+
+  .demo-carousel .vs-carousel__arrows:disabled {
+    opacity: 0.35;
+  }
+
+  /* Image demo: let pictures fill the slide instead of the gradient. */
+  .demo-carousel--images .vs-carousel__slide {
+    background: #eef2ef;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .demo-carousel--images .vs-carousel__slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Responsive slide widths, reused by multi-slide demos. */
+  .cols-3 .vs-carousel__slide {
+    flex: 0 0 100%;
+  }
+  @media (min-width: 500px) {
+    .cols-3 .vs-carousel__slide {
+      flex: 0 0 calc(50% - 6px);
+    }
+  }
+  @media (min-width: 768px) {
+    .cols-3 .vs-carousel__slide {
+      flex: 0 0 calc(33.33% - 8px);
+    }
+  }
+
+  .cols-4 .vs-carousel__slide {
+    flex: 0 0 100%;
+  }
+  @media (min-width: 500px) {
+    .cols-4 .vs-carousel__slide {
+      flex: 0 0 calc(50% - 6px);
+    }
+  }
+  @media (min-width: 768px) {
+    .cols-4 .vs-carousel__slide {
+      flex: 0 0 calc(33.33% - 8px);
+    }
+  }
+  @media (min-width: 1024px) {
+    .cols-4 .vs-carousel__slide {
+      flex: 0 0 calc(25% - 9px);
+    }
+  }
+}

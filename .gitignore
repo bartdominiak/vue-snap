@@ -7,5 +7,4 @@ dist/stats.json
 dist/report.html
 
 .vercel
-.docs/.vitepress/dist
-.docs/.vitepress/cache
+.docs/dist

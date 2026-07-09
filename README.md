@@ -31,6 +31,7 @@ The idea behind this plugin is to create a fully responsive and well-optimized c
 - **No calculations or heavy logic** – performance-first approach
 - **Fully responsive** – most customization is handled via CSS (e.g. number of visible slides)
 - **ESM bundle with tree-shaking** – dead code is automatically eliminated
+- **TypeScript support** – ships with bundled type declarations out of the box
 - **SSR support** – works with frameworks like Nuxt.js 🎉 [More here](https://github.com/bartdominiak/vue-snap/tree/master/examples)
 - **Vue 3 support** 🎉  [More here](#installation--usage)
 - **Modern browser support** – compatible with all common browsers [More here](https://caniuse.com/css-snappoints)
@@ -52,7 +53,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 
 import VueSnap from 'vue-snap'
-import 'vue-snap/dist/vue-snap.css'
+import 'vue-snap/style.css'
 
 const myApp = createApp(App)
 
@@ -64,7 +65,7 @@ myApp.mount('#app')
 
 ```js
 import { Carousel, Slide } from 'vue-snap'
-import 'vue-snap/dist/vue-snap.css'
+import 'vue-snap/style.css'
 
 export default {
   components: {

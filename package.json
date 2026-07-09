@@ -1,19 +1,25 @@
 {
   "name": "vue-snap",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "type": "module",
   "description": "Lightweight Carousel based on CSS Scroll Snap",
   "main": "dist/vue-snap.umd.js",
   "module": "dist/vue-snap.es.js",
   "unpkg": "dist/vue-snap.js",
+  "types": "dist/entry.d.ts",
+  "files": [
+    "dist"
+  ],
   "engines": {
     "node": ">=22"
   },
   "exports": {
     ".": {
+      "types": "./dist/entry.d.ts",
       "import": "./dist/vue-snap.es.js",
       "require": "./dist/vue-snap.umd.js"
     },
+    "./style.css": "./dist/vue-snap.css",
     "./dist/vue-snap.css": "./dist/vue-snap.css"
   },
   "scripts": {
@@ -50,6 +56,7 @@
     "sass-embedded": "^1.100.0",
     "typescript": "5",
     "vite": "^8.1.4",
+    "vite-plugin-dts": "^5.0.3",
     "vue-tsc": "^3.3.7"
   }
 }

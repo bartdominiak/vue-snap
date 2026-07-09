@@ -1,26 +1,22 @@
 {
-  "name": "docs",
-  "version": "0.7.1",
-  "description": "Vue Snap documentation site",
+  "name": "vue-snap-showcase",
+  "version": "0.1.0",
+  "private": true,
   "type": "module",
-  "engines": {
-    "node": ">=22"
-  },
-  "devDependencies": {
-    "lodash": "^4.18.1",
-    "sass-embedded": "^1.100.0",
-    "vite": "^8.1.4",
-    "vite-plugin-html": "^3.2.2",
-    "vite-plugin-vue-devtools": "^8.1.5",
-    "vitepress": "^1.6.4"
-  },
   "scripts": {
-    "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "vitepress-plugin-group-icons": "^1.7.5",
+    "shiki": "^4.3.1",
+    "vue": "^3.5.39",
     "vue-snap": "^1.2.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.0",
+    "@vitejs/plugin-vue": "^6.0.7",
+    "tailwindcss": "^4.1.0",
+    "vite": "^7.0.0"
   }
 }
