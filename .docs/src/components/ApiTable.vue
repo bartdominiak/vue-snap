@@ -4,7 +4,7 @@
     <div class="overflow-x-auto rounded-xl border border-black/8">
       <table class="w-full border-collapse text-left text-sm">
         <thead>
-          <tr class="bg-black/[0.03] text-xs uppercase tracking-wide text-ink/50">
+          <tr class="bg-black/3 text-xs uppercase tracking-wide text-ink/50">
             <th
               v-for="col in columns"
               :key="col"

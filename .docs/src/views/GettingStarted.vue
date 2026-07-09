@@ -56,15 +56,17 @@ const myApp = createApp(App);
 
 myApp.use(VueSnap);`;
 
-const localCode = `import { Carousel, Slide } from 'vue-snap';
-import 'vue-snap/dist/vue-snap.css';
+const localCode = `<script>
+import { Carousel, Slide } from 'vue-snap';
+import 'vue-snap/vue-snap.css';
 
 export default {
   components: {
     Carousel,
     Slide
   }
-};`;
+};
+<\/script>`;
 
 const nuxtTabs = [
   {

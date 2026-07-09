@@ -1,13 +1,13 @@
 <template>
   <Carousel class="my-carousel-images">
-    <Slide v-for="slide in slides" :key="slide">
+    <Slide v-for="slide in generateSlides(18)" :key="slide">
       <img loading="lazy" src="/cactus.jpg" alt="Example slide description" />
     </Slide>
   </Carousel>
 </template>
 
 <script setup>
-const slides = [ ...Array(18) ].map((_, i) => i);
+import { generateSlides } from '../lib/utils'
 </script>
 
 <style>

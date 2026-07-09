@@ -3,15 +3,15 @@
     ref="carousel01"
     class="my-carousel my-carousel-multiple-3"
   >
-    <Slide v-for="slide in slides" :key="slide">
+    <Slide v-for="slide in generateSlides(18)" :key="slide">
       Slide {{ slide + 1 }}
     </Slide>
   </Carousel>
 </template>
 
 <script setup>
+import { generateSlides } from '../lib/utils'
 import { ref, onMounted, onBeforeUnmount } from 'vue';
-const slides = [ ...Array(12) ].map((_, i) => i);
 
 const carousel01 = ref();
 

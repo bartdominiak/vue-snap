@@ -14,7 +14,7 @@
         @right-bound="logEvent('rightBound', 'reached right bound')"
         @autoplay="(playing) => logEvent('autoplay', playing ? 'autoplay resumed' : 'autoplay paused')"
       >
-        <Slide v-for="slide in slides" :key="slide">
+        <Slide v-for="slide in generateSlides(18)" :key="slide">
           Slide {{ slide + 1 }}
         </Slide>
       </Carousel>
@@ -36,7 +36,7 @@
         </button>
         <button type="button" class="preview-btn" :disabled="!carouselMounted" @click="arrowsVisible = !arrowsVisible">
           <span class="h-2 w-2 rounded-full" :class="arrowsVisible ? 'bg-brand' : 'bg-ink/30'" />
-          Arrows: {{ arrowsVisible ? 'Shown' : 'Hidden' }}
+          Arrows: {{ arrowsVisible ? 'On' : 'Off' }}
         </button>
       </div>
 
@@ -83,6 +83,7 @@
 </template>
 
 <script setup>
+import { generateSlides } from '../lib/utils'
 import { ref } from 'vue';
 
 const MAX_EVENTS = 50;
@@ -94,8 +95,6 @@ const dotColor = {
   rightBound: 'bg-amber-400',
   autoplay: 'bg-sky-400',
 };
-
-const slides = [...Array(12)].map((_, i) => i);
 
 const carousel01 = ref();
 const autoplayOn = ref(true);

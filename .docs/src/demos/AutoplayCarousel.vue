@@ -4,14 +4,14 @@
     autoplay
     :autoplay-interval="1500"
   >
-    <Slide v-for="slide in slides" :key="slide">
+    <Slide v-for="slide in generateSlides(20)" :key="slide">
       Slide {{ slide + 1 }}
     </Slide>
   </Carousel>
 </template>
 
 <script setup>
-const slides = [ ...Array(12) ].map((_, i) => i);
+import { generateSlides } from '../lib/utils'
 </script>
 
 <style>
