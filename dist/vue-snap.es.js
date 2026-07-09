@@ -26,21 +26,21 @@ function b(e, t) {
 		let { scrollLeft: o, offsetWidth: s, scrollWidth: c } = t.value;
 		a !== i.value && e("slideChange", a), i.value = a;
 		let l = a === 0, u = _(o + s, c, 10);
-		l ? (n.value = !0, e("leftBound", !0)) : n.value = !1, u ? (r.value = !0, e("rightBound", !0)) : r.value = !1;
+		l && !n.value && e("leftBound", !0), n.value = l, u && !r.value && e("rightBound", !0), r.value = u;
 	}, d = (n) => {
-		let r = a(), i = c(r);
-		if (i === -1) return;
-		let o = i + n, s = r[o];
-		!s || !t.value || (t.value.scrollTo({
-			left: s.offsetLeft,
+		let r = a(), o = c(r);
+		if (o === -1) return;
+		let s = o + n, l = r[s];
+		!l || !t.value || (t.value.scrollTo({
+			left: l.offsetLeft,
 			behavior: "smooth"
-		}), e("slideChange", o));
+		}), i.value = s, e("slideChange", s));
 	}, f = (n) => {
 		let r = a()[n];
 		!r || !t.value || (t.value.scrollTo({
 			left: r.offsetLeft,
 			behavior: "smooth"
-		}), e("slideChange", n));
+		}), i.value = n, e("slideChange", n));
 	}, p = () => {
 		let e = a(), t = c(e);
 		t !== -1 && u(t);
