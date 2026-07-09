@@ -33,6 +33,7 @@ import ApiTable from '../components/ApiTable.vue';
 
 const carouselProps = [
   ['tag', 'String', "'ul'", 'HTML tag used for the slide container'],
+  ['hideArrows', 'Boolean', 'false', 'Hides both navigation arrows entirely'],
   ['hideArrowsOnBound', 'Boolean', 'false', 'Hides the relevant arrow when the first/last slide is active'],
   ['autoplay', 'Boolean', 'false', 'Automatically advances slides, looping back to the start'],
   ['autoplayInterval', 'Number', '3000', 'Delay in milliseconds between autoplay advances'],

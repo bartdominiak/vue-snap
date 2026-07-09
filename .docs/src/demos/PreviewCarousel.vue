@@ -5,6 +5,7 @@
         v-if="carouselMounted"
         ref="carousel01"
         class="my-carousel my-carousel-multiple-3"
+        :hide-arrows="!arrowsVisible"
         :autoplay="autoplayOn"
         :autoplay-interval="3000"
         @mounted="logEvent('mounted', 'component mounted')"
@@ -31,6 +32,10 @@
         </button>
         <button type="button" class="preview-btn" @click="toggleMount">
           {{ carouselMounted ? 'Unmount' : 'Mount' }}
+        </button>
+        <button type="button" class="preview-btn" :disabled="!carouselMounted" @click="arrowsVisible = !arrowsVisible">
+          <span class="h-2 w-2 rounded-full" :class="arrowsVisible ? 'bg-brand' : 'bg-ink/30'" />
+          Arrows: {{ arrowsVisible ? 'Shown' : 'Hidden' }}
         </button>
         <button type="button" class="preview-btn" :disabled="!carouselMounted" @click="carousel01?.changeSlide(-1)">
           Go left
@@ -90,6 +95,7 @@ const slides = [...Array(12)].map((_, i) => i);
 
 const carousel01 = ref();
 const autoplayOn = ref(true);
+const arrowsVisible = ref(true);
 const carouselMounted = ref(true);
 const events = ref([]);
 
