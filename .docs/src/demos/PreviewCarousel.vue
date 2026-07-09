@@ -31,12 +31,16 @@
           Autoplay: {{ autoplayOn ? 'On' : 'Off' }}
         </button>
         <button type="button" class="preview-btn" @click="toggleMount">
+          <span class="h-2 w-2 rounded-full" :class="carouselMounted ? 'bg-brand' : 'bg-ink/30'" />
           {{ carouselMounted ? 'Unmount' : 'Mount' }}
         </button>
         <button type="button" class="preview-btn" :disabled="!carouselMounted" @click="arrowsVisible = !arrowsVisible">
           <span class="h-2 w-2 rounded-full" :class="arrowsVisible ? 'bg-brand' : 'bg-ink/30'" />
           Arrows: {{ arrowsVisible ? 'Shown' : 'Hidden' }}
         </button>
+      </div>
+
+      <div class="mt-2 flex flex-wrap gap-2">
         <button type="button" class="preview-btn" :disabled="!carouselMounted" @click="carousel01?.changeSlide(-1)">
           Go left
         </button>
