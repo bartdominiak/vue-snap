@@ -10,7 +10,7 @@
 const slides = [ ...Array(18) ].map((_, i) => i);
 </script>
 
-<style lang="scss">
+<style>
 .my-carousel-multiple {
   color: #ffffff;
   font-size: 18px;

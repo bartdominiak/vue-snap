@@ -11,7 +11,7 @@ const slides = [ ...Array(18) ].map((_, i) => i);
 </script>
 
 
-<style lang="scss">
+<style>
 .custom-carousel {
   color: #ffffff;
   font-size: 18px;

@@ -112,7 +112,7 @@ const toggleMount = () => {
 };
 </script>
 
-<style lang="scss">
+<style>
 .preview-btn {
   display: inline-flex;
   align-items: center;
