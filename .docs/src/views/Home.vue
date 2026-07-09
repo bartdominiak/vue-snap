@@ -37,7 +37,7 @@
         </div>
 
         <div class="mx-auto mt-4 inline-flex items-center gap-1 rounded-lg bg-black/5 pl-3 pr-1 font-mono text-sm text-ink/50">
-          <code class="py-1.5">npm install vue-snap</code>
+          <code class="py-1.5">bun add vue-snap</code>
           <button
             type="button"
             class="rounded-md p-1.5 text-ink/40 transition-colors hover:bg-black/5 hover:text-ink"
@@ -103,7 +103,7 @@
 import { ref } from 'vue';
 import PreviewCarousel from '../demos/PreviewCarousel.vue';
 
-const INSTALL_COMMAND = 'npm install vue-snap';
+const INSTALL_COMMAND = 'bun add vue-snap';
 const COPIED_RESET_MS = 2000;
 
 const copied = ref(false);
