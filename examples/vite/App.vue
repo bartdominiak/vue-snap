@@ -17,7 +17,7 @@ body {
     font-family: 'Lato', sans-serif;
     font-weight: 300;
     color: #fff;
-    margin: 1px;
+    margin: 0px;
 }
 
 .my-carousel {
@@ -39,6 +39,7 @@ body {
 
   .vs-carousel__arrows {
     background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
   }
 }
 </style>
