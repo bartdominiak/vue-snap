@@ -1,5 +1,9 @@
 <template>
-  <div class="vs-carousel">
+  <div
+    class="vs-carousel"
+    @mouseenter="pauseAutoplay"
+    @mouseleave="resumeAutoplay"
+  >
     <component
       :is="tag"
       ref="vsWrapper"
@@ -40,35 +44,55 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, toRef } from 'vue';
 import { useCarousel } from '../hooks/useCarousel';
 
 interface CarouselProps {
   tag?: string;
   hideArrowsOnBound?: boolean;
+  autoplay?: boolean;
+  autoplayInterval?: number;
   i18n?: {
     slideLeft: string;
     slideRight: string;
   };
 }
 
-withDefaults(defineProps<CarouselProps>(), {
+const props = withDefaults(defineProps<CarouselProps>(), {
   tag: 'ul',
   hideArrowsOnBound: false,
+  autoplay: false,
+  autoplayInterval: 3000,
   i18n: () => ({
     slideLeft: 'Slide left',
     slideRight: 'Slide right',
   }),
 });
 
-const emit = defineEmits(['mounted', 'slideChange', 'leftBound', 'rightBound']);
+const emit = defineEmits([
+  'mounted',
+  'slideChange',
+  'leftBound',
+  'rightBound',
+  'autoplay',
+]);
 const vsWrapper = ref(null);
 
-// biome-ignore lint/correctness/noUnusedVariables: used in <template> via v-bind spread
-const { changeSlide, goToSlide, isBoundLeft, isBoundRight } = useCarousel(
-  emit,
-  vsWrapper,
-);
+const {
+  changeSlide,
+  goToSlide,
+  // biome-ignore lint/correctness/noUnusedVariables: used in <template> via v-bind spread
+  isBoundLeft,
+  // biome-ignore lint/correctness/noUnusedVariables: used in <template> via v-bind spread
+  isBoundRight,
+  // biome-ignore lint/correctness/noUnusedVariables: used in <template> via @mouseenter
+  pauseAutoplay,
+  // biome-ignore lint/correctness/noUnusedVariables: used in <template> via @mouseleave
+  resumeAutoplay,
+} = useCarousel(emit, vsWrapper, {
+  autoplay: toRef(props, 'autoplay'),
+  autoplayInterval: toRef(props, 'autoplayInterval'),
+});
 
 defineExpose({
   changeSlide,
