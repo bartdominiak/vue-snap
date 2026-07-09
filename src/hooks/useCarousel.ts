@@ -1,5 +1,5 @@
 import type { Ref } from 'vue';
-import { onBeforeUnmount, onMounted, ref } from 'vue';
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { approximatelyEqual, debounce, isClient } from '../utils/helpers';
 
 const SCROLL_DEBOUNCE = 100;
@@ -9,6 +9,7 @@ type CarouselEmits = {
   (e: 'slideChange', index: number): void;
   (e: 'leftBound', value: boolean): void;
   (e: 'rightBound', value: boolean): void;
+  (e: 'autoplay', value: boolean): void;
 };
 
 type Slide = {
@@ -16,13 +17,20 @@ type Slide = {
   offsetWidth: number;
 };
 
+type AutoplayOptions = {
+  autoplay: Ref<boolean>;
+  autoplayInterval: Ref<number>;
+};
+
 export function useCarousel(
   emit: CarouselEmits,
   vsWrapper: Ref<HTMLElement | null>,
+  { autoplay, autoplayInterval }: AutoplayOptions,
 ) {
   const isBoundLeft = ref(true);
   const isBoundRight = ref(false);
   const currentIndex = ref(0);
+  let autoplayTimer: ReturnType<typeof setInterval> | null = null;
 
   const getSlides = (): Slide[] => {
     if (!vsWrapper.value) return [];
@@ -37,9 +45,15 @@ export function useCarousel(
 
   const getCurrentIndex = (slides: Slide[]) => {
     const wrapper = vsWrapper.value;
-    if (!wrapper) return -1;
-    return slides.findIndex(({ offsetLeft }) =>
-      approximatelyEqual(offsetLeft, wrapper.scrollLeft, 10),
+    if (!wrapper || slides.length === 0) return -1;
+
+    return slides.reduce(
+      (closestIndex, slide, index) =>
+        Math.abs(slide.offsetLeft - wrapper.scrollLeft) <
+        Math.abs(slides[closestIndex].offsetLeft - wrapper.scrollLeft)
+          ? index
+          : closestIndex,
+      0,
     );
   };
 
@@ -86,6 +100,7 @@ export function useCarousel(
 
     currentIndex.value = nextIndex;
     emit('slideChange', nextIndex);
+    restartAutoplay();
   };
 
   const goToSlide = (index: number) => {
@@ -101,6 +116,50 @@ export function useCarousel(
 
     currentIndex.value = index;
     emit('slideChange', index);
+    restartAutoplay();
+  };
+
+  const advanceAutoplay = () => {
+    if (isBoundRight.value) {
+      goToSlide(0);
+    } else {
+      changeSlide(1);
+    }
+  };
+
+  const stopAutoplay = () => {
+    if (!autoplayTimer) return;
+
+    clearInterval(autoplayTimer);
+    autoplayTimer = null;
+  };
+
+  const startAutoplay = () => {
+    stopAutoplay();
+
+    if (!isClient || !autoplay.value) return;
+
+    autoplayTimer = setInterval(advanceAutoplay, autoplayInterval.value);
+  };
+
+  const restartAutoplay = () => {
+    if (!autoplay.value) return;
+
+    startAutoplay();
+  };
+
+  const pauseAutoplay = () => {
+    if (!autoplay.value || !autoplayTimer) return;
+
+    stopAutoplay();
+    emit('autoplay', false);
+  };
+
+  const resumeAutoplay = () => {
+    if (!autoplay.value || autoplayTimer) return;
+
+    startAutoplay();
+    emit('autoplay', true);
   };
 
   const refreshSlideState = () => {
@@ -114,15 +173,30 @@ export function useCarousel(
 
   const handleScroll = debounce(refreshSlideState, SCROLL_DEBOUNCE);
 
+  watch(autoplay, (enabled) => {
+    if (enabled) {
+      startAutoplay();
+    } else {
+      stopAutoplay();
+    }
+  });
+
+  watch(autoplayInterval, () => {
+    if (autoplay.value) startAutoplay();
+  });
+
   onMounted(() => {
     if (!isClient || !vsWrapper.value) return;
 
     refreshSlideState();
     vsWrapper.value.addEventListener('scroll', handleScroll);
     emit('mounted', true);
+    startAutoplay();
   });
 
   onBeforeUnmount(() => {
+    stopAutoplay();
+
     if (!isClient || !vsWrapper.value) return;
 
     vsWrapper.value.removeEventListener('scroll', handleScroll);
@@ -133,5 +207,7 @@ export function useCarousel(
     changeSlide,
     isBoundLeft,
     isBoundRight,
+    pauseAutoplay,
+    resumeAutoplay,
   };
 }
