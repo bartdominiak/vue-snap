@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0] - 2026-07-15
+
+### Added
+- `isBoundLeft` and `isBoundRight` are exposed on the Carousel template ref, so consumers can disable their own navigation controls at the edges.
+
+### Changed
+- Carousel styles moved out of the SFC into a standalone `carousel.scss`; compiled CSS output is unchanged.
+
 ## [2.0.0] - 2026-07-14
 
 ### Removed
