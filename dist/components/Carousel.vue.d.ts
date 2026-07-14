@@ -23,17 +23,17 @@ declare const __VLS_base: import('vue').DefineComponent<CarouselProps, {
     changeSlide: (direction: number) => void;
     goToSlide: (index: number) => void;
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
+    autoplay: (...args: any[]) => void;
     mounted: (...args: any[]) => void;
     slideChange: (...args: any[]) => void;
     leftBound: (...args: any[]) => void;
     rightBound: (...args: any[]) => void;
-    autoplay: (...args: any[]) => void;
 }, string, import('vue').PublicProps, Readonly<CarouselProps> & Readonly<{
+    onAutoplay?: ((...args: any[]) => any) | undefined;
     onMounted?: ((...args: any[]) => any) | undefined;
     onSlideChange?: ((...args: any[]) => any) | undefined;
     onLeftBound?: ((...args: any[]) => any) | undefined;
     onRightBound?: ((...args: any[]) => any) | undefined;
-    onAutoplay?: ((...args: any[]) => any) | undefined;
 }>, {
     autoplay: boolean;
     autoplayInterval: number;
