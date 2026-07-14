@@ -119,18 +119,18 @@ var D = ["aria-label", "disabled"], O = ["aria-label", "disabled"], k = /* @__PU
 		return s({
 			changeSlide: x,
 			goToSlide: S
-		}), (i, s) => (u(), n("div", {
+		}), (s, c) => (u(), n("div", {
 			class: "vs-carousel",
-			onMouseenter: s[2] ||= (...e) => h(T) && h(T)(...e),
-			onMouseleave: s[3] ||= (...e) => h(k) && h(k)(...e)
+			onMouseenter: c[2] ||= (...e) => h(T) && h(T)(...e),
+			onMouseleave: c[3] ||= (...e) => h(k) && h(k)(...e)
 		}, [(u(), e(p(i.tag), {
 			ref_key: "vsWrapper",
 			ref: b,
 			class: "vs-carousel__wrapper"
 		}, {
-			default: v(() => [f(i.$slots, "default")]),
+			default: v(() => [f(s.$slots, "default")]),
 			_: 3
-		}, 512)), i.hideArrows ? t("", !0) : f(i.$slots, "arrows", o(a({ key: 0 }, {
+		}, 512)), i.hideArrows ? t("", !0) : f(s.$slots, "arrows", o(a({ key: 0 }, {
 			changeSlide: h(x),
 			isBoundLeft: h(C),
 			isBoundRight: h(w)
@@ -139,13 +139,13 @@ var D = ["aria-label", "disabled"], O = ["aria-label", "disabled"], k = /* @__PU
 			"aria-label": i.i18n.slideLeft,
 			disabled: h(C),
 			class: "vs-carousel__arrows vs-carousel__arrows--left",
-			onClick: s[0] ||= (e) => h(x)(-1)
+			onClick: c[0] ||= (e) => h(x)(-1)
 		}, " ← ", 8, D), [[g, !i.hideArrowsOnBound || !h(C)]]), y(r("button", {
 			type: "button",
 			"aria-label": i.i18n.slideRight,
 			disabled: h(w),
 			class: "vs-carousel__arrows vs-carousel__arrows--right",
-			onClick: s[1] ||= (e) => h(x)(1)
+			onClick: c[1] ||= (e) => h(x)(1)
 		}, " → ", 8, O), [[g, !i.hideArrowsOnBound || !h(w)]])])], 32));
 	}
 }), A = /* @__PURE__ */ i({
