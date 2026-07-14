@@ -41,10 +41,20 @@
       </div>
 
       <div class="mt-2 flex flex-wrap gap-2">
-        <button type="button" class="preview-btn" :disabled="!carouselMounted" @click="carousel01?.changeSlide(-1)">
+        <button
+          type="button"
+          class="preview-btn"
+          :disabled="!carouselMounted || carousel01?.isBoundLeft"
+          @click="carousel01?.changeSlide(-1)"
+        >
           Go left
         </button>
-        <button type="button" class="preview-btn" :disabled="!carouselMounted" @click="carousel01?.changeSlide(1)">
+        <button
+          type="button"
+          class="preview-btn"
+          :disabled="!carouselMounted || carousel01?.isBoundRight"
+          @click="carousel01?.changeSlide(1)"
+        >
           Go right
         </button>
         <button type="button" class="preview-btn" :disabled="!carouselMounted" @click="goToRandomSlide">

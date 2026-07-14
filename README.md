@@ -3,7 +3,7 @@
 > 🌿 Modern, lightweight Vue 3 Carousel powered by CSS Scroll Snap.
 
 <div align="left">
-  <img width="750" heigth="250" src="/static/logo-snap.jpg" alt="vue-snap logo">
+  <img width="750" height="250" src="/static/logo-snap.jpg" alt="vue-snap logo">
 </div>
 
 [![npm version](https://badge.fury.io/js/vue-snap.svg?icon=si%3Anpm)](https://badge.fury.io/js/vue-snap)
@@ -14,20 +14,20 @@
 ## Table of Contents
 - [Docs](https://vue-snap.vercel.app/)
 - [About](#about)
-- [Examples/Stories](#examplesstories)
+- [Features](#features)
 - [Installation & Usage](#installation--usage)
-- [Examples Usage](#examples-usage)
+- [Examples usage](#examples-usage)
 - [Contribution](#contribution)
 - [License](#license)
 
 ## About
 The idea behind this plugin is to create a fully responsive and well-optimized carousel. We’ve used modern CSS features like [Scroll Snapping](https://developers.google.com/web/updates/2018/07/css-scroll-snap), which allows the carousel wrapper to lock onto specific slides or positions after the user finishes scrolling. This approach helps us minimize the library size by including only the essential parts, and it avoids heavy JavaScript computations or CSS hacks.
 
-## Examples/Stories
-- 📕 [Example](https://vue-snap.vercel.app/examples.html)
-- 📺 [Props/Events/Slots](https://vue-snap.vercel.app/api.html)
+## Features
+- 📕 [Examples](https://vue-snap.vercel.app/examples)
+- 📺 [Props/Events/Slots](https://vue-snap.vercel.app/api)
 
-- **Lightweight** – Only 4KB, fast and efficient.
+- **Lightweight** – Only 5KB, fast and efficient.
 - **No calculations or heavy logic** – performance-first approach
 - **Fully responsive** – most customization is handled via CSS (e.g. number of visible slides)
 - **ESM bundle with tree-shaking** – dead code is automatically eliminated
@@ -83,7 +83,7 @@ myApp.mount('#app')
 ```
 
 ### Props, events & methods
-The most commonly used ones — see the [full API reference](https://vue-snap.vercel.app/api.html) for everything else.
+The most commonly used ones — see the [full API reference](https://vue-snap.vercel.app/api) for everything else.
 
 | `Carousel` prop     | Type      | Default   | Description                                  |
 |----------------------|-----------|-----------|-----------------------------------------------|
