@@ -84,9 +84,7 @@ const vsWrapper = ref(null);
 const {
   changeSlide,
   goToSlide,
-  // biome-ignore lint/correctness/noUnusedVariables: used in <template> via v-bind spread
   isBoundLeft,
-  // biome-ignore lint/correctness/noUnusedVariables: used in <template> via v-bind spread
   isBoundRight,
   // biome-ignore lint/correctness/noUnusedVariables: used in <template> via @mouseenter
   pauseAutoplay,
@@ -100,59 +98,9 @@ const {
 defineExpose({
   changeSlide,
   goToSlide,
+  isBoundLeft,
+  isBoundRight,
 });
 </script>
 
-<style lang="scss">
-.vs-carousel {
-  position: relative;
-
-  &__wrapper {
-    display: flex;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  &__slide {
-    flex: 0 0 100%;
-    height: 100%;
-    scroll-snap-align: start;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    outline: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  &__arrows {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    width: 48px;
-    height: 48px;
-    padding: 0;
-    cursor: pointer;
-    border: 0;
-
-    &:disabled {
-      cursor: not-allowed;
-    }
-
-    &--left {
-      left: 0;
-    }
-
-    &--right {
-      right: 0;
-    }
-  }
-}
-</style>
+<style lang="scss" src="./carousel.scss"></style>

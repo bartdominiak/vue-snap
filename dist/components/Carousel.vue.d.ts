@@ -22,6 +22,8 @@ type __VLS_Slots = {} & {
 declare const __VLS_base: import('vue').DefineComponent<CarouselProps, {
     changeSlide: (direction: number) => void;
     goToSlide: (index: number) => void;
+    isBoundLeft: import('vue').Ref<boolean, boolean>;
+    isBoundRight: import('vue').Ref<boolean, boolean>;
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     autoplay: (...args: any[]) => void;
     mounted: (...args: any[]) => void;

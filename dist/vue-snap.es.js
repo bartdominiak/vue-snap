@@ -118,7 +118,9 @@ var D = ["aria-label", "disabled"], O = ["aria-label", "disabled"], k = /* @__PU
 		});
 		return s({
 			changeSlide: x,
-			goToSlide: S
+			goToSlide: S,
+			isBoundLeft: C,
+			isBoundRight: w
 		}), (s, c) => (u(), n("div", {
 			class: "vs-carousel",
 			onMouseenter: c[2] ||= (...e) => h(T) && h(T)(...e),
