@@ -8,3 +8,5 @@ dist/report.html
 
 .vercel
 .docs/dist
+.vscode
+.claude

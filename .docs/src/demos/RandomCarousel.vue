@@ -3,7 +3,7 @@
     ref="carousel01"
     class="my-carousel my-carousel-multiple-3"
   >
-    <Slide v-for="slide in generateSlides(18)" :key="slide">
+    <Slide v-for="slide in slides" :key="slide">
       Slide {{ slide + 1 }}
     </Slide>
   </Carousel>
@@ -13,15 +13,19 @@
 import { generateSlides } from '../lib/utils'
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 
+const SLIDE_COUNT = 18;
+const AUTOPLAY_INTERVAL = 1500;
+
+const slides = generateSlides(SLIDE_COUNT);
 const carousel01 = ref();
 
 let intervalId = null
 
 onMounted(() => {
   intervalId = setInterval(() => {
-    const randNumber = Math.floor(Math.random() * (slides.length - 1))
+    const randNumber = Math.floor(Math.random() * slides.length)
     carousel01.value?.goToSlide(randNumber)
-  }, 1500)
+  }, AUTOPLAY_INTERVAL)
 })
 
 onBeforeUnmount(() => {

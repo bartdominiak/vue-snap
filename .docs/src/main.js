@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
 import VueSnap from 'vue-snap';
-import 'vue-snap/dist/vue-snap.css';
+import 'vue-snap/style.css';
 
 import App from './App.vue';
 import { router } from './router';

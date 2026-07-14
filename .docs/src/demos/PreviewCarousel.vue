@@ -14,7 +14,7 @@
         @right-bound="logEvent('rightBound', 'reached right bound')"
         @autoplay="(playing) => logEvent('autoplay', playing ? 'autoplay resumed' : 'autoplay paused')"
       >
-        <Slide v-for="slide in generateSlides(18)" :key="slide">
+        <Slide v-for="slide in slides" :key="slide">
           Slide {{ slide + 1 }}
         </Slide>
       </Carousel>
@@ -87,6 +87,9 @@ import { generateSlides } from '../lib/utils'
 import { ref } from 'vue';
 
 const MAX_EVENTS = 50;
+const SLIDE_COUNT = 18;
+
+const slides = generateSlides(SLIDE_COUNT);
 
 const dotColor = {
   mounted: 'bg-white/40',
@@ -97,7 +100,7 @@ const dotColor = {
 };
 
 const carousel01 = ref();
-const autoplayOn = ref(true);
+const autoplayOn = ref(false);
 const arrowsVisible = ref(true);
 const carouselMounted = ref(true);
 const events = ref([]);
