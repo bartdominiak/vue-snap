@@ -7,8 +7,8 @@
 </div>
 
 [![npm version](https://badge.fury.io/js/vue-snap.svg?icon=si%3Anpm)](https://badge.fury.io/js/vue-snap)
-![npm bundle size](https://img.shields.io/bundlephobia/minzip/vue-snap)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/bartdominiak/vue-snap/blob/master/LICENSE.md)
+[![bundle size](https://deno.bundlejs.com/badge?q=vue-snap)](https://bundlejs.com/?q=vue-snap)
+[![license](https://img.shields.io/github/license/bartdominiak/vue-snap)](https://github.com/bartdominiak/vue-snap/blob/master/LICENSE.md)
 [![MadeWithVueJs.com shield](https://madewithvuejs.com/storage/repo-shields/5792-shield.svg)](https://madewithvuejs.com/p/vuesnap/shield-link)
 
 ## Table of Contents
@@ -46,7 +46,28 @@ The idea behind this plugin is to create a fully responsive and well-optimized c
   npm install vue-snap
 ```
 
+### Usage - Locally (recommended)
+
+Import `Carousel` and `Slide` directly where you need them — this keeps the rest of your app free of unused code.
+
+```vue
+<script setup>
+import { Carousel, Slide } from 'vue-snap'
+import 'vue-snap/style.css'
+</script>
+
+<template>
+  <Carousel>
+    <Slide v-for="item in items" :key="item.id">
+      {{ item.title }}
+    </Slide>
+  </Carousel>
+</template>
+```
+
 ### Usage - Globally
+
+Registers `Carousel` and `Slide` once, so they're available in every component without importing them again.
 
 ```js
 import { createApp } from 'vue'
@@ -61,22 +82,44 @@ myApp.use(VueSnap)
 myApp.mount('#app')
 ```
 
-### Usage - Locally
+### Props, events & methods
+The most commonly used ones — see the [full API reference](https://vue-snap.vercel.app/api.html) for everything else.
 
-```js
+| `Carousel` prop     | Type      | Default   | Description                                  |
+|----------------------|-----------|-----------|-----------------------------------------------|
+| `tag`                | `string`  | `'ul'`    | Tag rendered for the slides wrapper           |
+| `autoplay`           | `boolean` | `false`   | Automatically advance slides                  |
+| `autoplayInterval`   | `number`  | `3000`    | Delay in ms between autoplay advances         |
+| `hideArrows`         | `boolean` | `false`   | Hide the navigation arrows entirely           |
+| `hideArrowsOnBound`  | `boolean` | `false`   | Hide an arrow when its side is out of bounds  |
+
+| `Carousel` event | Payload   | Fires when                          |
+|-------------------|-----------|--------------------------------------|
+| `slideChange`     | `number`  | The active slide index changes       |
+| `leftBound`       | `boolean` | The carousel reaches the first slide |
+| `rightBound`      | `boolean` | The carousel reaches the last slide  |
+
+Use a template ref to call `goToSlide(index)` / `changeSlide(direction)` imperatively:
+
+```vue
+<script setup>
+import { useTemplateRef } from 'vue'
 import { Carousel, Slide } from 'vue-snap'
 import 'vue-snap/style.css'
 
-export default {
-  components: {
-    Carousel,
-    Slide
-  }
-}
+const carousel = useTemplateRef('carousel')
+</script>
+
+<template>
+  <Carousel ref="carousel">
+    <Slide v-for="item in items" :key="item.id">{{ item.title }}</Slide>
+  </Carousel>
+  <button @click="carousel.goToSlide(0)">Back to start</button>
+</template>
 ```
 
 ## Examples usage
-Check out [examples](https://github.com/bartdominiak/vue-snap/tree/master/examples) folder for more details or [documentation](https://vue-snap.vercel.app/)
+Check out the [examples](https://github.com/bartdominiak/vue-snap/tree/master/examples) folder for full Vite/Nuxt projects, or the [documentation](https://vue-snap.vercel.app/) for the complete API.
 
 ## Contribution
 If you have a feature request then feel free to start a new issue, or just grab existing one.

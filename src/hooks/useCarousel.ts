@@ -1,8 +1,15 @@
 import type { Ref } from 'vue';
-import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { approximatelyEqual, debounce, isClient } from '../utils/helpers';
+import { useAutoplay } from './useAutoplay';
 
+// Scroll events fire continuously during snap animations, so state is
+// recalculated only after scrolling settles.
 const SCROLL_DEBOUNCE = 100;
+
+// scrollLeft/scrollWidth can differ by a few subpixels after zoom or
+// fractional slide widths, so the right bound is detected with a tolerance.
+const BOUND_EPSILON = 10;
 
 type CarouselEmits = {
   (e: 'mounted', value: boolean): void;
@@ -10,11 +17,6 @@ type CarouselEmits = {
   (e: 'leftBound', value: boolean): void;
   (e: 'rightBound', value: boolean): void;
   (e: 'autoplay', value: boolean): void;
-};
-
-type Slide = {
-  offsetLeft: number;
-  offsetWidth: number;
 };
 
 type AutoplayOptions = {
@@ -30,27 +32,25 @@ export function useCarousel(
   const isBoundLeft = ref(true);
   const isBoundRight = ref(false);
   const currentIndex = ref(0);
-  let autoplayTimer: ReturnType<typeof setInterval> | null = null;
 
-  const getSlides = (): Slide[] => {
+  const getSlideOffsets = (): number[] => {
     if (!vsWrapper.value) return [];
 
-    return Array.from(vsWrapper.value.children ?? []).map(
-      (child: Element): Slide => ({
-        offsetLeft: (child as HTMLElement).offsetLeft,
-        offsetWidth: (child as HTMLElement).offsetWidth,
-      }),
+    return Array.from(vsWrapper.value.children).map(
+      (child) => (child as HTMLElement).offsetLeft,
     );
   };
 
-  const getCurrentIndex = (slides: Slide[]) => {
+  // With CSS scroll snap the user can stop between slides (touch, momentum),
+  // so the active slide is the one closest to scrollLeft, not an exact match.
+  const getClosestIndex = (offsets: number[]) => {
     const wrapper = vsWrapper.value;
-    if (!wrapper || slides.length === 0) return -1;
+    if (!wrapper || offsets.length === 0) return -1;
 
-    return slides.reduce(
-      (closestIndex, slide, index) =>
-        Math.abs(slide.offsetLeft - wrapper.scrollLeft) <
-        Math.abs(slides[closestIndex].offsetLeft - wrapper.scrollLeft)
+    return offsets.reduce(
+      (closestIndex, offset, index) =>
+        Math.abs(offset - wrapper.scrollLeft) <
+        Math.abs(offsets[closestIndex] - wrapper.scrollLeft)
           ? index
           : closestIndex,
       0,
@@ -69,7 +69,11 @@ export function useCarousel(
     currentIndex.value = index;
 
     const atStart = index === 0;
-    const atEnd = approximatelyEqual(scrollLeft + offsetWidth, scrollWidth, 10);
+    const atEnd = approximatelyEqual(
+      scrollLeft + offsetWidth,
+      scrollWidth,
+      BOUND_EPSILON,
+    );
 
     if (atStart && !isBoundLeft.value) {
       emit('leftBound', true);
@@ -82,43 +86,37 @@ export function useCarousel(
     isBoundRight.value = atEnd;
   };
 
-  const changeSlide = (direction: number) => {
-    const slides = getSlides();
-    const activeIndex = getCurrentIndex(slides);
+  const scrollToSlide = (offsets: number[], index: number) => {
+    const targetOffset = offsets[index];
 
-    if (activeIndex === -1) return;
-
-    const nextIndex = activeIndex + direction;
-    const targetSlide = slides[nextIndex];
-
-    if (!targetSlide || !vsWrapper.value) return;
+    if (targetOffset === undefined || !vsWrapper.value) return;
 
     vsWrapper.value.scrollTo({
-      left: targetSlide.offsetLeft,
-      behavior: 'smooth',
-    });
-
-    currentIndex.value = nextIndex;
-    emit('slideChange', nextIndex);
-    restartAutoplay();
-  };
-
-  const goToSlide = (index: number) => {
-    const slides = getSlides();
-    const targetSlide = slides[index];
-
-    if (!targetSlide || !vsWrapper.value) return;
-
-    vsWrapper.value.scrollTo({
-      left: targetSlide.offsetLeft,
+      left: targetOffset,
       behavior: 'smooth',
     });
 
     currentIndex.value = index;
     emit('slideChange', index);
-    restartAutoplay();
+    // Restart the interval so an autoplay tick doesn't fire right after
+    // manual navigation, causing a double slide jump.
+    autoplayControls.start();
   };
 
+  const changeSlide = (direction: number) => {
+    const offsets = getSlideOffsets();
+    const activeIndex = getClosestIndex(offsets);
+
+    if (activeIndex === -1) return;
+
+    scrollToSlide(offsets, activeIndex + direction);
+  };
+
+  const goToSlide = (index: number) => {
+    scrollToSlide(getSlideOffsets(), index);
+  };
+
+  // Autoplay loops: from the last slide it wraps back to the first.
   const advanceAutoplay = () => {
     if (isBoundRight.value) {
       goToSlide(0);
@@ -127,63 +125,22 @@ export function useCarousel(
     }
   };
 
-  const stopAutoplay = () => {
-    if (!autoplayTimer) return;
-
-    clearInterval(autoplayTimer);
-    autoplayTimer = null;
-  };
-
-  const startAutoplay = () => {
-    stopAutoplay();
-
-    if (!isClient || !autoplay.value) return;
-
-    autoplayTimer = setInterval(advanceAutoplay, autoplayInterval.value);
-  };
-
-  const restartAutoplay = () => {
-    if (!autoplay.value) return;
-
-    startAutoplay();
-  };
-
-  const pauseAutoplay = () => {
-    if (!autoplay.value || !autoplayTimer) return;
-
-    stopAutoplay();
-    emit('autoplay', false);
-  };
-
-  const resumeAutoplay = () => {
-    if (!autoplay.value || autoplayTimer) return;
-
-    startAutoplay();
-    emit('autoplay', true);
-  };
+  const autoplayControls = useAutoplay({
+    autoplay,
+    autoplayInterval,
+    onAdvance: advanceAutoplay,
+    onAutoplayChange: (enabled) => emit('autoplay', enabled),
+  });
 
   const refreshSlideState = () => {
-    const slides = getSlides();
-    const currentIndex = getCurrentIndex(slides);
+    const activeIndex = getClosestIndex(getSlideOffsets());
 
-    if (currentIndex === -1) return;
+    if (activeIndex === -1) return;
 
-    updateBoundaries(currentIndex);
+    updateBoundaries(activeIndex);
   };
 
   const handleScroll = debounce(refreshSlideState, SCROLL_DEBOUNCE);
-
-  watch(autoplay, (enabled) => {
-    if (enabled) {
-      startAutoplay();
-    } else {
-      stopAutoplay();
-    }
-  });
-
-  watch(autoplayInterval, () => {
-    if (autoplay.value) startAutoplay();
-  });
 
   onMounted(() => {
     if (!isClient || !vsWrapper.value) return;
@@ -191,12 +148,10 @@ export function useCarousel(
     refreshSlideState();
     vsWrapper.value.addEventListener('scroll', handleScroll);
     emit('mounted', true);
-    startAutoplay();
+    autoplayControls.start();
   });
 
   onBeforeUnmount(() => {
-    stopAutoplay();
-
     if (!isClient || !vsWrapper.value) return;
 
     vsWrapper.value.removeEventListener('scroll', handleScroll);
@@ -207,7 +162,7 @@ export function useCarousel(
     changeSlide,
     isBoundLeft,
     isBoundRight,
-    pauseAutoplay,
-    resumeAutoplay,
+    pauseAutoplay: autoplayControls.pause,
+    resumeAutoplay: autoplayControls.resume,
   };
 }

@@ -1,4 +1,4 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  css: [ 'vue-snap/vue-snap.css']
+  css: [ 'vue-snap/style.css']
 })

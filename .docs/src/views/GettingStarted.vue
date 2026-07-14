@@ -50,7 +50,7 @@ const installTabs = [
 
 const globalCode = `import { createApp } from 'vue';
 import VueSnap from 'vue-snap';
-import 'vue-snap/dist/vue-snap.css';
+import 'vue-snap/style.css';
 
 const myApp = createApp(App);
 
@@ -58,7 +58,7 @@ myApp.use(VueSnap);`;
 
 const localCode = `<script>
 import { Carousel, Slide } from 'vue-snap';
-import 'vue-snap/vue-snap.css';
+import 'vue-snap/style.css';
 
 export default {
   components: {
@@ -80,7 +80,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   {
     label: 'nuxt.config.ts',
     code: `export default defineNuxtConfig({
-  css: ['vue-snap/dist/vue-snap.css']
+  css: ['vue-snap/style.css']
 });`,
   },
 ];
