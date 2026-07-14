@@ -7,7 +7,9 @@
 		"enabled": true,
 		"rules": {
 			"recommended": true,
-			"style": {}
+			"style": {
+				"useVueMultiWordComponentNames": "off"
+			}
 		},
 		"domains": {
 			"vue": "recommended"

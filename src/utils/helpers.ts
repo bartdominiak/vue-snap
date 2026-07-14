@@ -8,16 +8,16 @@ export const approximatelyEqual = (
   return Math.abs(v1 - v2) <= epsilon;
 };
 
-export function debounce<T extends (...args: unknown[]) => void>(
-  fn: T,
+export function debounce<Args extends unknown[]>(
+  fn: (...args: Args) => void,
   wait: number,
 ): {
-  (...args: Parameters<T>): void;
+  (...args: Args): void;
   cancel: () => void;
 } {
   let timeoutId: ReturnType<typeof setTimeout> | null = null;
 
-  const debounced = (...args: Parameters<T>) => {
+  const debounced = (...args: Args) => {
     if (timeoutId) clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
       fn(...args);
