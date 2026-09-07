@@ -1,3 +1,11 @@
+<script setup>
+defineProps({
+  id: { type: String, default: undefined },
+  title: { type: String, required: true },
+  description: { type: String, default: '' },
+});
+</script>
+
 <template>
   <section
     :id="id"
@@ -26,11 +34,3 @@
     </div>
   </section>
 </template>
-
-<script setup>
-defineProps({
-  id: { type: String, default: undefined },
-  title: { type: String, required: true },
-  description: { type: String, default: '' },
-});
-</script>

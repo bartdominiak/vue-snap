@@ -1,3 +1,7 @@
+<script setup>
+import { generateSlides } from '../lib/utils'
+</script>
+
 <template>
   <Carousel
     class="my-carousel my-carousel-multiple-3"
@@ -9,10 +13,6 @@
     </Slide>
   </Carousel>
 </template>
-
-<script setup>
-import { generateSlides } from '../lib/utils'
-</script>
 
 <style>
 .my-carousel-multiple {

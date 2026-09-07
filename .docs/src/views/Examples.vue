@@ -1,67 +1,3 @@
-<template>
-  <div class="mx-auto max-w-4xl px-5 py-14">
-    <h1 class="text-4xl font-bold tracking-tight">Examples</h1>
-    <p class="mt-3 text-ink/60">A tour of common vue-snap usage. Every demo below is live.</p>
-
-    <div class="mt-12 space-y-16">
-      <DemoCard
-        id="basic"
-        title="Basic"
-        description="One slide at a time — the default behaviour."
-      >
-        <template #demo><BasicCarousel /></template>
-        <template #code>
-          <CodeGroup :tabs="basicTabs" collapsible />
-        </template>
-      </DemoCard>
-
-      <DemoCard
-        id="multiple"
-        title="Multiple slides"
-        description="Show several slides per view by setting the slide flex-basis at each breakpoint."
-      >
-        <template #demo><MultipleCarousel /></template>
-        <template #code>
-          <CodeGroup :tabs="multipleTabs" collapsible />
-        </template>
-      </DemoCard>
-
-      <DemoCard
-        id="images"
-        title="Multiple images"
-        description="Slides can hold anything — here, lazy-loaded images cropped to fill."
-      >
-        <template #demo><ImageCarousel /></template>
-        <template #code>
-          <CodeGroup :tabs="imageTabs" collapsible />
-        </template>
-      </DemoCard>
-
-      <DemoCard
-        id="autoplay"
-        title="Autoplay"
-        description="Set autoplay to advance on a timer and autoplay-interval for the delay. It loops back to the start and pauses on hover."
-      >
-        <template #demo><AutoplayCarousel /></template>
-        <template #code>
-          <CodeGroup :tabs="autoplayTabs" collapsible />
-        </template>
-      </DemoCard>
-
-      <DemoCard
-        id="slide-to-x"
-        title="Slide to X"
-        description="Drive the carousel programmatically through a template ref — here, jumping to a random slide every 1.5s."
-      >
-        <template #demo><RandomCarousel /></template>
-        <template #code>
-          <CodeGroup :tabs="randomTabs" collapsible />
-        </template>
-      </DemoCard>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import DemoCard from '../components/DemoCard.vue';
 import CodeGroup from '../components/CodeGroup.vue';
@@ -188,3 +124,67 @@ const randomTabs = [
   { label: 'styles.css', code: multiCss },
 ];
 </script>
+
+<template>
+  <div class="mx-auto max-w-4xl px-5 py-14">
+    <h1 class="text-4xl font-bold tracking-tight">Examples</h1>
+    <p class="mt-3 text-ink/60">A tour of common vue-snap usage. Every demo below is live.</p>
+
+    <div class="mt-12 space-y-16">
+      <DemoCard
+        id="basic"
+        title="Basic"
+        description="One slide at a time — the default behaviour."
+      >
+        <template #demo><BasicCarousel /></template>
+        <template #code>
+          <CodeGroup :tabs="basicTabs" collapsible />
+        </template>
+      </DemoCard>
+
+      <DemoCard
+        id="multiple"
+        title="Multiple slides"
+        description="Show several slides per view by setting the slide flex-basis at each breakpoint."
+      >
+        <template #demo><MultipleCarousel /></template>
+        <template #code>
+          <CodeGroup :tabs="multipleTabs" collapsible />
+        </template>
+      </DemoCard>
+
+      <DemoCard
+        id="images"
+        title="Multiple images"
+        description="Slides can hold anything — here, lazy-loaded images cropped to fill."
+      >
+        <template #demo><ImageCarousel /></template>
+        <template #code>
+          <CodeGroup :tabs="imageTabs" collapsible />
+        </template>
+      </DemoCard>
+
+      <DemoCard
+        id="autoplay"
+        title="Autoplay"
+        description="Set autoplay to advance on a timer and autoplay-interval for the delay. It loops back to the start and pauses on hover."
+      >
+        <template #demo><AutoplayCarousel /></template>
+        <template #code>
+          <CodeGroup :tabs="autoplayTabs" collapsible />
+        </template>
+      </DemoCard>
+
+      <DemoCard
+        id="slide-to-x"
+        title="Slide to X"
+        description="Drive the carousel programmatically through a template ref — here, jumping to a random slide every 1.5s."
+      >
+        <template #demo><RandomCarousel /></template>
+        <template #code>
+          <CodeGroup :tabs="randomTabs" collapsible />
+        </template>
+      </DemoCard>
+    </div>
+  </div>
+</template>

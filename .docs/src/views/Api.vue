@@ -1,3 +1,38 @@
+<script setup>
+import ApiTable from '../components/ApiTable.vue';
+
+const carouselProps = [
+  ['tag', 'String', "'ul'", 'HTML tag used for the slide container'],
+  ['hideArrows', 'Boolean', 'false', 'Hides both navigation arrows entirely'],
+  ['hideArrowsOnBound', 'Boolean', 'false', 'Hides the relevant arrow when the first/last slide is active'],
+  ['autoplay', 'Boolean', 'false', 'Automatically advances slides, looping back to the start'],
+  ['autoplayInterval', 'Number', '3000', 'Delay in milliseconds between autoplay advances'],
+  ['i18n', 'Object', "{ slideLeft, slideRight }", 'Accessible labels for the built-in arrow buttons'],
+];
+
+const carouselEvents = [
+  ['mounted', 'Boolean', 'Emitted once the carousel has mounted'],
+  ['slide-change', 'Number', 'Emitted when the active slide changes, with the new index'],
+  ['left-bound', 'Boolean', 'Emitted when the first slide becomes active'],
+  ['right-bound', 'Boolean', 'Emitted when the last slide becomes active'],
+  ['autoplay', 'Boolean', 'Emitted when autoplay pauses (false) or resumes (true)'],
+];
+
+const carouselSlots = [
+  ['default', '–', 'Slide content, typically <Slide> items'],
+  ['arrows', '{ changeSlide, isBoundLeft, isBoundRight }', 'Replace the default arrow buttons'],
+];
+
+const carouselMethods = [
+  ['goToSlide', 'index: number', 'Scrolls to the slide at the given index'],
+  ['changeSlide', 'direction: 1 | -1', 'Moves forward (1) or backward (-1) one slide'],
+];
+
+const slideProps = [
+  ['tag', 'String', "'li'", 'HTML tag rendered for the slide element'],
+];
+</script>
+
 <template>
   <div class="mx-auto max-w-4xl px-5 py-14">
     <h1 class="text-4xl font-bold tracking-tight">API</h1>
@@ -43,38 +78,3 @@
     />
   </div>
 </template>
-
-<script setup>
-import ApiTable from '../components/ApiTable.vue';
-
-const carouselProps = [
-  ['tag', 'String', "'ul'", 'HTML tag used for the slide container'],
-  ['hideArrows', 'Boolean', 'false', 'Hides both navigation arrows entirely'],
-  ['hideArrowsOnBound', 'Boolean', 'false', 'Hides the relevant arrow when the first/last slide is active'],
-  ['autoplay', 'Boolean', 'false', 'Automatically advances slides, looping back to the start'],
-  ['autoplayInterval', 'Number', '3000', 'Delay in milliseconds between autoplay advances'],
-  ['i18n', 'Object', "{ slideLeft, slideRight }", 'Accessible labels for the built-in arrow buttons'],
-];
-
-const carouselEvents = [
-  ['mounted', 'Boolean', 'Emitted once the carousel has mounted'],
-  ['slide-change', 'Number', 'Emitted when the active slide changes, with the new index'],
-  ['left-bound', 'Boolean', 'Emitted when the first slide becomes active'],
-  ['right-bound', 'Boolean', 'Emitted when the last slide becomes active'],
-  ['autoplay', 'Boolean', 'Emitted when autoplay pauses (false) or resumes (true)'],
-];
-
-const carouselSlots = [
-  ['default', '–', 'Slide content, typically <Slide> items'],
-  ['arrows', '{ changeSlide, isBoundLeft, isBoundRight }', 'Replace the default arrow buttons'],
-];
-
-const carouselMethods = [
-  ['goToSlide', 'index: number', 'Scrolls to the slide at the given index'],
-  ['changeSlide', 'direction: 1 | -1', 'Moves forward (1) or backward (-1) one slide'],
-];
-
-const slideProps = [
-  ['tag', 'String', "'li'", 'HTML tag rendered for the slide element'],
-];
-</script>

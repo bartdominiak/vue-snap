@@ -1,3 +1,7 @@
+<script setup>
+import NavBar from './components/NavBar.vue';
+</script>
+
 <template>
   <div class="flex min-h-screen flex-col">
     <NavBar />
@@ -29,7 +33,3 @@
     </footer>
   </div>
 </template>
-
-<script setup>
-import NavBar from './components/NavBar.vue';
-</script>

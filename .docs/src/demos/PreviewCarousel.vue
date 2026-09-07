@@ -1,3 +1,45 @@
+<script setup>
+import { generateSlides } from '../lib/utils'
+import { ref } from 'vue';
+
+const MAX_EVENTS = 50;
+const SLIDE_COUNT = 18;
+
+const slides = generateSlides(SLIDE_COUNT);
+
+const dotColor = {
+  mounted: 'bg-white/40',
+  slideChange: 'bg-brand-soft',
+  leftBound: 'bg-amber-400',
+  rightBound: 'bg-amber-400',
+  autoplay: 'bg-sky-400',
+};
+
+const carousel01 = ref();
+const autoplayOn = ref(false);
+const arrowsVisible = ref(true);
+const carouselMounted = ref(true);
+const events = ref([]);
+
+let eventId = 0;
+
+const logEvent = (type, message) => {
+  const time = new Date().toLocaleTimeString('en-GB');
+  events.value = [{ id: eventId++, type, message, time }, ...events.value].slice(0, MAX_EVENTS);
+};
+
+const goToRandomSlide = () => {
+  const target = Math.floor(Math.random() * slides.length);
+  carousel01.value?.goToSlide(target);
+};
+
+// The carousel emits `mounted`, but has no unmount event — log that one here.
+const toggleMount = () => {
+  carouselMounted.value = !carouselMounted.value;
+  if (!carouselMounted.value) logEvent('mounted', 'component unmounted');
+};
+</script>
+
 <template>
   <div>
     <div>
@@ -120,48 +162,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { generateSlides } from '../lib/utils'
-import { ref } from 'vue';
-
-const MAX_EVENTS = 50;
-const SLIDE_COUNT = 18;
-
-const slides = generateSlides(SLIDE_COUNT);
-
-const dotColor = {
-  mounted: 'bg-white/40',
-  slideChange: 'bg-brand-soft',
-  leftBound: 'bg-amber-400',
-  rightBound: 'bg-amber-400',
-  autoplay: 'bg-sky-400',
-};
-
-const carousel01 = ref();
-const autoplayOn = ref(false);
-const arrowsVisible = ref(true);
-const carouselMounted = ref(true);
-const events = ref([]);
-
-let eventId = 0;
-
-const logEvent = (type, message) => {
-  const time = new Date().toLocaleTimeString('en-GB');
-  events.value = [{ id: eventId++, type, message, time }, ...events.value].slice(0, MAX_EVENTS);
-};
-
-const goToRandomSlide = () => {
-  const target = Math.floor(Math.random() * slides.length);
-  carousel01.value?.goToSlide(target);
-};
-
-// The carousel emits `mounted`, but has no unmount event — log that one here.
-const toggleMount = () => {
-  carouselMounted.value = !carouselMounted.value;
-  if (!carouselMounted.value) logEvent('mounted', 'component unmounted');
-};
-</script>
 
 <style>
 .preview-btn {

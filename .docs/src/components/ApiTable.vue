@@ -1,3 +1,11 @@
+<script setup>
+defineProps({
+  title: { type: String, required: true },
+  columns: { type: Array, required: true },
+  rows: { type: Array, required: true },
+});
+</script>
+
 <template>
   <div class="mt-8">
     <h3 class="mb-3 text-lg font-semibold tracking-tight">{{ title }}</h3>
@@ -34,11 +42,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-defineProps({
-  title: { type: String, required: true },
-  columns: { type: Array, required: true },
-  rows: { type: Array, required: true },
-});
-</script>

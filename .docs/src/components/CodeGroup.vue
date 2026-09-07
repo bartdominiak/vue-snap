@@ -1,3 +1,32 @@
+<script setup>
+import { ref, watch } from 'vue';
+import { highlight, langFromLabel } from '../lib/highlighter';
+
+const props = defineProps({
+  // [{ label: 'App.vue', code: '...', lang?: 'vue' }]
+  tabs: { type: Array, required: true },
+  // Hide the code behind a "Show code" toggle, collapsed by default.
+  collapsible: { type: Boolean, default: false },
+});
+
+const active = ref(0);
+const open = ref(false);
+
+// Highlighted HTML per tab, filled in asynchronously once Shiki is ready.
+// Until then the template falls back to plain <pre> text.
+const highlighted = ref([]);
+
+watch(
+  () => props.tabs,
+  async (tabs) => {
+    highlighted.value = await Promise.all(
+      tabs.map((tab) => highlight(tab.code, tab.lang ?? langFromLabel(tab.label))),
+    );
+  },
+  { immediate: true },
+);
+</script>
+
 <template>
   <div class="overflow-hidden rounded-xl border border-black/8 bg-ink text-[13px]">
     <!-- Collapsed: single toggle row, no tabs or code shown. -->
@@ -50,35 +79,6 @@
     </template>
   </div>
 </template>
-
-<script setup>
-import { ref, watch } from 'vue';
-import { highlight, langFromLabel } from '../lib/highlighter';
-
-const props = defineProps({
-  // [{ label: 'App.vue', code: '...', lang?: 'vue' }]
-  tabs: { type: Array, required: true },
-  // Hide the code behind a "Show code" toggle, collapsed by default.
-  collapsible: { type: Boolean, default: false },
-});
-
-const active = ref(0);
-const open = ref(false);
-
-// Highlighted HTML per tab, filled in asynchronously once Shiki is ready.
-// Until then the template falls back to plain <pre> text.
-const highlighted = ref([]);
-
-watch(
-  () => props.tabs,
-  async (tabs) => {
-    highlighted.value = await Promise.all(
-      tabs.map((tab) => highlight(tab.code, tab.lang ?? langFromLabel(tab.label))),
-    );
-  },
-  { immediate: true },
-);
-</script>
 
 <style scoped>
 /* Let the dark container show through Shiki's own background and keep the
