@@ -1,0 +1,145 @@
+# vue-snap — full reference
+
+> Lightweight (~5KB) Vue 3 carousel built on native CSS Scroll Snap. ESM-only, ships TypeScript declarations, SSR-safe (Nuxt works out of the box).
+
+Package: `vue-snap` · License: MIT · Repo: https://github.com/bartdominiak/vue-snap
+
+## Installation
+
+```
+npm install vue-snap   # or: bun add / pnpm add / yarn add
+```
+
+Peer dependency: `vue ^3.5`.
+
+## Usage — local import (recommended)
+
+```vue
+<script setup>
+import { Carousel, Slide } from 'vue-snap'
+import 'vue-snap/style.css'
+</script>
+
+<template>
+  <Carousel>
+    <Slide v-for="item in items" :key="item.id">{{ item.title }}</Slide>
+  </Carousel>
+</template>
+```
+
+## Usage — global plugin
+
+```js
+import { createApp } from 'vue'
+import VueSnap from 'vue-snap'
+import 'vue-snap/style.css'
+
+createApp(App).use(VueSnap).mount('#app')
+// Registers <Carousel> and <Slide> globally
+```
+
+## Carousel — props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `tag` | String | `'ul'` | HTML tag used for the slide container |
+| `hideArrows` | Boolean | `false` | Hides both navigation arrows entirely |
+| `hideArrowsOnBound` | Boolean | `false` | Hides the relevant arrow when the first/last slide is active |
+| `autoplay` | Boolean | `false` | Automatically advances slides, looping back to the start |
+| `autoplayInterval` | Number | `3000` | Delay in milliseconds between autoplay advances |
+| `i18n` | Object | `{ slideLeft, slideRight }` | Accessible labels for the built-in arrow buttons |
+
+Hovering the carousel pauses autoplay; it resumes on mouse leave.
+
+## Carousel — events
+
+| Event | Payload | Fires when |
+|-------|---------|------------|
+| `mounted` | Boolean | The carousel has mounted |
+| `slide-change` | Number | The active slide changes (payload = new index) |
+| `left-bound` | Boolean | The first slide becomes active |
+| `right-bound` | Boolean | The last slide becomes active |
+| `autoplay` | Boolean | Autoplay pauses (`false`) or resumes (`true`) |
+
+## Carousel — slots
+
+| Slot | Props | Description |
+|------|-------|-------------|
+| `default` | – | Slide content, typically `<Slide>` items |
+| `arrows` | `{ changeSlide, isBoundLeft, isBoundRight }` | Replace the default arrow buttons |
+
+## Carousel — template ref (exposed)
+
+| Member | Signature | Description |
+|--------|-----------|-------------|
+| `goToSlide` | `(index: number) => void` | Scrolls to the slide at the given index |
+| `changeSlide` | `(direction: 1 \| -1) => void` | Moves forward (1) or backward (-1) one slide |
+| `isBoundLeft` | `boolean` | True while the first slide is active (since 2.1.0) |
+| `isBoundRight` | `boolean` | True while the last slide is active (since 2.1.0) |
+
+```vue
+<script setup>
+import { useTemplateRef } from 'vue'
+import { Carousel, Slide } from 'vue-snap'
+import 'vue-snap/style.css'
+
+const carousel = useTemplateRef('carousel')
+</script>
+
+<template>
+  <Carousel ref="carousel">
+    <Slide v-for="item in items" :key="item.id">{{ item.title }}</Slide>
+  </Carousel>
+  <button :disabled="carousel?.isBoundLeft" @click="carousel.changeSlide(-1)">Prev</button>
+  <button :disabled="carousel?.isBoundRight" @click="carousel.changeSlide(1)">Next</button>
+</template>
+```
+
+## Slide — props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `tag` | String | `'li'` | HTML tag rendered for the slide element |
+
+## Styling
+
+All styling hooks are plain CSS classes. Slide width (and how many slides are visible) is controlled with flex-basis:
+
+```css
+/* 1 slide on mobile, 3 from 768px */
+.my-carousel .vs-carousel__slide {
+  flex: 0 0 100%;
+}
+@media (min-width: 768px) {
+  .my-carousel .vs-carousel__slide {
+    flex: 0 0 33.33%;
+  }
+}
+
+/* Wrapper height */
+.my-carousel .vs-carousel__wrapper {
+  height: 200px;
+}
+
+/* Arrow buttons */
+.my-carousel .vs-carousel__arrows { /* base */ }
+.my-carousel .vs-carousel__arrows--left { /* left */ }
+.my-carousel .vs-carousel__arrows--right { /* right */ }
+```
+
+Class reference: `.vs-carousel` (root), `.vs-carousel__wrapper` (scroll container), `.vs-carousel__slide`, `.vs-carousel__arrows` with `--left` / `--right` modifiers.
+
+## SSR / Nuxt
+
+No special setup — DOM access is guarded internally. See the runnable Nuxt example: https://github.com/bartdominiak/vue-snap/tree/master/examples/nuxt-app
+
+## Browser support
+
+All evergreen browsers (native CSS Scroll Snap). Smooth programmatic scrolling requires Safari 15.4+; older Safari falls back to instant scrolling. No polyfills shipped or required.
+
+## Constraints and gotchas
+
+- v2.x is ESM-only: no `require()`, no UMD/IIFE CDN build (last version with those: 1.4.0)
+- `left-bound` / `right-bound` emit when a bound is reached (edge-triggered)
+- Bound state and the active index update ~100ms after scrolling settles (debounced scroll handler)
+- Custom navigation should use the exposed `isBoundLeft` / `isBoundRight` to disable controls at the edges

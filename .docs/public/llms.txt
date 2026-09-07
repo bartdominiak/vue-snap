@@ -1,0 +1,30 @@
+# vue-snap
+
+> Lightweight (~5KB) Vue 3 carousel built on native CSS Scroll Snap. ESM-only, TypeScript declarations included, SSR-safe (works with Nuxt). No JavaScript position math — the browser's scroll snapping does the work; slide sizing and responsiveness are controlled with plain CSS.
+
+Install: `npm install vue-snap` (or bun/pnpm/yarn). Import `Carousel` and `Slide` plus `vue-snap/style.css`.
+
+```vue
+<script setup>
+import { Carousel, Slide } from 'vue-snap'
+import 'vue-snap/style.css'
+</script>
+
+<template>
+  <Carousel>
+    <Slide v-for="item in items" :key="item.id">{{ item.title }}</Slide>
+  </Carousel>
+</template>
+```
+
+## Docs
+
+- [Full API and usage reference](https://vue-snap.vercel.app/llms-full.txt): complete props, events, slots, exposed methods, styling recipes
+- [GitHub repository](https://github.com/bartdominiak/vue-snap): source, changelog, issues
+- [Examples (Vite and Nuxt apps)](https://github.com/bartdominiak/vue-snap/tree/master/examples): runnable projects
+
+## Notes
+
+- Requires Vue 3.5+; v2.x dropped UMD/IIFE and CJS — `import` only
+- Slide widths (and how many are visible) are set in CSS via `flex: 0 0 <basis>` on `.vs-carousel__slide`
+- Smooth scrolling degrades to instant on Safari < 15.4; no polyfill needed or shipped
