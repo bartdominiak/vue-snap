@@ -44,10 +44,30 @@
             :aria-label="copied ? 'Copied' : 'Copy install command'"
             @click="copyInstall"
           >
-            <svg v-if="copied" viewBox="0 0 24 24" class="h-4 w-4 text-brand" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg
+              v-if="copied"
+              viewBox="0 0 24 24"
+              class="h-4 w-4 text-brand"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
               <path d="M20 6 9 17l-5-5" />
             </svg>
-            <svg v-else viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg
+              v-else
+              viewBox="0 0 24 24"
+              class="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
               <rect x="9" y="9" width="13" height="13" rx="2" />
               <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
             </svg>
@@ -72,7 +92,11 @@
           class="rounded-2xl border border-black/8 bg-white p-6 shadow-sm"
         >
           <div class="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-brand/10">
-            <img :src="feature.icon" alt="" class="h-6 w-6" />
+            <img
+              :src="feature.icon"
+              alt=""
+              class="h-6 w-6"
+            />
           </div>
           <h3 class="text-lg font-semibold">{{ feature.title }}</h3>
           <p class="mt-1.5 text-sm text-ink/60">{{ feature.details }}</p>

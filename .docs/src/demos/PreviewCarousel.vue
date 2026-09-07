@@ -26,15 +26,29 @@
       </div>
 
       <div class="mt-4 flex flex-wrap gap-2">
-        <button type="button" class="preview-btn" :disabled="!carouselMounted" @click="autoplayOn = !autoplayOn">
+        <button
+          type="button"
+          class="preview-btn"
+          :disabled="!carouselMounted"
+          @click="autoplayOn = !autoplayOn"
+        >
           <span class="h-2 w-2 rounded-full" :class="autoplayOn ? 'bg-brand' : 'bg-ink/30'" />
           Autoplay: {{ autoplayOn ? 'On' : 'Off' }}
         </button>
-        <button type="button" class="preview-btn" @click="toggleMount">
+        <button
+          type="button"
+          class="preview-btn"
+          @click="toggleMount"
+        >
           <span class="h-2 w-2 rounded-full" :class="carouselMounted ? 'bg-brand' : 'bg-ink/30'" />
           {{ carouselMounted ? 'Unmount' : 'Mount' }}
         </button>
-        <button type="button" class="preview-btn" :disabled="!carouselMounted" @click="arrowsVisible = !arrowsVisible">
+        <button
+          type="button"
+          class="preview-btn"
+          :disabled="!carouselMounted"
+          @click="arrowsVisible = !arrowsVisible"
+        >
           <span class="h-2 w-2 rounded-full" :class="arrowsVisible ? 'bg-brand' : 'bg-ink/30'" />
           Arrows: {{ arrowsVisible ? 'On' : 'Off' }}
         </button>
@@ -57,7 +71,12 @@
         >
           Go right
         </button>
-        <button type="button" class="preview-btn" :disabled="!carouselMounted" @click="goToRandomSlide">
+        <button
+          type="button"
+          class="preview-btn"
+          :disabled="!carouselMounted"
+          @click="goToRandomSlide"
+        >
           Go to random slide
         </button>
       </div>
@@ -77,15 +96,25 @@
         </button>
       </div>
 
-      <ul v-if="events.length" class="flex-1 space-y-1 overflow-y-auto p-2 font-mono text-xs">
-        <li v-for="event in events" :key="event.id" class="flex items-center gap-2">
+      <ul
+        v-if="events.length"
+        class="flex-1 space-y-1 overflow-y-auto p-2 font-mono text-xs"
+      >
+        <li
+          v-for="event in events"
+          :key="event.id"
+          class="flex items-center gap-2"
+        >
           <span class="h-1.5 w-1.5 shrink-0 rounded-full" :class="dotColor[event.type]" />
           <span class="w-14 shrink-0 text-white/30">{{ event.time }}</span>
           <span class="text-white/45">{{ event.type }}</span>
           <span class="truncate text-white/80">{{ event.message }}</span>
         </li>
       </ul>
-      <p v-else class="flex flex-1 items-center justify-center px-4 text-center font-mono text-xs text-white/30">
+      <p
+        v-else
+        class="flex flex-1 items-center justify-center px-4 text-center font-mono text-xs text-white/30"
+      >
         Interact with the carousel to see events fire.
       </p>
     </div>

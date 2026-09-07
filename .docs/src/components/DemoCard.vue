@@ -1,10 +1,16 @@
 <template>
-  <section class="scroll-mt-24" :id="id">
+  <section
+    class="scroll-mt-24"
+    :id="id"
+  >
     <div class="mb-3 flex items-baseline justify-between gap-4">
       <h3 class="text-xl font-semibold tracking-tight">{{ title }}</h3>
     </div>
 
-    <p v-if="description" class="mb-5 max-w-2xl text-sm text-ink/60">
+    <p
+      v-if="description"
+      class="mb-5 max-w-2xl text-sm text-ink/60"
+    >
       {{ description }}
     </p>
 
@@ -12,7 +18,10 @@
       <slot name="demo" />
     </div>
 
-    <div v-if="$slots.code" class="mt-4">
+    <div
+      v-if="$slots.code"
+      class="mt-4"
+    >
       <slot name="code" />
     </div>
   </section>

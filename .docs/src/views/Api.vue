@@ -7,11 +7,23 @@
       <code class="rounded-lg bg-brand/10 px-2 py-0.5 font-mono text-brand">Carousel</code>
     </h2>
 
-    <ApiTable title="Props" :columns="['Prop', 'Type', 'Default', 'Description']" :rows="carouselProps" />
+    <ApiTable
+      title="Props"
+      :columns="['Prop', 'Type', 'Default', 'Description']"
+      :rows="carouselProps"
+    />
     <p class="mt-3 text-sm text-ink/55">Hovering the carousel pauses autoplay; it resumes on mouse leave.</p>
 
-    <ApiTable title="Events" :columns="['Event', 'Payload', 'Description']" :rows="carouselEvents" />
-    <ApiTable title="Slots" :columns="['Slot', 'Props', 'Description']" :rows="carouselSlots" />
+    <ApiTable
+      title="Events"
+      :columns="['Event', 'Payload', 'Description']"
+      :rows="carouselEvents"
+    />
+    <ApiTable
+      title="Slots"
+      :columns="['Slot', 'Props', 'Description']"
+      :rows="carouselSlots"
+    />
 
     <ApiTable
       title="Exposed methods"
@@ -24,7 +36,11 @@
     <h2 class="mt-16 flex items-center gap-2 text-2xl font-semibold tracking-tight">
       <code class="rounded-lg bg-brand/10 px-2 py-0.5 font-mono text-brand">Slide</code>
     </h2>
-    <ApiTable title="Props" :columns="['Prop', 'Type', 'Default', 'Description']" :rows="slideProps" />
+    <ApiTable
+      title="Props"
+      :columns="['Prop', 'Type', 'Default', 'Description']"
+      :rows="slideProps"
+    />
   </div>
 </template>
 

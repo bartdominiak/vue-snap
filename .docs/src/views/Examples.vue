@@ -4,7 +4,11 @@
     <p class="mt-3 text-ink/60">A tour of common vue-snap usage. Every demo below is live.</p>
 
     <div class="mt-12 space-y-16">
-      <DemoCard id="basic" title="Basic" description="One slide at a time — the default behaviour.">
+      <DemoCard
+        id="basic"
+        title="Basic"
+        description="One slide at a time — the default behaviour."
+      >
         <template #demo><BasicCarousel /></template>
         <template #code>
           <CodeGroup :tabs="basicTabs" collapsible />
