@@ -132,6 +132,12 @@ const COPIED_RESET_MS = 2000;
 
 const copied = ref(false);
 
+const features = [
+  { title: 'Lightweight', details: 'Just 4KB, fast and efficient.', icon: '/mix-black.svg' },
+  { title: 'Modern', details: 'Built with native CSS Scroll Snapping.', icon: '/layers-black.svg' },
+  { title: 'Modular', details: 'Easily customizable, with minimal effort.', icon: '/spartial-black.svg' },
+];
+
 const copyInstall = async () => {
   await navigator.clipboard.writeText(INSTALL_COMMAND);
   copied.value = true;
@@ -139,10 +145,4 @@ const copyInstall = async () => {
     copied.value = false;
   }, COPIED_RESET_MS);
 };
-
-const features = [
-  { title: 'Lightweight', details: 'Just 4KB, fast and efficient.', icon: '/mix-black.svg' },
-  { title: 'Modern', details: 'Built with native CSS Scroll Snapping.', icon: '/layers-black.svg' },
-  { title: 'Modular', details: 'Easily customizable, with minimal effort.', icon: '/spartial-black.svg' },
-];
 </script>

@@ -1,7 +1,7 @@
 <template>
   <section
-    class="scroll-mt-24"
     :id="id"
+    class="scroll-mt-24"
   >
     <div class="mb-3 flex items-baseline justify-between gap-4">
       <h3 class="text-xl font-semibold tracking-tight">{{ title }}</h3>

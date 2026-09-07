@@ -121,24 +121,22 @@ import { ref, computed, watch, onMounted, h } from 'vue';
 import { useRoute } from 'vue-router';
 import { navLinks } from '../router';
 
-const route = useRoute();
-
 // Shown immediately and used as fallback if the GitHub API is unreachable.
 const FALLBACK_STARS = 169;
 const STARS_ENDPOINT = 'https://api.github.com/repos/bartdominiak/vue-snap';
 
-const StarIcon = () =>
-  h(
-    'svg',
-    { viewBox: '0 0 24 24', class: 'h-3.5 w-3.5', fill: 'currentColor', 'aria-hidden': 'true' },
-    [h('path', { d: 'm12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2Z' })],
-  );
-
+const route = useRoute();
 const stars = ref(FALLBACK_STARS);
+const open = ref(false);
 
 const formattedStars = computed(() =>
   stars.value >= 1000 ? `${(stars.value / 1000).toFixed(1)}k` : String(stars.value),
 );
+
+// Close the menu after navigating to a new page.
+watch(() => route.path, () => {
+  open.value = false;
+});
 
 onMounted(async () => {
   try {
@@ -151,10 +149,10 @@ onMounted(async () => {
   }
 });
 
-const open = ref(false);
-
-// Close the menu after navigating to a new page.
-watch(() => route.path, () => {
-  open.value = false;
-});
+const StarIcon = () =>
+  h(
+    'svg',
+    { viewBox: '0 0 24 24', class: 'h-3.5 w-3.5', fill: 'currentColor', 'aria-hidden': 'true' },
+    [h('path', { d: 'm12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2Z' })],
+  );
 </script>
