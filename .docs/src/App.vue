@@ -1,3 +1,7 @@
+<script setup>
+import NavBar from './components/NavBar.vue';
+</script>
+
 <template>
   <div class="flex min-h-screen flex-col">
     <NavBar />
@@ -9,7 +13,11 @@
     <footer class="border-t border-black/5 bg-white">
       <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-5 py-8 text-sm text-ink/50 sm:flex-row">
         <div class="flex items-center gap-2">
-          <img src="/logo.svg" alt="" class="h-4 w-auto opacity-70" />
+          <img
+            src="/logo.svg"
+            alt=""
+            class="h-4 w-auto opacity-70"
+          />
           <span>Vue Snap — CSS Scroll Snap Carousel</span>
         </div>
         <div class="flex items-center gap-4">
@@ -25,7 +33,3 @@
     </footer>
   </div>
 </template>
-
-<script setup>
-import NavBar from './components/NavBar.vue';
-</script>

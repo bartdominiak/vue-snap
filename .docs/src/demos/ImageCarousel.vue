@@ -1,14 +1,18 @@
-<template>
-  <Carousel class="my-carousel-images">
-    <Slide v-for="slide in generateSlides(18)" :key="slide">
-      <img loading="lazy" src="/cactus.jpg" alt="Example slide description" />
-    </Slide>
-  </Carousel>
-</template>
-
 <script setup>
 import { generateSlides } from '../lib/utils'
 </script>
+
+<template>
+  <Carousel class="my-carousel-images">
+    <Slide v-for="slide in generateSlides(18)" :key="slide">
+      <img
+        loading="lazy"
+        src="/cactus.jpg"
+        alt="Example slide description"
+      />
+    </Slide>
+  </Carousel>
+</template>
 
 <style>
 .my-carousel-images {

@@ -1,3 +1,7 @@
+<script setup>
+const slides = [ ...Array(18) ].map((_, i) => i);
+</script>
+
 <template>
   <Carousel class="my-carousel">
     <Slide v-for="slide in slides" :key="slide">
@@ -5,10 +9,6 @@
     </Slide>
   </Carousel>
 </template>
-
-<script setup>
-const slides = [ ...Array(18) ].map((_, i) => i);
-</script>
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');

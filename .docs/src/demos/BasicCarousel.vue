@@ -1,3 +1,7 @@
+<script setup>
+import { generateSlides } from '../lib/utils'
+</script>
+
 <template>
   <Carousel class="custom-carousel">
     <Slide v-for="slide in generateSlides(18)" :key="slide">
@@ -5,11 +9,6 @@
     </Slide>
   </Carousel>
 </template>
-
-<script setup>
-import { generateSlides } from '../lib/utils'
-</script>
-
 
 <style>
 .custom-carousel {

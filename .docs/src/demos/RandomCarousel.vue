@@ -1,14 +1,3 @@
-<template>
-  <Carousel
-    ref="carousel01"
-    class="my-carousel my-carousel-multiple-3"
-  >
-    <Slide v-for="slide in slides" :key="slide">
-      Slide {{ slide + 1 }}
-    </Slide>
-  </Carousel>
-</template>
-
 <script setup>
 import { generateSlides } from '../lib/utils'
 import { ref, onMounted, onBeforeUnmount } from 'vue';
@@ -32,6 +21,17 @@ onBeforeUnmount(() => {
   clearInterval(intervalId)
 })
 </script>
+
+<template>
+  <Carousel
+    ref="carousel01"
+    class="my-carousel my-carousel-multiple-3"
+  >
+    <Slide v-for="slide in slides" :key="slide">
+      Slide {{ slide + 1 }}
+    </Slide>
+  </Carousel>
+</template>
 
 <style>
 .my-carousel-multiple {

@@ -1,14 +1,3 @@
-<template>
-  <component
-    :is="tag"
-    ref="vsSlide"
-    class="vs-carousel__slide"
-    tabindex="0"
-  >
-    <slot />
-  </component>
-</template>
-
 <script setup lang="ts">
 defineProps({
   /**
@@ -20,3 +9,14 @@ defineProps({
   },
 });
 </script>
+
+<template>
+  <component
+    :is="tag"
+    ref="vsSlide"
+    class="vs-carousel__slide"
+    tabindex="0"
+  >
+    <slot />
+  </component>
+</template>

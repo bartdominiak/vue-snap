@@ -1,33 +1,3 @@
-<template>
-  <div class="mx-auto max-w-4xl px-5 py-14">
-    <h1 class="text-4xl font-bold tracking-tight">API</h1>
-
-    <!-- Carousel -->
-    <h2 class="mt-12 flex items-center gap-2 text-2xl font-semibold tracking-tight">
-      <code class="rounded-lg bg-brand/10 px-2 py-0.5 font-mono text-brand">Carousel</code>
-    </h2>
-
-    <ApiTable title="Props" :columns="['Prop', 'Type', 'Default', 'Description']" :rows="carouselProps" />
-    <p class="mt-3 text-sm text-ink/55">Hovering the carousel pauses autoplay; it resumes on mouse leave.</p>
-
-    <ApiTable title="Events" :columns="['Event', 'Payload', 'Description']" :rows="carouselEvents" />
-    <ApiTable title="Slots" :columns="['Slot', 'Props', 'Description']" :rows="carouselSlots" />
-
-    <ApiTable
-      title="Exposed methods"
-      :columns="['Method', 'Parameters', 'Description']"
-      :rows="carouselMethods"
-    />
-    <p class="mt-3 text-sm text-ink/55">Access these via a template ref on <code class="rounded bg-black/5 px-1.5 py-0.5 font-mono text-xs">&lt;Carousel&gt;</code>.</p>
-
-    <!-- Slide -->
-    <h2 class="mt-16 flex items-center gap-2 text-2xl font-semibold tracking-tight">
-      <code class="rounded-lg bg-brand/10 px-2 py-0.5 font-mono text-brand">Slide</code>
-    </h2>
-    <ApiTable title="Props" :columns="['Prop', 'Type', 'Default', 'Description']" :rows="slideProps" />
-  </div>
-</template>
-
 <script setup>
 import ApiTable from '../components/ApiTable.vue';
 
@@ -62,3 +32,49 @@ const slideProps = [
   ['tag', 'String', "'li'", 'HTML tag rendered for the slide element'],
 ];
 </script>
+
+<template>
+  <div class="mx-auto max-w-4xl px-5 py-14">
+    <h1 class="text-4xl font-bold tracking-tight">API</h1>
+
+    <!-- Carousel -->
+    <h2 class="mt-12 flex items-center gap-2 text-2xl font-semibold tracking-tight">
+      <code class="rounded-lg bg-brand/10 px-2 py-0.5 font-mono text-brand">Carousel</code>
+    </h2>
+
+    <ApiTable
+      title="Props"
+      :columns="['Prop', 'Type', 'Default', 'Description']"
+      :rows="carouselProps"
+    />
+    <p class="mt-3 text-sm text-ink/55">Hovering the carousel pauses autoplay; it resumes on mouse leave.</p>
+
+    <ApiTable
+      title="Events"
+      :columns="['Event', 'Payload', 'Description']"
+      :rows="carouselEvents"
+    />
+    <ApiTable
+      title="Slots"
+      :columns="['Slot', 'Props', 'Description']"
+      :rows="carouselSlots"
+    />
+
+    <ApiTable
+      title="Exposed methods"
+      :columns="['Method', 'Parameters', 'Description']"
+      :rows="carouselMethods"
+    />
+    <p class="mt-3 text-sm text-ink/55">Access these via a template ref on <code class="rounded bg-black/5 px-1.5 py-0.5 font-mono text-xs">&lt;Carousel&gt;</code>.</p>
+
+    <!-- Slide -->
+    <h2 class="mt-16 flex items-center gap-2 text-2xl font-semibold tracking-tight">
+      <code class="rounded-lg bg-brand/10 px-2 py-0.5 font-mono text-brand">Slide</code>
+    </h2>
+    <ApiTable
+      title="Props"
+      :columns="['Prop', 'Type', 'Default', 'Description']"
+      :rows="slideProps"
+    />
+  </div>
+</template>
