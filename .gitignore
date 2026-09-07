@@ -10,3 +10,7 @@ dist/report.html
 .docs/dist
 .vscode
 .claude
+
+// Playwright
+test-results
+playwright-report
