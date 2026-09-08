@@ -8,7 +8,7 @@
 
 [![npm version](https://badge.fury.io/js/vue-snap.svg?icon=si%3Anpm)](https://badge.fury.io/js/vue-snap)
 [![bundle size](https://deno.bundlejs.com/badge?q=vue-snap)](https://bundlejs.com/?q=vue-snap)
-[![license](https://img.shields.io/github/license/bartdominiak/vue-snap)](https://github.com/bartdominiak/vue-snap/blob/master/LICENSE.md)
+[![license](https://img.shields.io/github/license/bartdominiak/vue-snap)](https://github.com/bartdominiak/vue-snap/blob/main/LICENSE.md)
 [![MadeWithVueJs.com shield](https://madewithvuejs.com/storage/repo-shields/5792-shield.svg)](https://madewithvuejs.com/p/vuesnap/shield-link)
 
 ## Table of Contents
@@ -32,7 +32,7 @@ The idea behind this plugin is to create a fully responsive and well-optimized c
 - **Fully responsive** – most customization is handled via CSS (e.g. number of visible slides)
 - **ESM bundle with tree-shaking** – dead code is automatically eliminated
 - **TypeScript support** – ships with bundled type declarations out of the box
-- **SSR support** – works with frameworks like Nuxt.js 🎉 [More here](https://github.com/bartdominiak/vue-snap/tree/master/examples)
+- **SSR support** – works with frameworks like Nuxt.js 🎉 [More here](https://github.com/bartdominiak/vue-snap/tree/main/examples)
 - **Vue 3 support** 🎉  [More here](#installation--usage)
 - **Modern browser support** – compatible with all common browsers [More here](https://caniuse.com/css-snappoints)
 
@@ -119,7 +119,7 @@ const carousel = useTemplateRef('carousel')
 ```
 
 ## Examples usage
-Check out the [examples](https://github.com/bartdominiak/vue-snap/tree/master/examples) folder for full Vite/Nuxt projects, or the [documentation](https://vue-snap.vercel.app/) for the complete API.
+Check out the [examples](https://github.com/bartdominiak/vue-snap/tree/main/examples) folder for full Vite/Nuxt projects, or the [documentation](https://vue-snap.vercel.app/) for the complete API.
 
 ## Contribution
 If you have a feature request then feel free to start a new issue, or just grab existing one.

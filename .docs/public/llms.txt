@@ -21,7 +21,7 @@ import 'vue-snap/style.css'
 
 - [Full API and usage reference](https://vue-snap.vercel.app/llms-full.txt): complete props, events, slots, exposed methods, styling recipes
 - [GitHub repository](https://github.com/bartdominiak/vue-snap): source, changelog, issues
-- [Examples (Vite and Nuxt apps)](https://github.com/bartdominiak/vue-snap/tree/master/examples): runnable projects
+- [Examples (Vite and Nuxt apps)](https://github.com/bartdominiak/vue-snap/tree/main/examples): runnable projects
 
 ## Notes
 

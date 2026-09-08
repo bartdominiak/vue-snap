@@ -131,7 +131,7 @@ Class reference: `.vs-carousel` (root), `.vs-carousel__wrapper` (scroll containe
 
 ## SSR / Nuxt
 
-No special setup — DOM access is guarded internally. See the runnable Nuxt example: https://github.com/bartdominiak/vue-snap/tree/master/examples/nuxt-app
+No special setup — DOM access is guarded internally. See the runnable Nuxt example: https://github.com/bartdominiak/vue-snap/tree/main/examples/nuxt-app
 
 ## Browser support
 
