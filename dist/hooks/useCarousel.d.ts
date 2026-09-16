@@ -1,5 +1,5 @@
 import { Ref } from 'vue';
-type CarouselEmits = {
+export type CarouselEmits = {
     (e: 'mounted', value: boolean): void;
     (e: 'slideChange', index: number): void;
     (e: 'leftBound', value: boolean): void;

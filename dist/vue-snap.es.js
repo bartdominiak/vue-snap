@@ -152,19 +152,15 @@ var D = ["aria-label", "disabled"], O = ["aria-label", "disabled"], k = /* @__PU
 	}
 }), A = /* @__PURE__ */ i({
 	__name: "Slide",
-	props: { tag: {
-		type: String,
-		default: "li"
-	} },
+	props: { tag: { default: "li" } },
 	setup(t) {
 		return (n, r) => (u(), e(p(t.tag), {
-			ref: "vsSlide",
 			class: "vs-carousel__slide",
 			tabindex: "0"
 		}, {
 			default: v(() => [f(n.$slots, "default")]),
 			_: 3
-		}, 512));
+		}));
 	}
 }), j = { install: (e) => {
 	e.component("Carousel", k), e.component("Slide", A);

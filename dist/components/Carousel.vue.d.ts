@@ -24,18 +24,18 @@ declare const __VLS_base: import('vue').DefineComponent<CarouselProps, {
     goToSlide: (index: number) => void;
     isBoundLeft: import('vue').Ref<boolean, boolean>;
     isBoundRight: import('vue').Ref<boolean, boolean>;
-}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
-    autoplay: (...args: any[]) => void;
-    mounted: (...args: any[]) => void;
-    slideChange: (...args: any[]) => void;
-    leftBound: (...args: any[]) => void;
-    rightBound: (...args: any[]) => void;
+}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {} & {
+    autoplay: (value: boolean) => any;
+    mounted: (value: boolean) => any;
+    slideChange: (index: number) => any;
+    leftBound: (value: boolean) => any;
+    rightBound: (value: boolean) => any;
 }, string, import('vue').PublicProps, Readonly<CarouselProps> & Readonly<{
-    onAutoplay?: ((...args: any[]) => any) | undefined;
-    onMounted?: ((...args: any[]) => any) | undefined;
-    onSlideChange?: ((...args: any[]) => any) | undefined;
-    onLeftBound?: ((...args: any[]) => any) | undefined;
-    onRightBound?: ((...args: any[]) => any) | undefined;
+    onAutoplay?: ((value: boolean) => any) | undefined;
+    onMounted?: ((value: boolean) => any) | undefined;
+    onSlideChange?: ((index: number) => any) | undefined;
+    onLeftBound?: ((value: boolean) => any) | undefined;
+    onRightBound?: ((value: boolean) => any) | undefined;
 }>, {
     autoplay: boolean;
     autoplayInterval: number;
