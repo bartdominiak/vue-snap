@@ -18,7 +18,7 @@ CI (`.github/workflows/main.yml`) runs install → lint → test → release on 
 
 - `src/entry.ts` — public entry: exports `Carousel`, `Slide`, and the install plugin
 - `src/components/` — `Carousel.vue`, `Slide.vue`, `carousel.scss` (styles sourced by the SFC via `<style src>`)
-- `src/hooks/` — `useCarousel.ts` (scroll/navigation), `useAutoplay.ts` (timer)
+- `src/composables/` — `useCarousel.ts` (scroll/navigation), `useAutoplay.ts` (timer)
 - `src/utils/helpers.ts` — small pure helpers + tests alongside (`*.test.ts`)
 - `.docs/` — showcase site (separate bun project, deployed to vue-snap.vercel.app)
 - `examples/` — runnable Vite and Nuxt apps consuming the published package

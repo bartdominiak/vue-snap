@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, toRef } from 'vue';
-import { type CarouselEmits, useCarousel } from '../hooks/useCarousel';
+import { type CarouselEmits, useCarousel } from '../composables/useCarousel';
 
 interface CarouselProps {
   tag?: string;
