@@ -1,0 +1,21 @@
+name: Deploy Docs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.docs/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel deploy hook
+        env:
+          DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DOCS_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$DEPLOY_HOOK_URL" ]; then
+            echo "::error::VERCEL_DOCS_DEPLOY_HOOK secret is not set. Create a Deploy Hook for the .docs project in Vercel (Project Settings > Git > Deploy Hooks) and add it as a repo secret." >&2
+            exit 1
+          fi
+          curl --fail --silent --show-error -X POST "$DEPLOY_HOOK_URL"

@@ -14,6 +14,8 @@ bun run release          # vue-tsc -b + vite build → dist/
 
 CI (`.github/workflows/main.yml`) runs install → lint → test → release on every push. All four must pass.
 
+Docs deploy (`.github/workflows/docs-deploy.yml`) POSTs to the `VERCEL_DOCS_DEPLOY_HOOK` repo secret on every push to `main` that touches `.docs/**`, triggering Vercel's own build for the showcase site. Requires a Deploy Hook created in the Vercel project dashboard (Project Settings > Git > Deploy Hooks) and stored as that secret — the workflow fails loudly if it's missing.
+
 ## Layout
 
 - `src/entry.ts` — public entry: exports `Carousel`, `Slide`, and the install plugin
