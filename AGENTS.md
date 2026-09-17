@@ -14,7 +14,7 @@ bun run release          # vue-tsc -b + vite build → dist/
 
 CI (`.github/workflows/main.yml`) runs install → lint → test → release on every push. All four must pass.
 
-Docs deploy (`.github/workflows/docs-deploy.yml`) POSTs to the `VERCEL_DOCS_DEPLOY_HOOK` repo secret on every push to `main` that touches `.docs/**`, triggering Vercel's own build for the showcase site. Requires a Deploy Hook created in the Vercel project dashboard (Project Settings > Git > Deploy Hooks) and stored as that secret — the workflow fails loudly if it's missing.
+Docs deploy (`.github/workflows/docs-deploy.yml`) builds and deploys the showcase site with the Vercel CLI (`vercel pull` → `vercel build --prod` → `vercel deploy --prebuilt --prod`) on every push to `main` that touches `.docs/**`. Vercel's own Git-integration auto-deploy is turned off for this project (`"git": { "deploymentEnabled": false }` in `.docs/vercel.json`) so Actions is the only thing that triggers a deploy — leaving both on double-deploys every push. Requires three repo secrets: `VERCEL_TOKEN` (from the account's tokens page or `vercel tokens add`), and `VERCEL_ORG_ID`/`VERCEL_PROJECT_ID` (read from `.docs/.vercel/project.json` after running `vercel login && vercel link` inside `.docs/` once, locally).
 
 ## Layout
 
