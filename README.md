@@ -7,7 +7,7 @@
 </div>
 
 [![npm version](https://badge.fury.io/js/vue-snap.svg?icon=si%3Anpm)](https://badge.fury.io/js/vue-snap)
-[![bundle size](https://deno.bundlejs.com/badge?q=vue-snap)](https://bundlejs.com/?q=vue-snap)
+[![bundle size](https://deno.bundlejs.com/badge?q=vue-snap&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22vue%22%5D%7D%7D)](https://bundlejs.com/?q=vue-snap&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22vue%22%5D%7D%7D)
 [![license](https://img.shields.io/github/license/bartdominiak/vue-snap)](https://github.com/bartdominiak/vue-snap/blob/main/LICENSE.md)
 [![MadeWithVueJs.com shield](https://madewithvuejs.com/storage/repo-shields/5792-shield.svg)](https://madewithvuejs.com/p/vuesnap/shield-link)
 
