@@ -8,7 +8,7 @@ const COPIED_RESET_MS = 2000;
 const copied = ref(false);
 
 const features = [
-  { title: 'Lightweight', details: 'Just 4KB, fast and efficient.', icon: '/mix-black.svg' },
+  { title: 'Lightweight', details: 'Just 5KB, fast and efficient.', icon: '/mix-black.svg' },
   { title: 'Modern', details: 'Built with native CSS Scroll Snapping.', icon: '/layers-black.svg' },
   { title: 'Modular', details: 'Easily customizable, with minimal effort.', icon: '/spartial-black.svg' },
 ];
@@ -33,7 +33,7 @@ const copyInstall = async () => {
       <div class="mx-auto max-w-6xl px-5 pt-20 pb-14 text-center">
         <span class="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/5 px-3 py-1 text-xs font-medium text-brand">
           <span class="h-1.5 w-1.5 rounded-full bg-brand"></span>
-          Native CSS Scroll Snapping · 4KB
+          Native CSS Scroll Snapping · 5KB
         </span>
 
         <h1 class="mx-auto mt-6 max-w-3xl text-5xl font-bold tracking-tight sm:text-6xl">
