@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Scroll debounce now uses VueUse's `useDebounceFn` instead of an in-house implementation; `@vueuse/core` is now a runtime dependency.
+
 ## [2.1.0] - 2026-07-15
 
 ### Added
