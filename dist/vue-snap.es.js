@@ -12,7 +12,7 @@ function S(e, t) {
 	}, r;
 }
 //#endregion
-//#region src/hooks/useAutoplay.ts
+//#region src/composables/useAutoplay.ts
 function C({ autoplay: e, autoplayInterval: t, onAdvance: n, onAutoplayChange: r }) {
 	let i = null, a = () => {
 		i &&= (clearInterval(i), null);
@@ -33,7 +33,7 @@ function C({ autoplay: e, autoplayInterval: t, onAdvance: n, onAutoplayChange: r
 	};
 }
 //#endregion
-//#region src/hooks/useCarousel.ts
+//#region src/composables/useCarousel.ts
 var w = 100, T = 10;
 function E(e, t, { autoplay: n, autoplayInterval: r }) {
 	let i = d(!0), a = d(!1), o = d(0), l = () => t.value ? Array.from(t.value.children).map((e) => e.offsetLeft) : [], u = (e) => {
@@ -152,19 +152,15 @@ var D = ["aria-label", "disabled"], O = ["aria-label", "disabled"], k = /* @__PU
 	}
 }), A = /* @__PURE__ */ i({
 	__name: "Slide",
-	props: { tag: {
-		type: String,
-		default: "li"
-	} },
+	props: { tag: { default: "li" } },
 	setup(t) {
 		return (n, r) => (u(), e(p(t.tag), {
-			ref: "vsSlide",
 			class: "vs-carousel__slide",
 			tabindex: "0"
 		}, {
 			default: v(() => [f(n.$slots, "default")]),
 			_: 3
-		}, 512));
+		}));
 	}
 }), j = { install: (e) => {
 	e.component("Carousel", k), e.component("Slide", A);

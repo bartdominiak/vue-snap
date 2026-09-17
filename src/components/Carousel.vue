@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, toRef } from 'vue';
-import { useCarousel } from '../hooks/useCarousel';
+import { type CarouselEmits, useCarousel } from '../composables/useCarousel';
 
 interface CarouselProps {
   tag?: string;
@@ -26,13 +26,7 @@ const props = withDefaults(defineProps<CarouselProps>(), {
   }),
 });
 
-const emit = defineEmits([
-  'mounted',
-  'slideChange',
-  'leftBound',
-  'rightBound',
-  'autoplay',
-]);
+const emit = defineEmits<CarouselEmits>();
 const vsWrapper = ref(null);
 
 const {

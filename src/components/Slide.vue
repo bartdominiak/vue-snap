@@ -1,19 +1,19 @@
 <script setup lang="ts">
-defineProps({
+interface SlideProps {
   /**
    * Custom tag
    */
-  tag: {
-    type: String,
-    default: 'li',
-  },
+  tag?: string;
+}
+
+withDefaults(defineProps<SlideProps>(), {
+  tag: 'li',
 });
 </script>
 
 <template>
   <component
     :is="tag"
-    ref="vsSlide"
     class="vs-carousel__slide"
     tabindex="0"
   >

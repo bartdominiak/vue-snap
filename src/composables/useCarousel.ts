@@ -11,7 +11,7 @@ const SCROLL_DEBOUNCE = 100;
 // fractional slide widths, so the right bound is detected with a tolerance.
 const BOUND_EPSILON = 10;
 
-type CarouselEmits = {
+export type CarouselEmits = {
   (e: 'mounted', value: boolean): void;
   (e: 'slideChange', index: number): void;
   (e: 'leftBound', value: boolean): void;
