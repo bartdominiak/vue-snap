@@ -1,6 +1,7 @@
+import { useDebounceFn } from '@vueuse/core';
 import type { Ref } from 'vue';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
-import { approximatelyEqual, debounce, isClient } from '../utils/helpers';
+import { approximatelyEqual, isClient } from '../utils/helpers';
 import { useAutoplay } from './useAutoplay';
 
 // Scroll events fire continuously during snap animations, so state is
@@ -140,7 +141,7 @@ export function useCarousel(
     updateBoundaries(activeIndex);
   };
 
-  const handleScroll = debounce(refreshSlideState, SCROLL_DEBOUNCE);
+  const handleScroll = useDebounceFn(refreshSlideState, SCROLL_DEBOUNCE);
 
   onMounted(() => {
     if (!isClient || !vsWrapper.value) return;
